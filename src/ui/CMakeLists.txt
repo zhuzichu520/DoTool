@@ -1,6 +1,6 @@
 ﻿set(UILibrary_SRS
-        MainWindow.cpp
-        )
+    MainWindow.cpp
+    )
 
 set(UILibrary_HEADERS
         MainWindow.h

@@ -11,10 +11,11 @@ int main(int argc, char *argv[])
     //    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     //    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
-    QGuiApplication::setApplicationName("QtTemplate");
-    QGuiApplication::setOrganizationName("QtTemplate");
-    QGuiApplication::setOrganizationDomain("https://github.com/zhuzichu520/qt-template");
+    QGuiApplication::setApplicationName("DoTool");
+    QGuiApplication::setOrganizationName("DoTool");
+    QGuiApplication::setOrganizationDomain("https://github.com/zhuzichu520/DoTool");
     QGuiApplication::setApplicationVersion("1.0");
+
     QGuiApplication app(argc, argv);
     MainWindow window;
     window.show();

@@ -1,7 +1,14 @@
 ﻿#include "MainWindow.h"
+#include "QGuiApplication"
+#include "qfontdatabase.h"
 
 MainWindow::MainWindow() {
-
+//    int fontId = QFontDatabase::addApplicationFont("qrc:/font/iconfont.ttf");
+//    QStringList fontIDs = QFontDatabase::applicationFontFamilies(fontId);
+//    if (!fontIDs.isEmpty()) {
+//        QFont font(fontIDs.first());
+//        QGuiApplication::setFont(font);
+//    }
 }
 
 MainWindow::~MainWindow() {
