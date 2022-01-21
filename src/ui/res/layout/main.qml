@@ -7,8 +7,11 @@ CusWindow {
     id:window
     width: 800
     height: 600
-    minimumWidth: 300
-    minimumHeight: 300
+    minimumWidth: 800
+    minimumHeight: 600
+    maximumWidth: 800
+    maximumHeight: 600
+
     title: qsTr("DoTool")
 
 

@@ -6,6 +6,7 @@ Item {
     property alias icon : textIcon.text
     property alias color : textIcon.color
     signal clickEvent
+    property alias iconSize: textIcon.font.pixelSize
 
     height: 30
     width: 30
@@ -17,7 +18,7 @@ Item {
 
     Text {
         id:textIcon
-        font.pixelSize: 12
+        font.pixelSize: 20
         font.family: awesome.name
         color: "#BBB"
         anchors.centerIn: parent

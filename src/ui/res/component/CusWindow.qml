@@ -8,14 +8,14 @@ ApplicationWindow {
     id:window
 
     property var router
-
     property alias page: container.children
     property int borderOffset: 5
     property int containerMargins: window.visibility === Window.Windowed ? borderOffset : 0
-
-    flags: Qt.Window | Qt.FramelessWindowHint
+    property int windowFlags : Qt.Window | Qt.FramelessWindowHint
+    flags: windowFlags
     visible: true
-    color: "transparent"
+    color:"transparent"
+
 
     onClosing: function(closeevent){
         try{

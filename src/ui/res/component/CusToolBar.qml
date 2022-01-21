@@ -15,6 +15,7 @@ Rectangle {
     property bool minEnable: true
     property bool closeEnable: true
     property bool darkEnable: true
+    property bool isTop : (window.windowFlags & Qt.WindowStaysOnTopHint) === Qt.WindowStaysOnTopHint
 
     clip: true
     height: 30
@@ -67,6 +68,7 @@ Rectangle {
             Text {
                 text: title
                 font.pixelSize: 12
+                color:Theme.colorFontPrimary
             }
         }
 
@@ -86,21 +88,37 @@ Rectangle {
             }
 
             CusToolButton {
-                icon: "🗕"
+                icon: "\ue610"
+                onClickEvent: {
+                    window.color = "white"
+                    if(isTop){
+                        window.windowFlags = window.windowFlags &~ Qt.WindowStaysOnTopHint
+                    }else{
+                        window.windowFlags = window.windowFlags | Qt.WindowStaysOnTopHint
+                    }
+                    window.color = "transparent"
+                }
+                color: isTop ? Theme.colorPrimary : "#BBB"
+                iconSize: 14
+            }
+
+            CusToolButton {
+                icon: "\ue9bd"
                 onClickEvent: window.showMinimized()
                 visible: minEnable
             }
             CusToolButton {
-                icon: window.visibility === Window.Maximized ? "🗗" : "🗖"
+                icon: window.visibility === Window.Maximized ? "\ue621" : "\ue629"
                 onClickEvent: window.toggleMaximized();
                 visible: maxEnable
             }
             CusToolButton {
-                icon: "🗙"
+                icon: "\ue9bb"
                 onClickEvent: window.close();
                 visible: closeEnable
             }
         }
     }
+
 
 }
