@@ -11,6 +11,11 @@ Item {
     height: 30
     width: 30
 
+    Rectangle{
+        anchors.fill: parent
+        color: mouseArea.containsMouse ? "#11000000" : "#00000000"
+    }
+
     FontLoader {
         id: awesome
         source: "qrc:/font/iconfont.ttf"
@@ -25,8 +30,10 @@ Item {
     }
 
     MouseArea {
+        id:mouseArea
         cursorShape: Qt.PointingHandCursor
         anchors.fill: parent
+        hoverEnabled: true
         onClicked: clickEvent()
     }
 

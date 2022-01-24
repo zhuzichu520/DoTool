@@ -8,4 +8,12 @@ Item {
         text:"MainHome"
     }
 
+    Component.onCompleted: {
+        console.debug("MainHome-onCompleted")
+    }
+
+    Component.onDestruction: {
+        console.debug("MainHome-onDestruction")
+    }
+
 }

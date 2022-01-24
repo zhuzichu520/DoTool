@@ -1,14 +1,12 @@
 ﻿#include "MainWindow.h"
 #include "QGuiApplication"
 #include "qfontdatabase.h"
+#include "ScreenImageProvider.h"
+#include "ColorPickerController.h"
 
 MainWindow::MainWindow() {
-//    int fontId = QFontDatabase::addApplicationFont("qrc:/font/iconfont.ttf");
-//    QStringList fontIDs = QFontDatabase::applicationFontFamilies(fontId);
-//    if (!fontIDs.isEmpty()) {
-//        QFont font(fontIDs.first());
-//        QGuiApplication::setFont(font);
-//    }
+    m_engine.addImageProvider(QLatin1String("screen"), new ScreenImageProvider);
+    qmlRegisterType<ColorPickerController>("com.dotool.controller", 1, 0, "ColorPickerController");
 }
 
 MainWindow::~MainWindow() {

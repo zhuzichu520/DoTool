@@ -13,13 +13,19 @@ Item {
         ListElement{
             name:"颜色取色器"
             func:function(){
-               window.startWindow(Router.window_colorpicker)
+                window.startWindow(Router.window_colorpicker)
             }
         }
         ListElement{
             name:"JSON格式化"
             func:function(){
-                 window.startWindow(Router.window_jsonparser)
+                window.startWindow(Router.window_jsonparser)
+            }
+        }
+        ListElement{
+            name:"URL decode"
+            func:function(){
+                window.startWindow(Router.window_urldecode)
             }
         }
     }
@@ -29,34 +35,30 @@ Item {
         anchors.fill: parent
         model:modelTool
         focus: true
-        delegate: Rectangle{
+        delegate: Item{
             width: grid.cellWidth
             height: grid.cellHeight
-            radius: 5
-            color: item_mouse.containsMouse ? Qt.lighter(Theme.colorPrimary,1.4) : "transparent"
 
-            MouseArea{
-                id:item_mouse
-                hoverEnabled: true
+            Rectangle{
+                radius: 5
                 anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                onClicked: {
-                    model.func()
-                }
-            }
-
-            Column {
-                id:item_column
-                spacing: 14
-                anchors.centerIn: parent
-                Image {
-                    source: "qrc:/image/ic_logo.ico";
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
+                anchors.margins: 10
+                color: item_mouse.containsMouse ? Qt.lighter(Theme.colorPrimary,1.4) : Theme.colorBackground
                 Text {
                     text: model.name;
                     anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
                     color: Theme.colorFontPrimary
+                }
+
+                MouseArea{
+                    id:item_mouse
+                    hoverEnabled: true
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        model.func()
+                    }
                 }
             }
         }

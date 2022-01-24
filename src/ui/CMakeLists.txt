@@ -1,9 +1,13 @@
 ﻿set(UILibrary_SRS
     MainWindow.cpp
+    ScreenImageProvider.cpp
+    ColorPickerController.cpp
     )
 
 set(UILibrary_HEADERS
         MainWindow.h
+        ScreenImageProvider.h
+        ColorPickerController.h
         )
 
 set(UILibrary_RCC

@@ -4,17 +4,18 @@ import "../component"
 import "../tools/colorpicker"
 import "../storage"
 import QtQuick.Window 2.15
+import com.dotool.controller 1.0
 
 CusWindow {
 
     signal chooseColor(string color)
 
     width: 400
-    height: 300
+    height: 260
     maximumWidth: 400
-    maximumHeight: 300
+    maximumHeight: 260
     minimumWidth: 400
-    minimumHeight: 300
+    minimumHeight: 260
     visible: true
     title:"取色器"
 
@@ -24,6 +25,10 @@ CusWindow {
 
     Component.onDestruction: {
         console.debug("ToolColorPicker-onDestruction")
+    }
+
+    ColorPickerController{
+        id:controller
     }
 
     page: CusPage{
@@ -43,18 +48,129 @@ CusWindow {
             }
         }
 
-        Button{
-            text: "确认"
+        Row{
             anchors{
                 right: parent.right
-                bottom: parent.bottom
-                rightMargin: 10
-                bottomMargin: 10
+                bottom:parent.bottom
+            }
+
+            PanelBorder {
+                height: 15; width: 50
+                anchors.verticalCenter: parent.verticalCenter
+                TextInput {
+                    id: captureEdit
+                    anchors.fill: parent
+                    color: "#AAAAAA"
+                    selectionColor: "#FF7777AA"
+                    font.pixelSize: 11
+                    maximumLength: 9
+                    focus: false
+                    text:textColor.text
+                    readOnly: true
+                    selectByMouse: true
+                }
+            }
+
+            CusToolButton {
+                color: "#BBB"
+                icon:"\ue61f"
+                onClickEvent: {
+                    windowFull.showFullWindow()
+                }
+            }
+        }
+
+
+    }
+
+    Window{
+
+        property int offset: 10
+        signal colorChanged(string color)
+
+        id:windowFull
+        flags: Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
+        color:"#00000000"
+        width: Screen.width
+        height: Screen.height
+
+        Image {
+            id:imageScreen
+            anchors.fill: parent
+            source: controller.screenPixmap
+        }
+
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            onPositionChanged: {
+                popup.x = mouse.x + 10
+                popup.y = mouse.y + 10
+                controller.refreshSclae(mouse.x * Screen.devicePixelRatio,mouse.y * Screen.devicePixelRatio)
             }
             onClicked: {
-                chooseColor(colorPicker.colorValue)
-                close()
+                console.debug(textColor.text)
+                colorChanged(textColor.text)
+                windowFull.close()
             }
+        }
+
+        Rectangle{
+
+            property color borderColor : "#FF36C590"
+
+            id:popup
+            width: 80
+            height: 80
+            antialiasing: true
+            border{
+                width: 1
+                color: borderColor
+            }
+
+            Image {
+                source: controller.scalePixmap
+                anchors.fill: parent
+                anchors.margins: 1
+            }
+
+            Rectangle{
+                width: 1
+                height: parent.height
+                color: popup.borderColor
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Rectangle{
+                width: parent.width
+                height: 1
+                color: popup.borderColor
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
+        Rectangle{
+            width: popup.width
+            height: 30
+            x:popup.x
+            y:popup.y+popup.height
+            color:"black"
+
+            Text{
+                id:textColor
+                anchors.centerIn: parent
+                color:"white"
+                text:controller.colorText
+                font.pixelSize: 14
+            }
+
+        }
+
+        function showFullWindow(){
+            //            imageScreen.source = ""
+            //            imageScreen.source = "image://screen/refresh"
+            controller.refreshScreen()
+            windowFull.show()
         }
 
     }

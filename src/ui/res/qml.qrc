@@ -28,5 +28,6 @@
         <file>layout/ToolColorPicker.qml</file>
         <file>layout/ToolJsonParser.qml</file>
         <file>storage/Router.qml</file>
+        <file>layout/ToolUrlDecode.qml</file>
     </qresource>
 </RCC>
