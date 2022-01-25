@@ -38,6 +38,20 @@ CusWindow {
                 leftMargin: 14
                 rightMargin: 14
             }
+
+            ScrollView {
+                anchors.fill: parent
+                clip: true
+                focus: true
+                TextArea {
+                    id:textContent
+                    wrapMode: Text.WrapAnywhere
+                    selectByMouse:true;
+                    selectByKeyboard: true
+                    color:Theme.colorFontPrimary
+                    focus: true
+                }
+            }
         }
 
         Row{
@@ -58,14 +72,24 @@ CusWindow {
                 ListElement{
                     title:"URL解码"
                     color:"#3498db"
+                    func:function(){
+                        textResult.text = encodeURIComponent(textContent.text)
+                    }
                 }
                 ListElement{
                     title:"URL编码"
                     color:"#f5653b"
+                    func:function(){
+                        textResult.text = decodeURIComponent(textContent.text)
+                    }
                 }
                 ListElement{
                     title:"清空"
                     color:"#7b7b7b"
+                    func:function(){
+                        textContent.clear()
+                        textResult.clear()
+                    }
                 }
             }
 
@@ -83,6 +107,13 @@ CusWindow {
                         text: model.title
                         anchors.centerIn: parent
                         font.pixelSize: 13
+                    }
+                    MouseArea{
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: {
+                            model.func()
+                        }
                     }
                 }
             }
@@ -103,6 +134,19 @@ CusWindow {
                 leftMargin: 14
                 rightMargin: 14
             }
+
+
+            ScrollView {
+                anchors.fill: parent
+                TextArea {
+                    id:textResult
+                    wrapMode: Text.WrapAnywhere
+                    selectByMouse: true
+                    readOnly: true
+                    color:Theme.colorFontPrimary
+                }
+            }
+
         }
 
 
