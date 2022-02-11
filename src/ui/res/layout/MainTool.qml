@@ -7,6 +7,10 @@ import "../storage"
 Item {
     anchors.fill: parent
 
+    FontLoader {
+        id: awesome
+        source: "qrc:/font/iconfont.ttf"
+    }
 
     ListModel{
         id:modelTool
@@ -26,6 +30,12 @@ Item {
             name:"URL decode"
             func:function(){
                 window.startWindow(Router.window_urldecode)
+            }
+        }
+        ListElement{
+            name:"二维码工具"
+            func:function(){
+                window.startWindow(Router.window_qrcode)
             }
         }
     }
@@ -60,6 +70,27 @@ Item {
                         model.func()
                     }
                 }
+
+                Text{
+                    anchors{
+                        right: parent.right
+                        bottom: parent.bottom
+                        margins: 5
+                    }
+                    font.family: awesome.name
+                    text:"\ue601"
+                    color:item_mouse_option.containsMouse ? Theme.colorPrimary : Theme.colorFontPrimary
+                    MouseArea{
+                        id:item_mouse_option
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: {
+                            console.debug("123")
+                        }
+                    }
+                }
+
             }
         }
     }

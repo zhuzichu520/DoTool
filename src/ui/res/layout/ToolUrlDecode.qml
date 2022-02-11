@@ -11,9 +11,6 @@ CusWindow {
     height: 400
     title: "URL decode"
 
-
-
-
     page: CusPage{
 
         CusToolBar {
@@ -21,7 +18,6 @@ CusWindow {
             maxEnable: false
             title: window.title
         }
-
 
         Rectangle{
             id:layout_top
@@ -69,6 +65,7 @@ CusWindow {
 
             ListModel{
                 id:dataModel
+
                 ListElement{
                     title:"URL解码"
                     color:"#3498db"
@@ -76,6 +73,7 @@ CusWindow {
                         textResult.text = encodeURIComponent(textContent.text)
                     }
                 }
+
                 ListElement{
                     title:"URL编码"
                     color:"#f5653b"
@@ -83,6 +81,7 @@ CusWindow {
                         textResult.text = decodeURIComponent(textContent.text)
                     }
                 }
+
                 ListElement{
                     title:"清空"
                     color:"#7b7b7b"
@@ -135,7 +134,6 @@ CusWindow {
                 rightMargin: 14
             }
 
-
             ScrollView {
                 anchors.fill: parent
                 TextArea {
@@ -146,10 +144,6 @@ CusWindow {
                     color:Theme.colorFontPrimary
                 }
             }
-
         }
-
-
     }
-
 }

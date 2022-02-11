@@ -29,5 +29,7 @@
         <file>layout/ToolJsonParser.qml</file>
         <file>storage/Router.qml</file>
         <file>layout/ToolUrlDecode.qml</file>
+        <file>component/CusLineEditArea.qml</file>
+        <file>layout/ToolQrcode.qml</file>
     </qresource>
 </RCC>

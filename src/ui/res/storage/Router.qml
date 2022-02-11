@@ -6,6 +6,7 @@ QtObject {
     property string window_colorpicker: "/window/colorpicker"
     property string window_jsonparser: "/window/jsonparser"
     property string window_urldecode: "/window/urldecode"
+    property string window_qrcode: "/window/qrcode"
 
     property var router_table: [
         {
@@ -21,6 +22,11 @@ QtObject {
         {
             path:window_urldecode,
             url:"qrc:/layout/ToolUrlDecode.qml",
+            onlyOne:true
+        },
+        {
+            path:window_qrcode,
+            url:"qrc:/layout/ToolQrcode.qml",
             onlyOne:true
         }
     ]
