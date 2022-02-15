@@ -50,11 +50,12 @@ void BBDownloaderController::getLoginInfoFinished()
             break;
         case -2: // login url (qrcode) is expired
             isPollEnded = true;
-            qrCodeExpired();
+            Q_EMIT qrCodeExpired();
             break;
         case -4: // qrcode not scanned
             break;
         case -5: // scanned but not confirmed
+            Q_EMIT scanSuccess();
             //            tipLabel->setText("✅扫描成功<br>请在手机上确认");
             break;
         default:

@@ -13,6 +13,8 @@ CusWindow {
     width: 650
     height: 500
     visible: false
+    minimumWidth: 650
+    minimumHeight: 500
     title: "JSON格式化"
 
     JsonParserController{

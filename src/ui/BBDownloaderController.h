@@ -27,6 +27,7 @@ public:
 
     Q_SIGNAL void qrCodeExpired();
     Q_SIGNAL void loginSuccess();
+    Q_SIGNAL void scanSuccess();
 
     void setQrCode(const QString &content);
 

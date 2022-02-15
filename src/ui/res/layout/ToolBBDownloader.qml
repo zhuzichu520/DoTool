@@ -12,20 +12,28 @@ CusWindow {
     id:window
     width: 600
     height: 400
+    minimumWidth: 600
+    minimumHeight: 400
     title: "B站下载器"
-
     property bool isExpired : false
     property bool isLogin: false
+
+    //0：二维码开始扫描；1：二维码失效；2：二维码扫描确认中；3：登陆成功
+    property int loginsStatus : 0
 
     BBDownloaderController{
         id:controller
 
         onLoginSuccess: {
-            isSuccess = true
+            loginsStatus = 3
         }
 
         onQrCodeExpired: {
-            isExpired = true
+            loginsStatus = 1
+        }
+
+        onScanSuccess: {
+            loginsStatus = 2
         }
     }
 
@@ -53,7 +61,7 @@ CusWindow {
 
             Rectangle{
                 anchors.fill: parent
-                visible: isLogin
+                visible: loginsStatus === 3
                 color: Theme.colorBackground
 
 
@@ -65,7 +73,7 @@ CusWindow {
             Rectangle{
                 id:layoutLogin
                 anchors.fill: parent
-                visible: !isLogin
+                visible: loginsStatus !== 3
                 color: Theme.colorBackground
                 ItemImage {
                     id:imageQrCode
@@ -123,7 +131,7 @@ CusWindow {
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
-                                isExpired = false
+                                loginsStatus = 0
                                 controller.refreshExpired()
                             }
                         }
@@ -131,7 +139,22 @@ CusWindow {
                 }
 
                 Text{
-                    text: isExpired ? "二维码已失效" : "请使用B站客户端\n扫描二维码登录"
+                    text: {
+                        //  "二维码已失效" : "请使用B站客户端\n扫描二维码登录"
+                        switch(loginsStatus){
+                        case 0:
+                            return "请使用B站客户端\n扫描二维码登录"
+                        case 1:
+                            return "二维码已失效"
+                        case 2:
+                            return "✅扫描成功<br>请在手机上确认"
+                        case 3:
+                            return "登陆中...."
+                        default:
+                            return
+                        }
+
+                    }
                     anchors{
                         horizontalCenter: imageQrCode.horizontalCenter
                         top: imageQrCode.bottom

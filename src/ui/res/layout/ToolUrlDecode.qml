@@ -9,6 +9,8 @@ CusWindow {
     id:window
     width: 600
     height: 400
+    minimumWidth: 600
+    minimumHeight: 400
     title: "URL decode"
 
     page: CusPage{
