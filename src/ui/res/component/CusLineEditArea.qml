@@ -28,13 +28,13 @@ ScrollView{
             height: editArea.font.pixelSize+2
             width: scroll.numberWidth
             Text{
-                text:modelData
+                text:modelData + 1
                 anchors{
                     verticalCenter: parent.verticalCenter
                     right: parent.right
                     rightMargin: 2
                 }
-                color:"#AAAAAA"
+                color: parseInt((editArea.cursorRectangle.y/editArea.contentHeight)*editArea.lineCount) === index ? Theme.colorPrimary : "#AAAAAA"
             }
         }
     }
@@ -45,8 +45,8 @@ ScrollView{
         width: scroll.width - listNumber.width
         x: listNumber.width
         y: editArea.cursorRectangle.y - 2
+        visible: false
     }
-
 
     TextArea{
         id:editArea

@@ -31,5 +31,6 @@
         <file>layout/ToolUrlDecode.qml</file>
         <file>component/CusLineEditArea.qml</file>
         <file>layout/ToolQrcode.qml</file>
+        <file>layout/ToolBBDownloader.qml</file>
     </qresource>
 </RCC>

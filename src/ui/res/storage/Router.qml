@@ -7,6 +7,7 @@ QtObject {
     property string window_jsonparser: "/window/jsonparser"
     property string window_urldecode: "/window/urldecode"
     property string window_qrcode: "/window/qrcode"
+    property string window_bbdownloader: "/window/bbdownloader"
 
     property var router_table: [
         {
@@ -27,6 +28,11 @@ QtObject {
         {
             path:window_qrcode,
             url:"qrc:/layout/ToolQrcode.qml",
+            onlyOne:true
+        },
+        {
+            path:window_bbdownloader,
+            url:"qrc:/layout/ToolBBDownloader.qml",
             onlyOne:true
         }
     ]

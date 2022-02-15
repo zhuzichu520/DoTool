@@ -40,7 +40,7 @@ Rectangle {
         anchors.fill: parent
 
         TapHandler {
-            onTapped: if (tapCount === 2) toggleMaximized()
+            onTapped: if (tapCount === 2 && maxEnable) toggleMaximized()
             gesturePolicy: TapHandler.DragThreshold
         }
 

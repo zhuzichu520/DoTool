@@ -5,14 +5,19 @@ import "../tools/colorpicker"
 import "../storage"
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
+import com.dotool.controller 1.0
 
 CusWindow {
 
     id:window
-    width: 800
+    width: 650
     height: 500
     visible: false
     title: "JSON格式化"
+
+    JsonParserController{
+        id:controller
+    }
 
     page: CusPage{
 
@@ -39,26 +44,33 @@ CusWindow {
             }
 
             CusLineEditArea{
+                id:textLeft
                 anchors.fill: parent
-                text:'{
-        "sites": {
-        "site": [{
-        "id": "1",
-        "name": "菜鸟教程",
-        "url": "www.runoob.com"
-        },{
-        "id": "2",
-        "name": "菜鸟工具",
-        "url": "c.runoob.com"
-        },{
-        "id": "3",
-        "name": "Google",
-        "url": "www.google.com"
-        }
-        ]}
-        }'
+                text:'{"sites": {"site": [{"id": "1","name": "菜鸟教程","url": "www.runoob.com"},{"id": "2","name": "菜鸟工具","url": "c.runoob.com"},{"id": "3","name": "Google","url": "www.google.com"}]}}'
             }
         }
+
+
+        Rectangle{
+            id:layoutRight
+            width: 300
+            border.width: 1
+            border.color: Theme.colorDivider
+            color:Theme.colorBackground
+            radius: 5
+            anchors{
+                top:layoutLeft.top
+                bottom: layoutLeft.bottom
+                left:layoutLeft.right
+                leftMargin: 14
+            }
+
+            CusLineEditArea{
+                anchors.fill: parent
+                text:controller.jsonFormat(textLeft.text)
+            }
+        }
+
     }
 
 }

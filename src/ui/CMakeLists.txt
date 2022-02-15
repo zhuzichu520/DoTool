@@ -2,12 +2,22 @@
     MainWindow.cpp
     ScreenImageProvider.cpp
     ColorPickerController.cpp
+    JsonParserController.cpp
+    BBDownloaderController.cpp
+    QrCode.cpp
+    Network.cpp
+    ItemImage.cpp
     )
 
 set(UILibrary_HEADERS
         MainWindow.h
         ScreenImageProvider.h
         ColorPickerController.h
+        JsonParserController.h
+        BBDownloaderController.h
+        QrCode.h
+        Network.h
+        ItemImage.h
         )
 
 set(UILibrary_RCC

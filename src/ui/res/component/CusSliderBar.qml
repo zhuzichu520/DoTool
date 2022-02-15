@@ -6,6 +6,7 @@ Rectangle {
     id:root
 
     property int curIndex: 0
+    property alias model: listView.model
 
     width: 70
     height: parent.height
@@ -15,25 +16,6 @@ Rectangle {
     FontLoader {
         id: awesome
         source: "qrc:/font/iconfont.ttf"
-    }
-
-    ListModel{
-        id:sliderModel
-        ListElement{
-            name:"首页"
-            icon:"\ue719"
-            url:"qrc:/layout/MainHome.qml"
-        }
-        ListElement{
-            name:"工具"
-            icon:"\ue6d7"
-            url:"qrc:/layout/MainTool.qml"
-        }
-        ListElement{
-            name:"设置"
-            icon:"\ue6c7"
-            url:"qrc:/layout/MainSetting.qml"
-        }
     }
 
     Item{
@@ -54,7 +36,7 @@ Rectangle {
 
 
     ListView{
-        model:sliderModel
+        id:listView
         boundsBehavior: Flickable.StopAtBounds
         anchors{
             top:layout_logo.bottom

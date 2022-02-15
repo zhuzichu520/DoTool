@@ -10,17 +10,17 @@ ColorPickerController::~ColorPickerController()
     qDebug()<<"~ColorPickerController()";
 }
 
-QString ColorPickerController::screenPixmap() const{
+QPixmap ColorPickerController::screenPixmap() const{
     return m_screenPixmap;
 }
 
 void ColorPickerController::refreshScreen(){
     m_pixmap = QGuiApplication::primaryScreen()->grabWindow(0);
-    m_screenPixmap = pixmapToString(m_pixmap);
+    m_screenPixmap = m_pixmap;
     Q_EMIT screenPixmapChanged();
 }
 
-QString ColorPickerController::scalePixmap() const{
+QPixmap ColorPickerController::scalePixmap() const{
     return m_scalePixmap;
 }
 
@@ -35,17 +35,7 @@ void ColorPickerController::refreshSclae(int radiusX,int radiusY){
     auto y = radiusY - radius;
     auto pixmap = m_pixmap.copy(x,y,2*radius,2*radius);
     m_colorText = QColor(pixmap.toImage().pixel(25,25)).name(QColor::HexRgb);
-    m_scalePixmap = pixmapToString(pixmap);
+    m_scalePixmap = pixmap;
     Q_EMIT scalePixmapChanged();
     Q_EMIT colorTextChanged();
-}
-
-QString ColorPickerController::pixmapToString(const QPixmap &pixmap) const{
-    QByteArray bArray;
-    QBuffer buffer(&bArray);
-    buffer.open(QIODevice::WriteOnly);
-    pixmap.save(&buffer,"JPEG");
-    QString image("data:image/jpg;base64,");
-    image.append(QString::fromLatin1(bArray.toBase64().data()));
-    return image;
 }

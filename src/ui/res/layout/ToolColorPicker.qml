@@ -5,6 +5,7 @@ import "../tools/colorpicker"
 import "../storage"
 import QtQuick.Window 2.15
 import com.dotool.controller 1.0
+import com.dotool.ui 1.0
 
 CusWindow {
 
@@ -32,6 +33,8 @@ CusWindow {
     }
 
     page: CusPage{
+
+
 
         CusToolBar {
             id:toolBar
@@ -94,7 +97,7 @@ CusWindow {
         width: Screen.width
         height: Screen.height
 
-        Image {
+        ItemImage {
             id:imageScreen
             anchors.fill: parent
             source: controller.screenPixmap
@@ -128,7 +131,7 @@ CusWindow {
                 color: borderColor
             }
 
-            Image {
+            ItemImage {
                 source: controller.scalePixmap
                 anchors.fill: parent
                 anchors.margins: 1

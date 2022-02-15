@@ -29,8 +29,29 @@ CusWindow {
             id:toolBar
         }
 
+        ListModel{
+            id:sliderModel
+            ListElement{
+                name:"首页"
+                icon:"\ue719"
+                url:"qrc:/layout/MainHome.qml"
+            }
+            ListElement{
+                name:"工具"
+                icon:"\ue6d7"
+                url:"qrc:/layout/MainTool.qml"
+            }
+            ListElement{
+                name:"设置"
+                icon:"\ue6c7"
+                url:"qrc:/layout/MainSetting.qml"
+            }
+        }
+
+
         CusSliderBar{
             id:slider
+            model: sliderModel
         }
 
         Loader{

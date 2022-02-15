@@ -1,6 +1,5 @@
 ﻿#include <QGuiApplication>
 #include <QtQuick/qquickwindow.h>
-
 #include "MainWindow.h"
 
 int main(int argc, char *argv[])
@@ -15,7 +14,6 @@ int main(int argc, char *argv[])
     QGuiApplication::setOrganizationName("DoTool");
     QGuiApplication::setOrganizationDomain("https://github.com/zhuzichu520/DoTool");
     QGuiApplication::setApplicationVersion("1.0");
-
     QGuiApplication app(argc, argv);
     MainWindow window;
     window.show();
