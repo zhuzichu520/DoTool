@@ -10,6 +10,12 @@
 #include <QZXingImageProvider.h>
 
 MainWindow::MainWindow() {
+
+    m_engine.addImportPath(QStringLiteral("qrc:/components/"));
+
+    for(QString path : m_engine.importPathList())
+        qDebug() << path;
+
     QZXing::registerQMLTypes();
     QZXing::registerQMLImageProvider(m_engine);
     m_engine.addImageProvider(QLatin1String("screen"), new ScreenImageProvider);

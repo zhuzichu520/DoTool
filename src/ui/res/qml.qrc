@@ -17,20 +17,23 @@
         <file>layout/MainHome.qml</file>
         <file>layout/MainSetting.qml</file>
         <file>layout/MainTool.qml</file>
-        <file>tools/colorpicker/Checkerboard.qml</file>
-        <file>tools/colorpicker/ColorPicker.qml</file>
-        <file>tools/colorpicker/ColorSlider.qml</file>
-        <file>tools/colorpicker/NumberBox.qml</file>
-        <file>tools/colorpicker/Palette.qml</file>
-        <file>tools/colorpicker/Palettes.qml</file>
-        <file>tools/colorpicker/PanelBorder.qml</file>
-        <file>tools/colorpicker/SBPicker.qml</file>
-        <file>layout/ToolColorPicker.qml</file>
-        <file>layout/ToolJsonParser.qml</file>
         <file>storage/Router.qml</file>
-        <file>layout/ToolUrlDecode.qml</file>
         <file>component/CusLineEditArea.qml</file>
-        <file>layout/ToolQrcode.qml</file>
-        <file>layout/ToolBBDownloader.qml</file>
+        <file>tool-bbdownloader/ToolBBDownloader.qml</file>
+        <file>tool-colorpicker/ToolColorPicker.qml</file>
+        <file>tool-jsonparser/ToolJsonParser.qml</file>
+        <file>tool-qrcode/ToolQrcode.qml</file>
+        <file>tool-urldecode/ToolUrlDecode.qml</file>
+        <file>third/colorpicker/Checkerboard.qml</file>
+        <file>third/colorpicker/ColorPicker.qml</file>
+        <file>third/colorpicker/ColorSlider.qml</file>
+        <file>third/colorpicker/NumberBox.qml</file>
+        <file>third/colorpicker/Palette.qml</file>
+        <file>third/colorpicker/Palettes.qml</file>
+        <file>third/colorpicker/PanelBorder.qml</file>
+        <file>third/colorpicker/SBPicker.qml</file>
+        <file>tool-bbdownloader/Setting.qml</file>
+        <file>tool-bbdownloader/File.qml</file>
+        <file>tool-bbdownloader/Download.qml</file>
     </qresource>
 </RCC>

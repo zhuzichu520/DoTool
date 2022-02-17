@@ -12,27 +12,27 @@ QtObject {
     property var router_table: [
         {
             path:window_colorpicker,
-            url:"qrc:/layout/ToolColorPicker.qml",
+            url:"qrc:/tool-colorpicker/ToolColorPicker.qml",
             onlyOne:true
         },
         {
             path:window_jsonparser,
-            url:"qrc:/layout/ToolJsonParser.qml",
+            url:"qrc:/tool-jsonparser/ToolJsonParser.qml",
             onlyOne:true
         },
         {
             path:window_urldecode,
-            url:"qrc:/layout/ToolUrlDecode.qml",
+            url:"qrc:/tool-urldecode/ToolUrlDecode.qml",
             onlyOne:true
         },
         {
             path:window_qrcode,
-            url:"qrc:/layout/ToolQrcode.qml",
+            url:"qrc:/tool-qrcode/ToolQrcode.qml",
             onlyOne:true
         },
         {
             path:window_bbdownloader,
-            url:"qrc:/layout/ToolBBDownloader.qml",
+            url:"qrc:/tool-bbdownloader/ToolBBDownloader.qml",
             onlyOne:true
         }
     ]

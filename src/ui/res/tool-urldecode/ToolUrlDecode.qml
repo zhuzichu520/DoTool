@@ -72,7 +72,7 @@ CusWindow {
                     title:"URL解码"
                     color:"#3498db"
                     func:function(){
-                        textResult.text = encodeURIComponent(textContent.text)
+                        textResult.text = decodeURIComponent(textContent.text)
                     }
                 }
 
@@ -80,7 +80,7 @@ CusWindow {
                     title:"URL编码"
                     color:"#f5653b"
                     func:function(){
-                        textResult.text = decodeURIComponent(textContent.text)
+                        textResult.text = encodeURIComponent(textContent.text)
                     }
                 }
 

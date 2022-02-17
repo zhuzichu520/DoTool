@@ -1,21 +1,24 @@
 ﻿import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "../component"
-import "../tools/colorpicker"
 import "../storage"
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
-import QZXing 3.3
+import com.dotool.controller 1.0
 
 CusWindow {
 
     id:window
-    width: 800
+    width: 650
     height: 500
-    minimumWidth: 800
-    minimumHeight: 500
     visible: false
-    title: "二维码工具"
+    minimumWidth: 650
+    minimumHeight: 500
+    title: "JSON格式化"
+
+    JsonParserController{
+        id:controller
+    }
 
     page: CusPage{
 
@@ -42,14 +45,16 @@ CusWindow {
             }
 
             CusLineEditArea{
-                id:inputField
+                id:textLeft
                 anchors.fill: parent
-                text:'Hellow world!'
+                text:'{"sites": {"site": [{"id": "1","name": "菜鸟教程","url": "www.runoob.com"},{"id": "2","name": "菜鸟工具","url": "c.runoob.com"},{"id": "3","name": "Google","url": "www.google.com"}]}}'
             }
         }
 
+
         Rectangle{
             id:layoutRight
+            width: 300
             border.width: 1
             border.color: Theme.colorDivider
             color:Theme.colorBackground
@@ -57,43 +62,16 @@ CusWindow {
             anchors{
                 top:layoutLeft.top
                 bottom: layoutLeft.bottom
-                left: layoutLeft.right
-                right: parent.right
+                left:layoutLeft.right
                 leftMargin: 14
-                rightMargin: 14
             }
 
-            Image{
-                id:imageQRcode
-                sourceSize.width: 250
-                sourceSize.height: 250
-                anchors.centerIn: parent
-                source: "image://QZXing/encode/" + inputField.text +
-                        "?correctionLevel=M" +
-                        "&format=qrcode"
-                cache: false
-                MouseArea{
-                    anchors.fill: parent
-                    acceptedButtons:  Qt.RightButton
-                    onClicked: {
-                        if (mouse.button === Qt.RightButton) {
-                            optionMenu.popup()
-                        }
-                    }
-                }
+            CusLineEditArea{
+                anchors.fill: parent
+                text:controller.jsonFormat(textLeft.text)
             }
-
-            Menu {
-                id:optionMenu
-                title: "菜单"
-                MenuItem {
-                    text: "保存"
-                    onTriggered:{
-
-                    }
-                }
-            }
-
         }
+
     }
+
 }

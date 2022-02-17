@@ -27,6 +27,7 @@ Item {
 
 
 
+
     Component.onCompleted: {
         console.debug("MainHome-onCompleted")
     }

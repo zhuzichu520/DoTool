@@ -5,15 +5,25 @@ static constexpr int QrCodeExpireTime = 180; // seconds
 static constexpr int PollInterval = 2000; // ms
 static constexpr int MaxPollTimes = (QrCodeExpireTime * 1000 / PollInterval) - 3;
 static constexpr QColor QrCodeColor = QColor(251, 114, 153); // B站粉
+static constexpr int GetUserInfoRetryInterval = 10000; // ms
+static constexpr int GetUserInfoTimeout = 10000; // ms
+
 
 BBDownloaderController::BBDownloaderController(QObject *parent)
     : QObject{parent}
 {
+    Network::accessManager()->setCookieJar(Settings::inst()->getCookieJar());
     pollTimer = new QTimer(this);
     pollTimer->setInterval(PollInterval);
     pollTimer->setSingleShot(true);
     connect(pollTimer, &QTimer::timeout, this, &BBDownloaderController::pollLoginInfo);
-    startGetLoginUrl();
+    if(Settings::inst()->hasCookies()){
+        setLoginStatus(3);
+        startGetUserInfo();
+    }else{
+        setLoginStatus(0);
+        startGetLoginUrl();
+    }
 }
 
 QPixmap BBDownloaderController::qrPixmap() const{
@@ -66,6 +76,9 @@ void BBDownloaderController::getLoginInfoFinished()
         // scanned and confirmed
         isPollEnded = true;
         //        accept();
+        auto settings = Settings::inst();
+        settings->saveCookies();
+        startGetUserInfo();
         Q_EMIT loginSuccess();
     }
 
@@ -78,6 +91,131 @@ void BBDownloaderController::getLoginInfoFinished()
     }
 }
 
+void BBDownloaderController::startGetUserInfo()
+{
+    if (!Settings::inst()->hasCookies()) {
+        return;
+    }
+    if (hasGotUInfo || uinfoReply != nullptr) {
+        return;
+    }
+    //    unameLabel->setText("登录中...", Qt::gray);
+    auto rqst = Network::Bili::Request(QUrl("https://api.bilibili.com/nav"));
+    rqst.setTransferTimeout(GetUserInfoTimeout);
+    uinfoReply = Network::accessManager()->get(rqst);;
+    connect(uinfoReply, &QNetworkReply::finished, this, &BBDownloaderController::getUserInfoFinished);
+}
+
+
+
+void BBDownloaderController::getUserInfoFinished()
+{
+    auto reply = uinfoReply;
+    uinfoReply->deleteLater();
+    uinfoReply = nullptr;
+
+    if (reply->error() == QNetworkReply::OperationCanceledError) {
+        //        unameLabel->setErrText("网络请求超时");
+        QTimer::singleShot(GetUserInfoRetryInterval, this, &BBDownloaderController::startGetUserInfo);
+        return;
+    }
+
+    const auto [json, errorString] = Network::Bili::parseReply(reply, "data");
+
+            if (!json.empty() && !errorString.isNull()) {
+        // cookies is wrong, or expired?
+        //        unameLabel->clear();
+        Settings::inst()->removeCookies();
+    } else if (!errorString.isNull()) {
+        //        unameLabel->setErrText(errorString);
+        QTimer::singleShot(GetUserInfoRetryInterval, this, &BBDownloaderController::startGetUserInfo);
+    } else {
+        // success
+        hasGotUInfo = true;
+        auto data = json["data"];
+        auto uname = data["uname"].toString();
+        ufaceUrl = data["face"].toString() + "@64w_64h.png";
+        if (data["vipStatus"].toInt()) {
+            setUsername(uname);
+            //            unameLabel->setText(uname, B23Style::Pink);
+        } else {
+            //            unameLabel->setText(uname);
+            setUsername(uname);
+        }
+
+        //        auto logoutAction = new QAction(QIcon(":/icons/logout.svg"), "退出");
+        //        ufaceButton->addAction(logoutAction);
+        //        ufaceButton->setIcon(QIcon(":/icons/akkarin.png"));
+        //        connect(logoutAction, &QAction::triggered, this, &MainWindow::logoutActionTriggered);
+
+        startGetUFace();
+    }
+}
+
+
+QString BBDownloaderController::username() const{
+    return m_username;
+}
+
+void BBDownloaderController::setUsername(const QString &username){
+    m_username = username;
+    Q_EMIT usernameChanged();
+}
+
+int BBDownloaderController::loginStatus() const{
+    return m_loginStatus;
+}
+
+void BBDownloaderController::setLoginStatus(int loginStatus){
+    m_loginStatus = loginStatus;
+    Q_EMIT loginStatusChanged();
+}
+
+QPixmap BBDownloaderController::avatar() const{
+    return m_avatar;
+}
+
+void BBDownloaderController::setAvatar(const QPixmap &pixmap){
+    m_avatar = pixmap;
+    Q_EMIT avatarChanged();
+}
+
+void BBDownloaderController::startGetUFace()
+{
+    if (ufaceUrl.isNull()) {
+        return;
+    }
+    if (hasGotUFace || uinfoReply != nullptr) {
+        return;
+    }
+
+    auto rqst = Network::Bili::Request(ufaceUrl);
+    rqst.setTransferTimeout(GetUserInfoTimeout);
+    uinfoReply = Network::accessManager()->get(rqst);
+    connect(uinfoReply, &QNetworkReply::finished, this, &BBDownloaderController::getUFaceFinished);
+}
+
+void BBDownloaderController::getUFaceFinished()
+{
+    auto reply = uinfoReply;
+    uinfoReply->deleteLater();
+    uinfoReply = nullptr;
+
+    if (!hasGotUInfo && reply->error() == QNetworkReply::OperationCanceledError) {
+        // aborted
+        return;
+    }
+    if (reply->error() != QNetworkReply::NoError) {
+        QTimer::singleShot(GetUserInfoRetryInterval, this, &BBDownloaderController::startGetUFace);
+        return;
+    }
+
+    hasGotUFace = true;
+    QPixmap pixmap;
+    pixmap.loadFromData(reply->readAll());
+    setAvatar(pixmap);
+    //    ufaceButton->setIcon(QIcon(pixmap));
+}
 
 void BBDownloaderController::refreshExpired(){
     startGetLoginUrl();

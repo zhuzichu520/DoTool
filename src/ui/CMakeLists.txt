@@ -7,6 +7,7 @@
     QrCode.cpp
     Network.cpp
     ItemImage.cpp
+    Settings.cpp
     )
 
 set(UILibrary_HEADERS
@@ -18,6 +19,7 @@ set(UILibrary_HEADERS
         QrCode.h
         Network.h
         ItemImage.h
+        Settings.h
         )
 
 set(UILibrary_RCC

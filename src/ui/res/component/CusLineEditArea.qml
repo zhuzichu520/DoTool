@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "../component"
-import "../tools/colorpicker"
+import "../third/colorpicker"
 import "../storage"
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
