@@ -81,15 +81,61 @@ CusWindow {
                     }
 
                     Text{
+                        id:username
                         anchors{
                             verticalCenter: parent.verticalCenter
                             left: avatar.right
                             leftMargin: 6
                         }
+                        width: 100
                         color:Theme.colorFontPrimary
+                        elide: Text.ElideRight
+//                        text:"asd撒打发啊手动阀阿斯顿发大水asd撒打发啊手动阀阿斯顿发大水asd撒打发啊手动阀阿斯顿发大水"
                         text:controller.username
-
                     }
+
+
+                    TextField{
+                        id:search
+                        height: 30
+                        width: parent.width-162
+                        anchors{
+                            verticalCenter: parent.verticalCenter
+                            left: username.right
+                            leftMargin: 6
+                        }
+                        leftPadding: 6
+                        rightPadding: 32
+                        focus: true
+                        verticalAlignment: Text.AlignVCenter
+                        color:Theme.colorFontPrimary
+                        background:Rectangle{
+                            border.color: search.focus ? Theme.colorPrimary : Theme.colorDivider
+                            border.width: 1
+                            radius: 5
+                            color:search.focus? Theme.colorBackground : Theme.colorBackground1
+                            Text{
+                                text:"\ue625"
+                                font.family: awesome.name
+                                font.pixelSize: 12
+                                anchors{
+                                    verticalCenter: parent.verticalCenter
+                                    right: parent.right
+                                    rightMargin: 6
+                                }
+                                visible: search.text !== ""
+                                MouseArea{
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: {
+                                        search.clear()
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
 
                 }
 

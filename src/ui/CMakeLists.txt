@@ -8,6 +8,8 @@
     Network.cpp
     ItemImage.cpp
     Settings.cpp
+    Extractor.cpp
+    Utils.cpp
     )
 
 set(UILibrary_HEADERS
@@ -20,6 +22,8 @@ set(UILibrary_HEADERS
         Network.h
         ItemImage.h
         Settings.h
+        Extractor.h
+        Utils.h
         )
 
 set(UILibrary_RCC
