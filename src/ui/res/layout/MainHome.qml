@@ -9,6 +9,12 @@ Item {
     Text{
         anchors.centerIn: parent
         text:"MainHome"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                showToast("asdf")
+            }
+        }
     }
 
     property ListModel dataModel: ListModel {
@@ -24,7 +30,6 @@ Item {
           ListElement { title: qsTr("时间") }
           ListElement { title: qsTr("生活") }
       }
-
 
 
 

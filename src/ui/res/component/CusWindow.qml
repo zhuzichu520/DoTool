@@ -73,6 +73,69 @@ ApplicationWindow {
         }
     }
 
+    Rectangle{
+        id:layoutToast
+        color: "black"
+        height: 0
+        property alias text: textToast.text
+        anchors{
+            left: container.left
+            right:container.right
+            bottom: container.bottom
+        }
+
+        Text{
+            id:textToast
+            anchors.centerIn: parent
+            color : "white"
+        }
+
+        Behavior on height{
+            NumberAnimation{
+                duration: 300
+            }
+        }
+    }
+
+    Rectangle{
+        id:layoutLoading
+        anchors.fill: container
+        color: "#33000000"
+        visible: false
+        BusyIndicator{
+            width: 60
+            height: 60
+            anchors.centerIn: parent
+        }
+        z:99
+        MouseArea{
+            hoverEnabled: true
+            anchors.fill: parent
+        }
+    }
+
+    Timer{
+        id:timerToast
+        interval: 1500
+        onTriggered: {
+            layoutToast.text = ""
+            layoutToast.height = 0
+        }
+    }
+
+    function showToast(text){
+        layoutToast.height = 36
+        layoutToast.text = text
+        timerToast.restart()
+    }
+
+    function showLoading(){
+        layoutLoading.visible = true
+    }
+
+    function hideLoading(){
+        layoutLoading.visible = false
+    }
 
     function startWindow(path,isAttach,options={}){
         var data = Router.obtRouter(path)

@@ -26,6 +26,12 @@ BBDownloaderController::BBDownloaderController(QObject *parent)
     }
 }
 
+BBDownloaderController::~BBDownloaderController(){
+    if(extractor!=nullptr){
+        extractor->deleteLater();
+    }
+}
+
 QPixmap BBDownloaderController::qrPixmap() const{
     return m_qrPixmap;
 }
@@ -272,6 +278,21 @@ void BBDownloaderController::setQrCode(const QString &content)
     }
     m_qrPixmap = pixmap;
     Q_EMIT qrPixmapChanged();
+}
+
+void BBDownloaderController::urlParse(const QString &url){
+    if(extractor!=nullptr){
+        qDebug()<<"Extractor::deleteLater";
+        extractor->deleteLater();
+    }
+    extractor = new Extractor();
+    connect(extractor, &Extractor::success, this,[&]{
+        auto result = extractor->getResult();
+        setDownTitle(result->title);
+        Q_EMIT parseUrlSuccess();
+    });
+    connect(extractor, &Extractor::errorOccurred, this,&BBDownloaderController::parseUrlError);
+    extractor->start(url);
 }
 
 

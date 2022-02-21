@@ -33,6 +33,17 @@ CusWindow {
         onScanSuccess: {
             controller.loginStatus = 2
         }
+
+        onParseUrlSuccess:{
+            hideLoading()
+            popup.open()
+        }
+
+        onParseUrlError:{
+            hideLoading()
+            showToast("请输入有效链接")
+        }
+
     }
 
     FontLoader {
@@ -90,7 +101,6 @@ CusWindow {
                         width: 100
                         color:Theme.colorFontPrimary
                         elide: Text.ElideRight
-//                        text:"asd撒打发啊手动阀阿斯顿发大水asd撒打发啊手动阀阿斯顿发大水asd撒打发啊手动阀阿斯顿发大水"
                         text:controller.username
                     }
 
@@ -98,15 +108,18 @@ CusWindow {
                     TextField{
                         id:search
                         height: 30
-                        width: parent.width-162
                         anchors{
                             verticalCenter: parent.verticalCenter
                             left: username.right
                             leftMargin: 6
+                            right: submit.left
+                            rightMargin: 6
                         }
                         leftPadding: 6
                         rightPadding: 32
                         focus: true
+                        selectByMouse: true
+                        text:"https://www.bilibili.com/video/BV1xu411X71m?spm_id_from=333.851.b_7265636f6d6d656e64.2"
                         verticalAlignment: Text.AlignVCenter
                         color:Theme.colorFontPrimary
                         background:Rectangle{
@@ -123,6 +136,7 @@ CusWindow {
                                     right: parent.right
                                     rightMargin: 6
                                 }
+                                color:Theme.colorFontSecondary
                                 visible: search.text !== ""
                                 MouseArea{
                                     anchors.fill: parent
@@ -135,6 +149,27 @@ CusWindow {
                         }
                     }
 
+
+                    Text{
+                        id:submit
+                        text:"确定"
+                        color:Theme.colorPrimary
+                        anchors{
+                            verticalCenter: parent.verticalCenter
+                            right: parent.right
+                            rightMargin: 12
+                        }
+
+                        MouseArea{
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                showLoading()
+                                controller.urlParse(search.text)
+                            }
+                        }
+
+                    }
 
 
                 }
@@ -321,6 +356,13 @@ CusWindow {
             }
 
         }
+
+
+        DownloadPopup{
+            id:popup
+            text:controller.downTitle
+        }
+
 
     }
 }
