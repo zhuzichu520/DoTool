@@ -125,7 +125,7 @@ ApplicationWindow {
 
     function showToast(text){
         layoutToast.height = 36
-        layoutToast.text = text
+        layoutToast.text = text === undefined ? "" : text
         timerToast.restart()
     }
 
@@ -145,6 +145,9 @@ ApplicationWindow {
         }
         var win = Router.obtWindow(data.path)
         if(win !== null && data.onlyOne){
+            for(var key in options){
+                win[key] = options[key]
+            }
             win.show()
             win.raise()
             win.requestActivate()

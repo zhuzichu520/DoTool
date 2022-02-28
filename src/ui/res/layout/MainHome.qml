@@ -1,44 +1,133 @@
 ﻿import QtQuick 2.15
-
+import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
+import "../view"
 import "../storage"
-
 
 Item {
     anchors.fill: parent
 
-    Text{
-        anchors.centerIn: parent
-        text:"MainHome"
-        MouseArea{
-            anchors.fill: parent
-            onClicked: {
-                showToast("asdf")
+    FontLoader {
+        id: awesome
+        source: "qrc:/font/iconfont.ttf"
+    }
+
+
+    QtObject {
+        id: d
+
+        readonly property int cellWidth: 128
+        readonly property int cellHeight: 128
+        readonly property int iconWidth: 96
+        readonly property int iconHeight: 96
+
+        property int dragIndex: -1
+        property bool dragBehavior: false
+    }
+
+    GridView {
+        id: gridView
+        anchors.fill: parent
+        cellWidth: d.cellWidth
+        cellHeight: d.cellHeight
+        clip: true
+        move: Transition {
+            NumberAnimation { properties: "x"; duration: 100; easing.type: Easing.OutCubic }
+            NumberAnimation { properties: "y"; duration: 100; easing.type: Easing.OutCubic }
+        }
+        moveDisplaced: Transition {
+            NumberAnimation { properties: "x"; duration: 300; easing.type: Easing.OutCubic}
+            NumberAnimation { properties: "y"; duration: 100;  easing.type: Easing.OutCubic }
+        }
+        model: ToolData
+        delegate: Item {
+            width: d.cellWidth
+            height: d.cellHeight
+            z: dragmouseArea.pressed ? 1000 : 1
+            Rectangle {
+                id: btnIconArea
+                anchors.centerIn: parent
+                width: d.iconWidth
+                height: d.iconWidth
+                radius: 8
+                color: "transparent"
+                border.color: "gray"
+                Rectangle {
+                    id: btnIcon
+                    width: d.iconWidth
+                    height: d.iconWidth
+                    radius: 8
+                    color: hoveMouseArea.containsMouse ? Qt.lighter(Theme.colorPrimary,1.4) : Theme.colorBackground
+                    border.color: "black"
+                    Behavior on x { enabled: d.dragBehavior; NumberAnimation { duration: 200 } }
+                    Behavior on y { enabled: d.dragBehavior; NumberAnimation { duration: 200 } }
+                    Text {
+                        anchors.centerIn: parent
+                        color: Theme.colorFontPrimary
+                        text: model.name
+                    }
+                    MouseArea{
+                        id:hoveMouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+
+                    }
+                    MouseArea {
+                        id: dragmouseArea
+                        anchors.fill: parent
+                        drag.target: parent
+
+                        cursorShape: Qt.PointingHandCursor
+                        onPressed: {
+                            d.dragBehavior = false;
+                            var pos = gridView.mapFromItem(btnIcon, 0, 0);
+                            d.dragIndex = model.index;
+                            btnIcon.parent = gridView;
+                            btnIcon.x = pos.x
+                            btnIcon.y = pos.y
+                        }
+                        onReleased: {
+                            d.dragIndex = -1;
+                            var pos = gridView.mapToItem(btnIconArea, btnIcon.x, btnIcon.y);
+                            btnIcon.parent = btnIconArea;
+                            btnIcon.x = pos.x;
+                            btnIcon.y = pos.y;
+                            d.dragBehavior = true;
+                            btnIcon.x = 0;
+                            btnIcon.y = 0;
+                        }
+
+                        onPositionChanged: {
+                            var pos = gridView.mapFromItem(btnIcon, 0, 0);
+                            var idx = gridView.indexAt(pos.x, pos.y);
+                            if (idx > -1 && idx < gridView.count) {
+                                ToolData.move(d.dragIndex, idx, 1)
+                                d.dragIndex = idx;
+                            }
+
+                        }
+
+                        onClicked: {
+                            var url = "qrc:/webview/WebPage.qml?isAttach=false&options={a:10}"
+                            let obj = {}
+                            if (url.indexOf('?') < 0) return obj
+                            let arr = url.split('?')
+                            obj.path = arr[0]
+                            url = arr[1]
+                            let array = url.split('&')
+                            for (let i = 0; i < array.length; i++) {
+                                let arr2 = array[i]
+                                let arr3 = arr2.split('=')
+                                obj[arr3[0]] = arr3[1]
+                            }
+
+                            window.showToast(JSON.stringify(obj))
+                            //                            window.startWindow(model.path)
+                        }
+                    }
+                }
             }
         }
-    }
-
-    property ListModel dataModel: ListModel {
-          ListElement { title: qsTr("电话") }
-          ListElement { title: qsTr("相册") }
-          ListElement { title: qsTr("短信") }
-          ListElement { title: qsTr("网络") }
-          ListElement { title: qsTr("微信") }
-          ListElement { title: qsTr("设置") }
-          ListElement { title: qsTr("日历") }
-          ListElement { title: qsTr("天气") }
-          ListElement { title: qsTr("百度") }
-          ListElement { title: qsTr("时间") }
-          ListElement { title: qsTr("生活") }
-      }
-
-
-
-    Component.onCompleted: {
-        console.debug("MainHome-onCompleted")
-    }
-
-    Component.onDestruction: {
-        console.debug("MainHome-onDestruction")
     }
 
 }

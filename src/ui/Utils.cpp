@@ -1,4 +1,4 @@
-// Created by voidzero <vooidzero.github@qq.com>
+﻿// Created by voidzero <vooidzero.github@qq.com>
 
 #include "Utils.h"
 #include <QPainter>
@@ -52,6 +52,7 @@ std::tuple<int, int, int> Utils::secs2HMS(int secs)
     auto h = mins / 60;
     return { h, m, s };
 }
+
 
 QString Utils::secs2HmsStr(int secs)
 {

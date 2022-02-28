@@ -1,4 +1,4 @@
-#ifndef EXTRACTOR_H
+﻿#ifndef EXTRACTOR_H
 #define EXTRACTOR_H
 
 #include <QObject>

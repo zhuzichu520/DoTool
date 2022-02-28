@@ -3,7 +3,7 @@
 
 #include <QQmlApplicationEngine>
 
-class MainWindow {
+class Q_DECL_EXPORT MainWindow {
 public:
     explicit MainWindow();
 

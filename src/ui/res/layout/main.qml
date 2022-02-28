@@ -1,18 +1,21 @@
 ﻿import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
+import QtWebView 1.1
 import "../component"
 
 CusWindow {
     id:window
-    width: 800
+    width: 596
     height: 600
-    minimumWidth: 800
+    minimumWidth: 596
     minimumHeight: 600
-    maximumWidth: 800
+    maximumWidth: 596
     maximumHeight: 600
 
     title: qsTr("DoTool")
+
+    WebView{}
 
 
     Component.onCompleted: {

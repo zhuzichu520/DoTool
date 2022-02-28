@@ -8,6 +8,7 @@ QtObject {
     property string window_urldecode: "/window/urldecode"
     property string window_qrcode: "/window/qrcode"
     property string window_bbdownloader: "/window/bbdownloader"
+    property string window_webpage: "/window/webpage"
 
     property var router_table: [
         {
@@ -33,6 +34,11 @@ QtObject {
         {
             path:window_bbdownloader,
             url:"qrc:/tool-bbdownloader/ToolBBDownloader.qml",
+            onlyOne:true
+        },
+        {
+            path:window_webpage,
+            url:"qrc:/webview/WebPage.qml",
             onlyOne:true
         }
     ]
@@ -64,6 +70,14 @@ QtObject {
 
     function removeWindow(path){
         delete windows[path]
+    }
+
+    function toParam(){
+
+    }
+
+    function parse(url){
+
     }
 
 }

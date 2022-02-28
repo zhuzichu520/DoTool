@@ -44,6 +44,24 @@ Item {
                 window.startWindow(Router.window_bbdownloader)
             }
         }
+        ListElement{
+            name:"tinypng"
+            func:function(){
+                window.startWindow(Router.window_webpage,false,{title:"tinypng",url:"https://tinypng.com/"})
+            }
+        }
+        ListElement{
+            name:"https"
+            func:function(){
+                window.startWindow(Router.window_webpage,false,{title:"https",url:"https://www.upyun.com/https"})
+            }
+        }
+        ListElement{
+            name:"iconfont"
+            func:function(){
+                window.startWindow(Router.window_webpage,false,{title:"iconfont",url:"https://www.iconfont.cn/"})
+            }
+        }
     }
 
     QtObject {

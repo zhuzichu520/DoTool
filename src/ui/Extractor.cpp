@@ -1,4 +1,4 @@
-// Created by voidzero <vooidzero.github@qq.com>
+﻿// Created by voidzero <vooidzero.github@qq.com>
 
 #include "Extractor.h"
 #include "Network.h"
@@ -364,11 +364,11 @@ void Extractor::pgcFinished()
         if (result.isEmpty()) {
             return;
         }
-        auto userIsVip = (result["vip_info"].toObject()["status"].toInt() == 1);
+//        auto userIsVip = (result["vip_info"].toObject()["status"].toInt() == 1);
         auto userHasPaid = (result["pay"].toInt(1) == 1);
         if (!userHasPaid) {
             for (auto &video : pgcRes->sections.first().episodes) {
-                auto notFree = (video.flags & ContentItemFlag::VipOnly) or (video.flags & ContentItemFlag::PayOnly);
+                auto notFree = (video.flags & ContentItemFlag::VipOnly) || (video.flags & ContentItemFlag::PayOnly);
                 if (notFree && !userHasPaid) {
                     video.flags |= ContentItemFlag::Disabled;
                 }

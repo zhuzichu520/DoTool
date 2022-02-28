@@ -36,5 +36,7 @@
         <file>tool-bbdownloader/File.qml</file>
         <file>tool-bbdownloader/Download.qml</file>
         <file>tool-bbdownloader/DownloadPopup.qml</file>
+        <file>webview/WebPage.qml</file>
+        <file>storage/ToolData.qml</file>
     </qresource>
 </RCC>
