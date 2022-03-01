@@ -51,7 +51,7 @@ Item {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-
+                        Qt.openUrlExternally("")
                     }
                 }
             }
@@ -71,17 +71,46 @@ Item {
 
 
         Text{
-            font.pixelSize: 12
-            text:"这个开源项目对您有帮助的话就支持一下吧，请喝杯咖啡，你敢白嫖我就敢用爱发电0-0~"
-            color:Theme.colorFontPrimary
+            property bool isColorPrimary : false
+            id:niceText
+            font.pixelSize: 16
+            text:"用爱发电！！请作者喝杯咖啡~"
+            Layout.topMargin: 20
+            color: isColorPrimary ? Theme.colorPrimary : Theme.colorFontPrimary
+            Behavior on color{
+                ColorAnimation {
+                    duration: 300
+                }
+            }
+            Timer{
+                id:colorTimer
+                interval: 500
+                repeat: true
+                running: true
+                onTriggered: {
+                    niceText.isColorPrimary = !niceText.isColorPrimary
+                }
+            }
         }
 
-        Image{
-            width: 732/7
-            height: 862/7
-            sourceSize: Qt.size(width,height)
-            fillMode: Image.PreserveAspectFit
-            source: "qrc:/image/paycode.jpg"
+
+
+        ColumnLayout{
+            Image{
+                width: 200
+                height: 200
+                sourceSize: Qt.size(width,height)
+                fillMode: Image.PreserveAspectFit
+                source: "qrc:/image/paycode.png"
+                Layout.topMargin: 10
+            }
+
+            Text{
+                font.pixelSize: 12
+                text:"支付宝扫码"
+                color:Theme.colorFontPrimary
+                Layout.alignment: Qt.AlignCenter
+            }
         }
 
     }

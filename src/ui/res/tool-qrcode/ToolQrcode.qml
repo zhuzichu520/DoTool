@@ -4,6 +4,7 @@ import "../component"
 import "../storage"
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
+import Qt.labs.platform 1.1
 import QZXing 3.3
 
 CusWindow {
@@ -76,23 +77,41 @@ CusWindow {
                     acceptedButtons:  Qt.RightButton
                     onClicked: {
                         if (mouse.button === Qt.RightButton) {
-                            optionMenu.popup()
+                            optionMenu.open()
                         }
                     }
                 }
             }
+        }
+    }
 
-            Menu {
-                id:optionMenu
-                title: "菜单"
-                MenuItem {
-                    text: "保存"
-                    onTriggered:{
-
-                    }
-                }
+    Menu {
+        id:optionMenu
+        title: "菜单"
+        MenuItem {
+            text: "保存"
+            onTriggered:{
+                fileDialog.open()
             }
+        }
+    }
+
+
+    FileDialog{
+        id:fileDialog
+        fileMode: FileDialog.SaveFile
+        currentFile: "file:///"+ "qrcode_"+new Date().getTime()
+        nameFilters: ["image files (*.png *.jpg *.jpeg *.bmp)"]
+        title: "保存二维码"
+        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
+        onAccepted: {
+
+            imageQRcode.grabToImage(function(result){
+                var filePath = fileDialog.files[0].replace("file:///","")
+                result.saveToFile(filePath)
+            })
 
         }
     }
+
 }

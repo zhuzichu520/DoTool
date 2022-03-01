@@ -40,6 +40,6 @@
         <file>storage/ToolData.qml</file>
         <file>global/global.js</file>
         <file>layout/MainAbout.qml</file>
-        <file>image/paycode.jpg</file>
+        <file>image/paycode.png</file>
     </qresource>
 </RCC>
