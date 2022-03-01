@@ -17,6 +17,8 @@ CusWindow {
 
     WebView{}
 
+    visible: true
+
 
     Component.onCompleted: {
         console.debug("DoTool-onCompleted")
@@ -37,17 +39,20 @@ CusWindow {
             ListElement{
                 name:"首页"
                 icon:"\ue719"
+                fontSize:24
                 url:"qrc:/layout/MainHome.qml"
             }
+//            ListElement{
+//                name:"设置"
+//                icon:"\ue6c7"
+//                fontSize:24
+//                url:"qrc:/layout/MainSetting.qml"
+//            }
             ListElement{
-                name:"工具"
-                icon:"\ue6d7"
-                url:"qrc:/layout/MainTool.qml"
-            }
-            ListElement{
-                name:"设置"
-                icon:"\ue6c7"
-                url:"qrc:/layout/MainSetting.qml"
+                name:"关于"
+                icon:"\ue622"
+                fontSize:21
+                url:"qrc:/layout/MainAbout.qml"
             }
         }
 

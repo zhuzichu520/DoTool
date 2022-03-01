@@ -3,6 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import "../storage"
+import "../global/global.js" as Global
 
 ApplicationWindow {
     id:window
@@ -13,9 +14,7 @@ ApplicationWindow {
     property int containerMargins: window.visibility === Window.Windowed ? borderOffset : 0
     property int windowFlags : Qt.Window | Qt.FramelessWindowHint
     flags: windowFlags
-    visible: true
     color:"transparent"
-
 
     onClosing: function(closeevent){
         try{
@@ -77,12 +76,14 @@ ApplicationWindow {
         id:layoutToast
         color: "black"
         height: 0
+        clip: true
         property alias text: textToast.text
         anchors{
             left: container.left
             right:container.right
             bottom: container.bottom
         }
+        antialiasing: true
 
         Text{
             id:textToast
@@ -137,7 +138,16 @@ ApplicationWindow {
         layoutLoading.visible = false
     }
 
-    function startWindow(path,isAttach,options={}){
+
+
+    function navigate(url){
+        console.info(url)
+        var obj = Router.parseUrl(url);
+        var path = obj.path;
+        "true".bool()
+        var isAttach = obj.isAttach.bool();
+        console.info(obj.isAttach)
+        var options = JSON.parse(obj.options)
         var data = Router.obtRouter(path)
         if(data === null){
             console.error("没有注册当前路由："+path)
@@ -153,13 +163,14 @@ ApplicationWindow {
             win.requestActivate()
             return
         }
-        var comp = Qt.createComponent(data.url)
+        console.info(data.path)
+        var comp = Qt.createComponent(data.path)
         if (comp.status !== Component.Ready){
             console.error("组件创建错误："+path)
             return
         }
         options.router = data
-        win = comp.createObject(isAttach?root:null,options)
+        win = comp.createObject(isAttach?window:null,options)
         win.show()
     }
 

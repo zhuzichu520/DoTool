@@ -52,7 +52,7 @@ Rectangle {
                 text:model.icon
                 font.family: awesome.name
                 color:curIndex === model.index ? Theme.colorPrimary : Theme.colorFontPrimary
-                font.pixelSize: 24
+                font.pixelSize: model.fontSize
             }
             MouseArea{
                 anchors.fill: parent

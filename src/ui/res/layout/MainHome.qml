@@ -108,21 +108,7 @@ Item {
                         }
 
                         onClicked: {
-                            var url = "qrc:/webview/WebPage.qml?isAttach=false&options={a:10}"
-                            let obj = {}
-                            if (url.indexOf('?') < 0) return obj
-                            let arr = url.split('?')
-                            obj.path = arr[0]
-                            url = arr[1]
-                            let array = url.split('&')
-                            for (let i = 0; i < array.length; i++) {
-                                let arr2 = array[i]
-                                let arr3 = arr2.split('=')
-                                obj[arr3[0]] = arr3[1]
-                            }
-
-                            window.showToast(JSON.stringify(obj))
-                            //                            window.startWindow(model.path)
+                            window.navigate(model.url)
                         }
                     }
                 }

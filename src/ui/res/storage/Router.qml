@@ -3,42 +3,36 @@ import QtQuick 2.15
 
 QtObject {
 
-    property string window_colorpicker: "/window/colorpicker"
-    property string window_jsonparser: "/window/jsonparser"
-    property string window_urldecode: "/window/urldecode"
-    property string window_qrcode: "/window/qrcode"
-    property string window_bbdownloader: "/window/bbdownloader"
-    property string window_webpage: "/window/webpage"
+    property string window_colorpicker: "qrc:/tool-colorpicker/ToolColorPicker.qml"
+    property string window_jsonparser: "qrc:/tool-jsonparser/ToolJsonParser.qml"
+    property string window_urldecode: "qrc:/tool-urldecode/ToolUrlDecode.qml"
+    property string window_qrcode: "qrc:/tool-qrcode/ToolQrcode.qml"
+    property string window_bbdownloader: "qrc:/tool-bbdownloader/ToolBBDownloader.qml"
+    property string window_webpage: "qrc:/webview/WebPage.qml"
 
     property var router_table: [
         {
             path:window_colorpicker,
-            url:"qrc:/tool-colorpicker/ToolColorPicker.qml",
             onlyOne:true
         },
         {
             path:window_jsonparser,
-            url:"qrc:/tool-jsonparser/ToolJsonParser.qml",
             onlyOne:true
         },
         {
             path:window_urldecode,
-            url:"qrc:/tool-urldecode/ToolUrlDecode.qml",
             onlyOne:true
         },
         {
             path:window_qrcode,
-            url:"qrc:/tool-qrcode/ToolQrcode.qml",
             onlyOne:true
         },
         {
             path:window_bbdownloader,
-            url:"qrc:/tool-bbdownloader/ToolBBDownloader.qml",
             onlyOne:true
         },
         {
             path:window_webpage,
-            url:"qrc:/webview/WebPage.qml",
             onlyOne:true
         }
     ]
@@ -72,12 +66,24 @@ QtObject {
         delete windows[path]
     }
 
-    function toParam(){
 
+    function toUrl(path,isAttach=false,options={}){
+        return path+"?isAttach="+isAttach + "&options="+JSON.stringify(options)
     }
 
-    function parse(url){
-
+    function parseUrl(url){
+        let obj = {}
+        if (url.indexOf('?') < 0) return obj
+        let arr = url.split('?')
+        obj.path = arr[0]
+        url = arr[1]
+        let array = url.split('&')
+        for (let i = 0; i < array.length; i++) {
+            let arr2 = array[i]
+            let arr3 = arr2.split('=')
+            obj[arr3[0]] = arr3[1]
+        }
+        return obj
     }
 
 }

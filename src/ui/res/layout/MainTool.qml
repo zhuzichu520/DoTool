@@ -12,57 +12,6 @@ Item {
         source: "qrc:/font/iconfont.ttf"
     }
 
-    ListModel{
-        id:modelTool
-        ListElement{
-            name:"颜色取色器"
-            func:function(){
-                window.startWindow(Router.window_colorpicker)
-            }
-        }
-        ListElement{
-            name:"JSON格式化"
-            func:function(){
-                window.startWindow(Router.window_jsonparser)
-            }
-        }
-        ListElement{
-            name:"URL decode"
-            func:function(){
-                window.startWindow(Router.window_urldecode)
-            }
-        }
-        ListElement{
-            name:"二维码工具"
-            func:function(){
-                window.startWindow(Router.window_qrcode)
-            }
-        }
-        ListElement{
-            name:"B站下载器"
-            func:function(){
-                window.startWindow(Router.window_bbdownloader)
-            }
-        }
-        ListElement{
-            name:"tinypng"
-            func:function(){
-                window.startWindow(Router.window_webpage,false,{title:"tinypng",url:"https://tinypng.com/"})
-            }
-        }
-        ListElement{
-            name:"https"
-            func:function(){
-                window.startWindow(Router.window_webpage,false,{title:"https",url:"https://www.upyun.com/https"})
-            }
-        }
-        ListElement{
-            name:"iconfont"
-            func:function(){
-                window.startWindow(Router.window_webpage,false,{title:"iconfont",url:"https://www.iconfont.cn/"})
-            }
-        }
-    }
 
     QtObject {
         id: d
@@ -90,7 +39,7 @@ Item {
             NumberAnimation { properties: "x"; duration: 300; easing.type: Easing.OutCubic}
             NumberAnimation { properties: "y"; duration: 100;  easing.type: Easing.OutCubic }
         }
-        model: modelTool
+        model: ToolData
         delegate: Item {
             width: d.cellWidth
             height: d.cellHeight
@@ -118,9 +67,9 @@ Item {
                         text: model.name
                     }
                     MouseArea{
-                      id:hoveMouseArea
-                      anchors.fill: parent
-                      hoverEnabled: true
+                        id:hoveMouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
 
                     }
                     MouseArea {
@@ -152,16 +101,15 @@ Item {
                             var pos = gridView.mapFromItem(btnIcon, 0, 0);
                             var idx = gridView.indexAt(pos.x, pos.y);
                             if (idx > -1 && idx < gridView.count) {
-                                modelTool.move(d.dragIndex, idx, 1)
+                                ToolData.move(d.dragIndex, idx, 1)
                                 d.dragIndex = idx;
                             }
 
                         }
 
                         onClicked: {
-                            model.func()
+                            window.navigate(model.url)
                         }
-
                     }
                 }
             }
