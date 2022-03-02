@@ -12,3 +12,15 @@ Windows系统（64）
 |:---:|
 |![](https://github.com/zhuzichu520/doc/blob/master/dotool/tool-colorpicker.png)|
 
+|JSON格式化|
+|:---:|
+|![](https://github.com/zhuzichu520/doc/blob/master/dotool/tool-jsonparser.png)|
+
+|URL 编解码|
+|:---:|
+|![](https://github.com/zhuzichu520/doc/blob/master/dotool/tool-urldecode.png)|
+
+|二维码生成器|
+|:---:|
+|![](https://github.com/zhuzichu520/doc/blob/master/dotool/tool-qrcode.png)|
+
