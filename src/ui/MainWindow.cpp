@@ -1,13 +1,10 @@
 ﻿#include "MainWindow.h"
-#include "QGuiApplication"
 #include "qfontdatabase.h"
 #include "ScreenImageProvider.h"
 #include "ColorPickerController.h"
 #include "JsonParserController.h"
-#include "BBDownloaderController.h"
 #include "ItemImage.h"
 #include <QZXing.h>
-#include <QZXingImageProvider.h>
 
 MainWindow::MainWindow() {
 
@@ -24,7 +21,6 @@ MainWindow::MainWindow() {
 
     qmlRegisterType<ColorPickerController>("com.dotool.controller", 1, 0, "ColorPickerController");
     qmlRegisterType<JsonParserController>("com.dotool.controller", 1, 0, "JsonParserController");
-    qmlRegisterType<BBDownloaderController>("com.dotool.controller", 1, 0, "BBDownloaderController");
 
 }
 

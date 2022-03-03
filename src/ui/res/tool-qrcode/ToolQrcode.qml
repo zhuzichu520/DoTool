@@ -96,7 +96,6 @@ CusWindow {
         }
     }
 
-
     FileDialog{
         id:fileDialog
         fileMode: FileDialog.SaveFile
@@ -105,7 +104,6 @@ CusWindow {
         title: "保存二维码"
         folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
         onAccepted: {
-
             imageQRcode.grabToImage(function(result){
                 var filePath = fileDialog.files[0].replace("file:///","")
                 result.saveToFile(filePath)

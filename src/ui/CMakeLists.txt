@@ -1,29 +1,17 @@
 ﻿set(UILibrary_SRS
-    MainWindow.cpp
-    ScreenImageProvider.cpp
-    ColorPickerController.cpp
-    JsonParserController.cpp
-    BBDownloaderController.cpp
-    QrCode.cpp
-    Network.cpp
-    ItemImage.cpp
-    Settings.cpp
-    Extractor.cpp
-    Utils.cpp
-    )
+        MainWindow.cpp
+        ScreenImageProvider.cpp
+        ColorPickerController.cpp
+        JsonParserController.cpp
+        ItemImage.cpp
+        )
 
 set(UILibrary_HEADERS
         MainWindow.h
         ScreenImageProvider.h
         ColorPickerController.h
         JsonParserController.h
-        BBDownloaderController.h
-        QrCode.h
-        Network.h
         ItemImage.h
-        Settings.h
-        Extractor.h
-        Utils.h
         )
 
 set(UILibrary_RCC
@@ -31,12 +19,12 @@ set(UILibrary_RCC
         )
 
 add_definitions(-D
-    QZXING_QML
-    )
+        QZXING_QML
+        )
 
 add_definitions(-D
-    QZXING_MULTIMEDIA
-    )
+        QZXING_MULTIMEDIA
+        )
 
 add_library(UILibrary SHARED ${UILibrary_SRS} ${UILibrary_RCC})
 install(TARGETS UILibrary LIBRARY DESTINATION lib)
@@ -47,7 +35,7 @@ target_link_libraries(UILibrary
         ${THIRD_DIR_PATH}/zxing/msvc/lib/QZXing3.lib
         )
 target_include_directories(
-    UILibrary SYSTEM PUBLIC
-    ${CMAKE_SOURCE_DIR}/src/ui
-    ${THIRD_DIR_PATH}/zxing/win64/include
-    )
+        UILibrary SYSTEM PUBLIC
+        ${CMAKE_SOURCE_DIR}/src/ui
+        ${THIRD_DIR_PATH}/zxing/win64/include
+)
