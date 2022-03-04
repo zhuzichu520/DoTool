@@ -7,7 +7,7 @@ QtObject {
     property string window_jsonparser: "qrc:/tool-jsonparser/ToolJsonParser.qml"
     property string window_urldecode: "qrc:/tool-urldecode/ToolUrlDecode.qml"
     property string window_qrcode: "qrc:/tool-qrcode/ToolQrcode.qml"
-    property string window_bbdownloader: "qrc:/tool-bbdownloader/ToolBBDownloader.qml"
+    property string window_screencapture: "qrc:/tool-screencapture/ToolScreenCapture.qml"
     property string window_webpage: "qrc:/webview/WebPage.qml"
 
     property var router_table: [
@@ -28,7 +28,7 @@ QtObject {
             onlyOne:true
         },
         {
-            path:window_bbdownloader,
+            path:window_screencapture,
             onlyOne:true
         },
         {

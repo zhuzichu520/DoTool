@@ -6,7 +6,4 @@ import "../storage"
 
 Item {
     anchors.fill: parent
-
-
-
 }

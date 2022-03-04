@@ -19,7 +19,6 @@
         <file>layout/MainTool.qml</file>
         <file>storage/Router.qml</file>
         <file>component/CusLineEditArea.qml</file>
-        <file>tool-bbdownloader/ToolBBDownloader.qml</file>
         <file>tool-colorpicker/ToolColorPicker.qml</file>
         <file>tool-jsonparser/ToolJsonParser.qml</file>
         <file>tool-qrcode/ToolQrcode.qml</file>
@@ -32,14 +31,12 @@
         <file>third/colorpicker/Palettes.qml</file>
         <file>third/colorpicker/PanelBorder.qml</file>
         <file>third/colorpicker/SBPicker.qml</file>
-        <file>tool-bbdownloader/Setting.qml</file>
-        <file>tool-bbdownloader/File.qml</file>
-        <file>tool-bbdownloader/Download.qml</file>
-        <file>tool-bbdownloader/DownloadPopup.qml</file>
         <file>webview/WebPage.qml</file>
         <file>storage/ToolData.qml</file>
         <file>global/global.js</file>
         <file>layout/MainAbout.qml</file>
         <file>image/paycode.png</file>
+        <file>component/ItemSelectArea.qml</file>
+        <file>tool-screencapture/ToolScreenCapture.qml</file>
     </qresource>
 </RCC>

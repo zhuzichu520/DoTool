@@ -6,7 +6,10 @@
 
 Windows系统（64）
 
-## 2.工具集合
+## 2.下载地址
+[DoTool工具下载](https://gitee.com/zhu-zichu/doc/raw/master/dotool/setup.exe)
+
+## 3.工具集合
 
 |颜色取色器|
 |:---:|
