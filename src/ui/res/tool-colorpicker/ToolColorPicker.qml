@@ -10,7 +10,7 @@ import com.dotool.ui 1.0
 CusWindow {
 
     signal chooseColor(string color)
-
+    id:window
     width: 400
     height: 260
     maximumWidth: 400
@@ -33,8 +33,6 @@ CusWindow {
     }
 
     page: CusPage{
-
-
 
         CusToolBar {
             id:toolBar
@@ -88,19 +86,21 @@ CusWindow {
 
     Window{
 
-        property int offset: 10
         signal colorChanged(string color)
 
         id:windowFull
         flags: Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
         color:"#00000000"
-        width: Screen.width
-        height: Screen.height
 
-        ItemImage {
+        onActiveChanged: {
+            if(active){
+                windowFull.visibility = Window.FullScreen
+            }
+        }
+
+        Image {
             id:imageScreen
             anchors.fill: parent
-            source: controller.screenPixmap
         }
 
         MouseArea{
@@ -170,8 +170,8 @@ CusWindow {
         }
 
         function showFullWindow(){
-            //            imageScreen.source = ""
-            //            imageScreen.source = "image://screen/refresh"
+            imageScreen.source = ""
+            imageScreen.source = "image://screen/0"
             controller.refreshScreen()
             windowFull.show()
         }

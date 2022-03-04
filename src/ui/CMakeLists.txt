@@ -4,6 +4,7 @@
         ColorPickerController.cpp
         JsonParserController.cpp
         ItemImage.cpp
+        QUIHelper.cpp
         )
 
 set(UILibrary_HEADERS
@@ -12,6 +13,7 @@ set(UILibrary_HEADERS
         ColorPickerController.h
         JsonParserController.h
         ItemImage.h
+        QUIHelper.h
         )
 
 set(UILibrary_RCC

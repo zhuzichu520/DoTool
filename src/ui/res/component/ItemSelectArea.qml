@@ -36,7 +36,6 @@ Item {
                 rightButton()
             }
         }
-        antialiasing: true
     }
 
     Rectangle{
@@ -48,7 +47,6 @@ Item {
             left: parent.left
             right: rect_select.left
         }
-        antialiasing: true
         MouseArea{
             anchors.fill: parent
             acceptedButtons: Qt.RightButton
@@ -67,7 +65,6 @@ Item {
             left: rect_select.right
             right: parent.right
         }
-        antialiasing: true
         MouseArea{
             anchors.fill: parent
             acceptedButtons: Qt.RightButton
@@ -86,7 +83,6 @@ Item {
             left: parent.left
             right: parent.right
         }
-        antialiasing: true
         MouseArea{
             anchors.fill: parent
             acceptedButtons: Qt.RightButton
@@ -103,7 +99,6 @@ Item {
         height: 0
         x:-4
         y:-4
-        antialiasing: true
         border{
             width: 4
             color: borderColor
@@ -198,7 +193,6 @@ Item {
         width: 12
         height: 4
         color: dragColor
-        antialiasing: true
         anchors{
             left: rect_select.left
             top:rect_select.top
@@ -248,7 +242,6 @@ Item {
         width: 4
         height: 12
         color: dragColor
-        antialiasing: true
         anchors{
             left: rect_select.left
             top:rect_select.top
@@ -299,7 +292,6 @@ Item {
         width: 12
         height: 4
         color: dragColor
-        antialiasing: true
         anchors{
             top:rect_select.top
             horizontalCenter: rect_select.horizontalCenter
@@ -330,7 +322,6 @@ Item {
         width: 12
         height: 4
         color: dragColor
-        antialiasing: true
         anchors{
             right: rect_select.right
             top:rect_select.top
@@ -380,7 +371,6 @@ Item {
         width: 4
         height: 12
         color: dragColor
-        antialiasing: true
         anchors{
             right: rect_select.right
             top:rect_select.top
@@ -430,7 +420,6 @@ Item {
         width: 12
         height: 4
         color: dragColor
-        antialiasing: true
         anchors{
             left: rect_select.left
             bottom:rect_select.bottom
@@ -480,7 +469,6 @@ Item {
         width: 4
         height: 12
         color: dragColor
-        antialiasing: true
         anchors{
             left: rect_select.left
             bottom:rect_select.bottom
@@ -530,7 +518,6 @@ Item {
         width: 12
         height: 4
         color: dragColor
-        antialiasing: true
         anchors{
             bottom:rect_select.bottom
             horizontalCenter: rect_select.horizontalCenter
@@ -561,7 +548,6 @@ Item {
         width: 12
         height: 4
         color: dragColor
-        antialiasing: true
         anchors{
             right: rect_select.right
             bottom:rect_select.bottom
@@ -611,7 +597,6 @@ Item {
         width: 4
         height: 12
         color: dragColor
-        antialiasing: true
         anchors{
             right: rect_select.right
             bottom:rect_select.bottom
@@ -661,7 +646,6 @@ Item {
         width: 4
         height: 12
         color: dragColor
-        antialiasing: true
         anchors{
             right: rect_select.right
             verticalCenter: rect_select.verticalCenter
@@ -692,7 +676,6 @@ Item {
         width: 4
         height: 12
         color: dragColor
-        antialiasing: true
         anchors{
             left: rect_select.left
             verticalCenter: rect_select.verticalCenter
@@ -724,7 +707,6 @@ Item {
         width: 120
         height: 40
         visible: showMenu
-        antialiasing: true
         Image {
             id:image_right
             width: 24

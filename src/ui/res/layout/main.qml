@@ -12,21 +12,8 @@ CusWindow {
     minimumHeight: 600
     maximumWidth: 596
     maximumHeight: 600
-
     title: qsTr("DoTool")
-
-    WebView{}
-
     visible: true
-
-
-    Component.onCompleted: {
-        console.debug("DoTool-onCompleted")
-    }
-
-    Component.onDestruction: {
-        console.debug("DoTool-onDestruction")
-    }
 
     page: CusPage{
 
@@ -42,12 +29,12 @@ CusWindow {
                 fontSize:24
                 url:"qrc:/layout/MainHome.qml"
             }
-//            ListElement{
-//                name:"设置"
-//                icon:"\ue6c7"
-//                fontSize:24
-//                url:"qrc:/layout/MainSetting.qml"
-//            }
+            //            ListElement{
+            //                name:"设置"
+            //                icon:"\ue6c7"
+            //                fontSize:24
+            //                url:"qrc:/layout/MainSetting.qml"
+            //            }
             ListElement{
                 name:"关于"
                 icon:"\ue622"

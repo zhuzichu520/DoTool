@@ -10,18 +10,23 @@ CusWindow {
 
     id:window
     flags: Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
-    color:"#00000000"
-    width: Screen.width
-    height: Screen.height
+    width: 1
+    height: 0
 
     Component.onCompleted: {
         selectArea.retrunParam()
     }
 
+    onActiveChanged: {
+        if(active){
+            window.visibility = Window.FullScreen
+        }
+    }
+
     Image {
         id:image_screen
         anchors.fill: parent
-        source:  "image://screen/%1".arg(String(new Date().getTime()))
+        source:  "image://screen/"+UIHelper.getScreenIndex()
     }
 
     ItemSelectArea{

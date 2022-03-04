@@ -174,5 +174,4 @@ ApplicationWindow {
         win.show()
     }
 
-
 }

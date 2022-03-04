@@ -2,15 +2,18 @@
 #include <QtQuick/qquickwindow.h>
 #include "MainWindow.h"
 #include <QFont>
+#include <QtWebEngine>
 
 int main(int argc, char *argv[])
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #endif
-//        QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
-//        QGuiApplication::setAttribute(Qt::AA_UseOpenGLES);
-    QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
+#endif
+    QtWebEngine::initialize();
     QGuiApplication::setApplicationName("DoTool");
     QGuiApplication::setOrganizationName("DoTool");
     QGuiApplication::setOrganizationDomain("https://github.com/zhuzichu520/DoTool");

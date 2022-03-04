@@ -15,7 +15,7 @@ set(THIRD_DIR_PATH ${PROJECT_SOURCE_DIR}/third)
 
 #set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR} CACHE PATH "Install path prefix" FORCE)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick QuickControls2 REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick QuickControls2 REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick QuickControls2 WebEngine REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick QuickControls2 WebEngine REQUIRED)
 
 add_subdirectory(src)
