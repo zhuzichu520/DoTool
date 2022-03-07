@@ -4,47 +4,56 @@ import QtQuick.Controls 2.15
 
 Rectangle {
     id: colorPicker
-    property color colorValue: paletteMode ?
-                                   _rgb(paletts.paletts_color, alphaSlider.value) :
-                                   _hsla(hueSlider.value, sbPicker.saturation,
-                                    sbPicker.brightness, alphaSlider.value)
+    property color colorValue: {
+        if(paletteMode === 1)
+            return _hsla(hueSlider.value, sbPicker.saturation,
+                                sbPicker.brightness, alphaSlider.value)
+        if(paletteMode === 2 )
+            return _rgb(paletts.paletts_color, alphaSlider.value)
+        return "#000000"
+    }
     property bool enableAlphaChannel: true
     property bool enableDetails: true
     property int colorHandleRadius : 8
-    property bool paletteMode : true
-    property bool enablePaletteMode : true
-    property string switchToColorPickerString: "自定义"
+
+    // 0=调色板 1=自定义 3=拾取
+    property int paletteMode : 0
+
+
     property string switchToPalleteString: "调色板"
+    property string switchToColorPickerString: "自定义"
+    property string switchToFindString: "拾取"
 
     signal colorChanged(color changedColor)
 
     width: 400; height: 200
     color: "#3C3C3C"
-
-    Text {
-        id: palette_switch
-        textFormat: Text.StyledText
-        text: paletteMode ?
-                  "<a href=\".\">" + switchToColorPickerString + "</a>" :
-                  "<a href=\".\">" + switchToPalleteString + "</a>"
-        visible: enablePaletteMode
-        onLinkActivated: {
-            paletteMode = !paletteMode
-        }
-        anchors{
-            right: parent.right
-            rightMargin: colorHandleRadius
-            top:parent.top
-            topMargin: 6
-        }
-        linkColor: "#888888"
-    }
-
     clip: true
+
+    Row {
+        id: palette_switch
+        spacing: 14
+        anchors{
+            left: parent.left
+            leftMargin: 14
+        }
+
+        Text{
+            text: switchToPalleteString
+        }
+
+        Text{
+            text: switchToColorPickerString
+        }
+
+        Text{
+            text: switchToFindString
+        }
+    }
 
     RowLayout {
         id: picker
-        anchors.top: enablePaletteMode　? palette_switch.bottom : parent.top
+        anchors.top: palette_switch.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: colorHandleRadius
@@ -55,10 +64,11 @@ Rectangle {
             id: swipe
             clip: true
             interactive: false
-            currentIndex: paletteMode ? 1 : 0
+            currentIndex: 1
 
             Layout.fillWidth: true
             Layout.fillHeight: true
+
 
             SBPicker {
                 id: sbPicker
@@ -89,12 +99,14 @@ Rectangle {
             Palettes {
                 id: paletts
             }
+
+
         }
 
         // hue picking slider
         Item {
             id: huePicker
-            visible: !paletteMode
+            visible: paletteMode === 0
             width: 12
             Layout.fillHeight: true
             Layout.topMargin: colorHandleRadius
@@ -182,7 +194,7 @@ Rectangle {
 
             // H, S, B color values boxes
             Column {
-                visible: !paletteMode
+                visible: paletteMode === 1
                 width: parent.width
                 NumberBox { caption: "H:"; value: hueSlider.value.toFixed(2) }
                 NumberBox { caption: "S:"; value: sbPicker.saturation.toFixed(2) }

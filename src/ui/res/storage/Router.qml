@@ -4,6 +4,7 @@ import QtQuick 2.15
 QtObject {
 
     property string window_colorpicker: "qrc:/tool-colorpicker/ToolColorPicker.qml"
+    property string window_colorfinder: "qrc:/tool-colorpicker/ToolColorFinder.qml"
     property string window_jsonparser: "qrc:/tool-jsonparser/ToolJsonParser.qml"
     property string window_urldecode: "qrc:/tool-urldecode/ToolUrlDecode.qml"
     property string window_qrcode: "qrc:/tool-qrcode/ToolQrcode.qml"
@@ -29,6 +30,10 @@ QtObject {
         },
         {
             path:window_screencapture,
+            onlyOne:true
+        },
+        {
+            path:window_colorfinder,
             onlyOne:true
         },
         {

@@ -1,19 +1,21 @@
 ﻿set(UILibrary_SRS
         MainWindow.cpp
         ScreenImageProvider.cpp
-        ColorPickerController.cpp
+        ColorFinderController.cpp
         JsonParserController.cpp
         ItemImage.cpp
         QUIHelper.cpp
+        GlobalStatic.cpp
         )
 
 set(UILibrary_HEADERS
         MainWindow.h
         ScreenImageProvider.h
-        ColorPickerController.h
+        ColorFinderController.h
         JsonParserController.h
         ItemImage.h
         QUIHelper.h
+        GlobalStatic.h
         )
 
 set(UILibrary_RCC

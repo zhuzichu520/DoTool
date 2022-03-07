@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
+import QtGraphicalEffects 1.15
 import "../storage"
 import "../global/global.js" as Global
 
@@ -15,6 +16,12 @@ ApplicationWindow {
     property int windowFlags : Qt.Window | Qt.FramelessWindowHint
     flags: windowFlags
     color:"transparent"
+
+    property int requestCode
+
+    property var prevWindow
+
+    signal windowResult(int resultCode,var data)
 
     onClosing: function(closeevent){
         try{
@@ -42,26 +49,13 @@ ApplicationWindow {
         enabled: window.visibility === Window.Windowed
     }
 
-    function toggleMaximized() {
-        if (window.visibility === Window.Maximized) {
-            window.showNormal();
-        } else {
-            window.showMaximized();
-        }
+    DropShadow {
+        anchors.fill: container
+        radius: 8.0
+        samples: 17
+        color: Window.active ? Theme.colorPrimary : "#80000000"
+        source: container
     }
-
-    BorderImage {
-        source: "qrc:/image/bg_shadow_border.png"
-        anchors.fill: parent
-        border{
-            left: 20
-            top: 20
-            right: 20
-            bottom: 20
-        }
-        smooth:true
-    }
-
 
     Item {
         id:container
@@ -71,6 +65,7 @@ ApplicationWindow {
             anchors.fill: parent
         }
     }
+
 
     Rectangle{
         id:layoutToast
@@ -124,6 +119,14 @@ ApplicationWindow {
         }
     }
 
+    function toggleMaximized() {
+        if (window.visibility === Window.Maximized) {
+            window.showNormal();
+        } else {
+            window.showMaximized();
+        }
+    }
+
     function showToast(text){
         layoutToast.height = 36
         layoutToast.text = text === undefined ? "" : text
@@ -138,16 +141,16 @@ ApplicationWindow {
         layoutLoading.visible = false
     }
 
-
-
-    function navigate(url){
-        console.info(url)
-        var obj = Router.parseUrl(url);
+    function navigate(url,requestCode){
+        var obj = Router.parseUrl(url)
+        if(Object.keys(obj).length===0){
+            obj = Router.parseUrl(Router.toUrl(url))
+        }
         var path = obj.path;
-        "true".bool()
         var isAttach = obj.isAttach.bool();
-        console.info(obj.isAttach)
         var options = JSON.parse(obj.options)
+        options.requestCode = requestCode
+        options.prevWindow = window
         var data = Router.obtRouter(path)
         if(data === null){
             console.error("没有注册当前路由："+path)
@@ -163,7 +166,6 @@ ApplicationWindow {
             win.requestActivate()
             return
         }
-        console.info(data.path)
         var comp = Qt.createComponent(data.path)
         if (comp.status !== Component.Ready){
             console.error("组件创建错误："+path)
@@ -173,5 +175,11 @@ ApplicationWindow {
         win = comp.createObject(isAttach?window:null,options)
         win.show()
     }
+
+
+    function setResult(resultCode,data){
+        prevWindow.windowResult(resultCode,data)
+    }
+
 
 }

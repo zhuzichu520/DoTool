@@ -8,8 +8,9 @@
 #include <QPixmap>
 #include <QBuffer>
 #include <QColor>
+#include "GlobalStatic.h"
 
-class ColorPickerController : public QObject
+class ColorFinderController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QPixmap screenPixmap READ screenPixmap NOTIFY screenPixmapChanged)
@@ -17,8 +18,8 @@ class ColorPickerController : public QObject
     Q_PROPERTY(QString colorText READ colorText NOTIFY colorTextChanged)
 
     public:
-        explicit ColorPickerController(QObject *parent = nullptr);
-    ~ColorPickerController();
+    explicit ColorFinderController(QObject *parent = nullptr);
+    ~ColorFinderController();
 
     [[nodiscard]] QPixmap screenPixmap() const;
     Q_SIGNAL void screenPixmapChanged();

@@ -38,5 +38,6 @@
         <file>image/paycode.png</file>
         <file>component/ItemSelectArea.qml</file>
         <file>tool-screencapture/ToolScreenCapture.qml</file>
+        <file>tool-colorpicker/ToolColorFinder.qml</file>
     </qresource>
 </RCC>

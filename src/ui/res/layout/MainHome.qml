@@ -59,6 +59,8 @@ Item {
                     radius: 8
                     color: hoveMouseArea.containsMouse ? Qt.lighter(Theme.colorPrimary,1.4) : Theme.colorBackground
                     border.color: "black"
+                    border.width:1
+                    antialiasing:true
                     Behavior on x { enabled: d.dragBehavior; NumberAnimation { duration: 200 } }
                     Behavior on y { enabled: d.dragBehavior; NumberAnimation { duration: 200 } }
                     Text {
@@ -115,5 +117,4 @@ Item {
             }
         }
     }
-
 }

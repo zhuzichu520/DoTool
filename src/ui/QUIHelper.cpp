@@ -3,7 +3,12 @@
 QUIHelper::QUIHelper(QObject *parent)
     : QObject{parent}
 {
+    qInfo()<<"创建QUIHelper()";
+}
 
+QUIHelper::~QUIHelper()
+{
+    qInfo()<<"销毁QUIHelper()";
 }
 
 //获取当前屏幕索引
