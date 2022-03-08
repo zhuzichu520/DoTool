@@ -9,6 +9,7 @@ QtObject {
     property string window_urldecode: "qrc:/tool-urldecode/ToolUrlDecode.qml"
     property string window_qrcode: "qrc:/tool-qrcode/ToolQrcode.qml"
     property string window_screencapture: "qrc:/tool-screencapture/ToolScreenCapture.qml"
+    property string window_markdown: "qrc:/tool-markdown/ToolMarkdown.qml"
     property string window_webpage: "qrc:/webview/WebPage.qml"
 
     property var router_table: [
@@ -38,6 +39,10 @@ QtObject {
         },
         {
             path:window_webpage,
+            onlyOne:true
+        },
+        {
+            path:window_markdown,
             onlyOne:true
         }
     ]

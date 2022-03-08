@@ -7,9 +7,11 @@
 #include "GlobalStatic.h"
 #include <QZXing.h>
 #include <QtQml>
+#include <QQuickStyle>
 
 MainWindow::MainWindow() {
 
+    QQuickStyle::setStyle("Default");
     QZXing::registerQMLTypes();
     QZXing::registerQMLImageProvider(m_engine);
     m_engine.addImageProvider(QLatin1String("screen"), new ScreenImageProvider);

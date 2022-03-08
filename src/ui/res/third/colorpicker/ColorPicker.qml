@@ -7,10 +7,10 @@ Rectangle {
     property color colorValue: {
         if(paletteMode === 1)
             return _hsla(hueSlider.value, sbPicker.saturation,
-                                sbPicker.brightness, alphaSlider.value)
-        if(paletteMode === 2 )
+                         sbPicker.brightness, alphaSlider.value)
+        if(paletteMode === 0 )
             return _rgb(paletts.paletts_color, alphaSlider.value)
-        return "#000000"
+        return finderColor
     }
     property bool enableAlphaChannel: true
     property bool enableDetails: true
@@ -19,10 +19,16 @@ Rectangle {
     // 0=调色板 1=自定义 3=拾取
     property int paletteMode : 0
 
+    property color fontColor
+
+    property color finderColor : "#000000"
+
 
     property string switchToPalleteString: "调色板"
     property string switchToColorPickerString: "自定义"
     property string switchToFindString: "拾取"
+
+    property alias findLayout: findItem.children
 
     signal colorChanged(color changedColor)
 
@@ -40,14 +46,38 @@ Rectangle {
 
         Text{
             text: switchToPalleteString
+            color:fontColor
+            MouseArea{
+                cursorShape: Qt.PointingHandCursor
+                anchors.fill: parent
+                onClicked: {
+                    paletteMode = 0
+                }
+            }
         }
 
         Text{
             text: switchToColorPickerString
+            color:fontColor
+            MouseArea{
+                cursorShape: Qt.PointingHandCursor
+                anchors.fill: parent
+                onClicked: {
+                    paletteMode = 1
+                }
+            }
         }
 
         Text{
             text: switchToFindString
+            color:fontColor
+            MouseArea{
+                cursorShape: Qt.PointingHandCursor
+                anchors.fill: parent
+                onClicked: {
+                    paletteMode = 2
+                }
+            }
         }
     }
 
@@ -64,10 +94,15 @@ Rectangle {
             id: swipe
             clip: true
             interactive: false
-            currentIndex: 1
+            currentIndex: paletteMode
 
             Layout.fillWidth: true
             Layout.fillHeight: true
+
+
+            Palettes {
+                id: paletts
+            }
 
 
             SBPicker {
@@ -75,7 +110,6 @@ Rectangle {
 
                 height: parent.implicitHeight
                 width: parent.implicitWidth
-
                 hueColor: {
                     var v = 1.0-hueSlider.value
                     if(0.0 <= v && v < 0.16) {
@@ -96,17 +130,16 @@ Rectangle {
                 }
             }
 
-            Palettes {
-                id: paletts
+            Item{
+               id:findItem
             }
-
 
         }
 
         // hue picking slider
         Item {
             id: huePicker
-            visible: paletteMode === 0
+            visible: paletteMode === 1
             width: 12
             Layout.fillHeight: true
             Layout.topMargin: colorHandleRadius

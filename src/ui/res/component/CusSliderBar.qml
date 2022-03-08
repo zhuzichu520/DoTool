@@ -28,7 +28,6 @@ Rectangle {
             text: qsTr("DoTool")
             anchors.centerIn: parent
             color: Theme.colorPrimary
-            font.italic: true
             font.bold: true
         }
 

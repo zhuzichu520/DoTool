@@ -64,9 +64,17 @@ Item {
                     Behavior on x { enabled: d.dragBehavior; NumberAnimation { duration: 200 } }
                     Behavior on y { enabled: d.dragBehavior; NumberAnimation { duration: 200 } }
                     Text {
-                        anchors.centerIn: parent
                         color: Theme.colorFontPrimary
                         text: model.name
+                        anchors{
+                            left: parent.left
+                            leftMargin: 12
+                            right: parent.right
+                            rightMargin: 12
+                            verticalCenter: parent.verticalCenter
+                        }
+                        horizontalAlignment: Text.AlignHCenter
+                        wrapMode: Text.WrapAnywhere
                     }
                     MouseArea{
                         id:hoveMouseArea

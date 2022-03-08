@@ -33,18 +33,10 @@ Item {
                     cursorShape: Qt.PointingHandCursor
                     anchors.fill: parent
                     onClicked: {
-                        navigate(Router.window_colorpicker)
+                        navigate(Router.window_colorpicker,2)
                     }
                 }
             }
-
-
         }
-
     }
-
-
-
-
-
 }

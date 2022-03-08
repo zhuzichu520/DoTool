@@ -59,3 +59,7 @@ QRect QUIHelper::getScreenRect(bool available)
     }
     return rect;
 }
+
+void QUIHelper::textClipboard(const QString &text){
+    qApp->clipboard()->setText(text);
+}

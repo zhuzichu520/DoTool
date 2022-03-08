@@ -4,6 +4,7 @@
 #include <QFont>
 #include <QtWebEngine>
 
+
 int main(int argc, char *argv[])
 {
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -21,7 +22,6 @@ int main(int argc, char *argv[])
     QGuiApplication::setOrganizationDomain("https://github.com/zhuzichu520/DoTool");
     QGuiApplication::setApplicationVersion("1.0");
     QGuiApplication app(argc, argv);
-
     QFont font;
     font.setFamily("Microsoft YaHei");
     app.setFont(font);

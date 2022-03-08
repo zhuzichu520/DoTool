@@ -21,7 +21,6 @@ CusWindow {
 
         CusToolBar {
             id:toolBar
-            maxEnable: false
             title: window.title
         }
 

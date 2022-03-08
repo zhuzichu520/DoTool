@@ -15,7 +15,7 @@ Flickable{
     clip: true
     Rectangle{
         anchors.fill: listNumber
-        color: "#f0f0f0"
+        color:Theme.colorBackground2
     }
 
     ListView{

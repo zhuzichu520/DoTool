@@ -36,6 +36,7 @@ install(FILES ${UILibrary_HEADERS} DESTINATION include/${CMAKE_PROJECT_NAME}/ui)
 target_link_libraries(UILibrary
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::QuickControls2
         ${THIRD_DIR_PATH}/zxing/msvc/lib/QZXing3.lib
         )
 target_include_directories(

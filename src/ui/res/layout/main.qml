@@ -13,6 +13,11 @@ CusWindow {
     title: qsTr("DoTool")
     visible: true
 
+    onWindowResult:
+        (requestCode,resultCode,data)=> {
+
+        }
+
     page: CusPage{
 
         CusToolBar {

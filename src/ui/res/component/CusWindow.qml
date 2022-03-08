@@ -21,7 +21,7 @@ ApplicationWindow {
 
     property var prevWindow
 
-    signal windowResult(int resultCode,var data)
+    signal windowResult(int requestCode,int resultCode,var data)
 
     onClosing: function(closeevent){
         try{
@@ -149,8 +149,6 @@ ApplicationWindow {
         var path = obj.path;
         var isAttach = obj.isAttach.bool();
         var options = JSON.parse(obj.options)
-        options.requestCode = requestCode
-        options.prevWindow = window
         var data = Router.obtRouter(path)
         if(data === null){
             console.error("没有注册当前路由："+path)
@@ -161,11 +159,15 @@ ApplicationWindow {
             for(var key in options){
                 win[key] = options[key]
             }
+            options.requestCode = requestCode
+            options.prevWindow = window
             win.show()
             win.raise()
             win.requestActivate()
             return
         }
+        options.requestCode = requestCode
+        options.prevWindow = window
         var comp = Qt.createComponent(data.path)
         if (comp.status !== Component.Ready){
             console.error("组件创建错误："+path)
@@ -178,7 +180,7 @@ ApplicationWindow {
 
 
     function setResult(resultCode,data){
-        prevWindow.windowResult(resultCode,data)
+        prevWindow.windowResult(requestCode,resultCode,data)
     }
 
 
