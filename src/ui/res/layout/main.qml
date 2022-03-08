@@ -10,10 +10,13 @@ CusWindow {
     height: 600
     minimumWidth: 596
     minimumHeight: 600
-    maximumWidth: 596
-    maximumHeight: 600
     title: qsTr("DoTool")
     visible: true
+
+    onWindowResult:
+        (requestCode,resultCode,data)=> {
+
+        }
 
     page: CusPage{
 
@@ -29,12 +32,12 @@ CusWindow {
                 fontSize:24
                 url:"qrc:/layout/MainHome.qml"
             }
-            //            ListElement{
-            //                name:"设置"
-            //                icon:"\ue6c7"
-            //                fontSize:24
-            //                url:"qrc:/layout/MainSetting.qml"
-            //            }
+            ListElement{
+                name:"设置"
+                icon:"\ue6c7"
+                fontSize:24
+                url:"qrc:/layout/MainSetting.qml"
+            }
             ListElement{
                 name:"关于"
                 icon:"\ue622"

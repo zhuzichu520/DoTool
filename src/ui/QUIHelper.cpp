@@ -3,7 +3,12 @@
 QUIHelper::QUIHelper(QObject *parent)
     : QObject{parent}
 {
+    qInfo()<<"创建QUIHelper()";
+}
 
+QUIHelper::~QUIHelper()
+{
+    qInfo()<<"销毁QUIHelper()";
 }
 
 //获取当前屏幕索引
@@ -53,4 +58,8 @@ QRect QUIHelper::getScreenRect(bool available)
 #endif
     }
     return rect;
+}
+
+void QUIHelper::textClipboard(const QString &text){
+    qApp->clipboard()->setText(text);
 }

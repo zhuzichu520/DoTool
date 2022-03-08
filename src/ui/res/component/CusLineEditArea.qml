@@ -15,7 +15,7 @@ Flickable{
     clip: true
     Rectangle{
         anchors.fill: listNumber
-        color: "#f0f0f0"
+        color:Theme.colorBackground2
     }
 
     ListView{
@@ -24,7 +24,7 @@ Flickable{
         width: scroll.numberWidth
         model:editArea.lineCount
         delegate: Item{
-            height: editArea.font.pixelSize+2
+            height: (editArea.contentHeight+2)/editArea.lineCount
             width: scroll.numberWidth
             Text{
                 text:modelData + 1

@@ -38,5 +38,12 @@
         <file>image/paycode.png</file>
         <file>component/ItemSelectArea.qml</file>
         <file>tool-screencapture/ToolScreenCapture.qml</file>
+        <file>tool-colorpicker/ToolColorFinder.qml</file>
+        <file>tool-markdown/ToolMarkdown.qml</file>
+        <file>component/CusMenuBar.qml</file>
+        <file>component/CusMenu.qml</file>
+        <file>component/CusMenuBarItem.qml</file>
+        <file>component/CusMenuItem.qml</file>
+        <file>component/CusMenuSeparator.qml</file>
     </qresource>
 </RCC>

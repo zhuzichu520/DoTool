@@ -1,19 +1,21 @@
 ﻿set(UILibrary_SRS
         MainWindow.cpp
         ScreenImageProvider.cpp
-        ColorPickerController.cpp
+        ColorFinderController.cpp
         JsonParserController.cpp
         ItemImage.cpp
         QUIHelper.cpp
+        GlobalStatic.cpp
         )
 
 set(UILibrary_HEADERS
         MainWindow.h
         ScreenImageProvider.h
-        ColorPickerController.h
+        ColorFinderController.h
         JsonParserController.h
         ItemImage.h
         QUIHelper.h
+        GlobalStatic.h
         )
 
 set(UILibrary_RCC
@@ -34,6 +36,7 @@ install(FILES ${UILibrary_HEADERS} DESTINATION include/${CMAKE_PROJECT_NAME}/ui)
 target_link_libraries(UILibrary
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::QuickControls2
         ${THIRD_DIR_PATH}/zxing/msvc/lib/QZXing3.lib
         )
 target_include_directories(

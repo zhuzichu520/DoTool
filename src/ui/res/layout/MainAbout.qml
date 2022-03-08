@@ -51,7 +51,7 @@ Item {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        Qt.openUrlExternally("")
+                        Qt.openUrlExternally("https://github.com/zhuzichu520/DoTool")
                     }
                 }
             }
