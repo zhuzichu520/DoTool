@@ -8,6 +8,7 @@ QtObject {
     property string window_jsonparser: "qrc:/tool-jsonparser/ToolJsonParser.qml"
     property string window_urldecode: "qrc:/tool-urldecode/ToolUrlDecode.qml"
     property string window_qrcode: "qrc:/tool-qrcode/ToolQrcode.qml"
+    property string window_scrcpy: "qrc:/tool-scrcpy/ToolScrcpy.qml"
     property string window_screencapture: "qrc:/tool-screencapture/ToolScreenCapture.qml"
     property string window_markdown: "qrc:/tool-markdown/ToolMarkdown.qml"
     property string window_webpage: "qrc:/webview/WebPage.qml"
@@ -43,6 +44,10 @@ QtObject {
         },
         {
             path:window_markdown,
+            onlyOne:true
+        },
+        {
+            path:window_scrcpy,
             onlyOne:true
         }
     ]

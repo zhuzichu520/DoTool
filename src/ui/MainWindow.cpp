@@ -3,6 +3,7 @@
 #include "ScreenImageProvider.h"
 #include "ColorFinderController.h"
 #include "JsonParserController.h"
+#include "ScrcpyController.h"
 #include "ItemImage.h"
 #include "GlobalStatic.h"
 #include <QZXing.h>
@@ -23,7 +24,7 @@ MainWindow::MainWindow() {
 
     qmlRegisterType<ColorFinderController>("com.dotool.controller", 1, 0, "ColorFinderController");
     qmlRegisterType<JsonParserController>("com.dotool.controller", 1, 0, "JsonParserController");
-
+    qmlRegisterType<ScrcpyController>("com.dotool.controller", 1, 0, "ScrcpyController");
 }
 
 MainWindow::~MainWindow() {

@@ -1,5 +1,6 @@
 ﻿add_subdirectory(app)
 add_subdirectory(ui)
+add_subdirectory(qtscrcpy)
 
 set(OPENSSL_DLL
         ${THIRD_DIR_PATH}/openssl/libcrypto-1_1-x64.dll

@@ -11,7 +11,7 @@ QtObject{
     property string colorBackground2:AppStorage.isDark?"#444444":"#EFEFEF"
 
     property string colorItemBackground:AppStorage.isDark?"#000000":"#FFFFFF"
-    property string colorDivider: AppStorage.isDark?"#666666":"#EEEEEE"
+    property string colorDivider: AppStorage.isDark?"#666666":"#DEDEDE"
     property string colorFontPrimary:AppStorage.isDark?"#EEEEEE":"#333333"
     property string colorFontSecondary :AppStorage.isDark?"#666666":"#666666"
     property string colorFontTertiary: AppStorage.isDark?"#666666":"#999999"

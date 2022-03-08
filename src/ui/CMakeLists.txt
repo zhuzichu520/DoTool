@@ -6,6 +6,7 @@
         ItemImage.cpp
         QUIHelper.cpp
         GlobalStatic.cpp
+        ScrcpyController.cpp
         )
 
 set(UILibrary_HEADERS
@@ -16,6 +17,7 @@ set(UILibrary_HEADERS
         ItemImage.h
         QUIHelper.h
         GlobalStatic.h
+        ScrcpyController.h
         )
 
 set(UILibrary_RCC
@@ -34,6 +36,7 @@ add_library(UILibrary SHARED ${UILibrary_SRS} ${UILibrary_RCC})
 install(TARGETS UILibrary LIBRARY DESTINATION lib)
 install(FILES ${UILibrary_HEADERS} DESTINATION include/${CMAKE_PROJECT_NAME}/ui)
 target_link_libraries(UILibrary
+        QtScrcpy
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::QuickControls2

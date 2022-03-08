@@ -10,6 +10,7 @@ ListModel{
         append({name:"URL decode",url:Router.toUrl(Router.window_urldecode)})
         append({name:"二维码工具",url:Router.toUrl(Router.window_qrcode)})
         append({name:"屏幕截图",url:Router.toUrl(Router.window_screencapture,true)})
+        append({name:"Android投屏",url:Router.toUrl(Router.window_scrcpy)})
         append({name:"tinypng",url:Router.toUrl(Router.window_webpage,false,{title:"tinypng",url:"https://tinypng.com/"})})
         append({name:"https",url:Router.toUrl(Router.window_webpage,false,{title:"https",url:"https://www.upyun.com/https"})})
         append({name:"iconfont",url:Router.toUrl(Router.window_webpage,false,{title:"iconfont",url:"https://www.iconfont.cn/"})})
