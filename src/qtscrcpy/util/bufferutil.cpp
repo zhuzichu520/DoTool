@@ -56,3 +56,35 @@ quint64 BufferUtil::read64(QBuffer &buffer)
     return ((quint64)msb << 32) | lsb;
     ;
 }
+
+QVideoFrame BufferUtil::avFrameToVideoFrame(const AVFrame *frame){
+    QVideoSurfaceFormat format = QVideoSurfaceFormat(QSize(frame->width, frame->height), ffmpegPixFmtQtFmt(frame->format));
+    int imagesize = av_image_get_buffer_size((AVPixelFormat)frame->format,frame->width,frame->height,1);
+    QVideoFrame f(imagesize,QSize(frame->width,frame->height),frame->width,format.pixelFormat());
+    if (f.map(QAbstractVideoBuffer::WriteOnly))
+        {
+            uchar * fdata = f.bits();
+            av_image_copy_to_buffer(fdata, imagesize, frame->data, frame->linesize, (AVPixelFormat)frame->format, frame->width, frame->height, 1);
+            f.unmap();
+            f.setStartTime(0);
+            return f;
+        }
+    return f;
+}
+
+QVideoFrame::PixelFormat BufferUtil::ffmpegPixFmtQtFmt(int pix_fmt){
+    switch (pix_fmt)
+    {
+    case AV_PIX_FMT_YUV420P:
+    case AV_PIX_FMT_YUVJ420P:
+    {
+        return QVideoFrame::Format_YUV420P;
+    }
+    case AV_PIX_FMT_NV12:
+    {
+        return QVideoFrame::Format_NV12;
+    }
+    default:
+        return QVideoFrame::Format_Invalid;
+    }
+}

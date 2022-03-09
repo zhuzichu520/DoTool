@@ -15,16 +15,17 @@ class ItemImage : public QQuickPaintedItem
     Q_PROPERTY(bool round READ round WRITE setRound NOTIFY roundChanged)
 public:
     ItemImage(QQuickItem *parent = nullptr);
-    Q_INVOKABLE void setSource(const QPixmap &pixmap);
     void paint(QPainter *painter);
+
+    Q_INVOKABLE void setSource(const QPixmap &pixmap);
     QPixmap source() const;
+    Q_SIGNAL void sourceChanged();
 
     [[nodiscard]] bool round() const;
     void setRound(bool round);
     Q_SIGNAL void roundChanged();
 
-signals:
-    void sourceChanged();
+
 private:
     QPixmap m_pixmap;
     int m_round;

@@ -12,7 +12,9 @@ class FrameProvider : public QObject
 public:
     explicit FrameProvider(QObject *parent = nullptr);
     ~FrameProvider();
-    QAbstractVideoSurface* videoSurface() const;
+    QAbstractVideoSurface* videoSurface() const{
+        return m_surface;
+    };
     void setVideoSurface(QAbstractVideoSurface *surface);
     void setFormat(int width, int heigth, QVideoFrame::PixelFormat format);
 public slots:

@@ -1,7 +1,10 @@
 #include "FrameProvider.h"
 
-FrameProvider::FrameProvider(QObject *parent) : QObject(parent)
+
+FrameProvider::FrameProvider(QObject *parent)
+    : QObject{parent}
 {
+
 }
 
 FrameProvider::~FrameProvider()

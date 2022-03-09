@@ -3,6 +3,7 @@
 ScrcpyController::ScrcpyController(QObject *parent)
     : QObject{parent}
 {
+    m_frameProvider =new FrameProvider;
     m_vb = new VideoBuffer();
     m_vb->init();
     m_decoder = new Decoder(m_vb, this);
@@ -107,7 +108,11 @@ ScrcpyController::ScrcpyController(QObject *parent)
             [this]() {
                 m_vb->lock();
                 const AVFrame *frame = m_vb->consumeRenderedFrame();
-                qDebug()<<"123";
+                qDebug()<<frame->width;
+                qDebug()<<frame->height;
+                QVideoFrame f = BufferUtil::avFrameToVideoFrame(frame);
+                m_pixmap = QPixmap::fromImage(f.image());
+                Q_EMIT sourceChanged();
                 m_vb->unLock();
             },
             Qt::QueuedConnection);
@@ -126,6 +131,9 @@ ScrcpyController::~ScrcpyController(){
     if (m_vb) {
         m_vb->deInit();
         delete m_vb;
+    }
+    if(m_frameProvider){
+        m_frameProvider->deleteLater();
     }
 }
 
