@@ -18,6 +18,8 @@ Flickable{
         color:Theme.colorBackground2
     }
 
+    ScrollBar.vertical: ScrollBar {}
+
     ListView{
         id:listNumber
         height: editArea.height

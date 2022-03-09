@@ -7,6 +7,7 @@
         QUIHelper.cpp
         GlobalStatic.cpp
         ScrcpyController.cpp
+        FrameProvider.cpp
         )
 
 set(UILibrary_HEADERS
@@ -18,6 +19,7 @@ set(UILibrary_HEADERS
         QUIHelper.h
         GlobalStatic.h
         ScrcpyController.h
+        FrameProvider.h
         )
 
 set(UILibrary_RCC
@@ -40,6 +42,7 @@ target_link_libraries(UILibrary
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::QuickControls2
+        Qt${QT_VERSION_MAJOR}::Multimedia
         ${THIRD_DIR_PATH}/zxing/msvc/lib/QZXing3.lib
         )
 target_include_directories(

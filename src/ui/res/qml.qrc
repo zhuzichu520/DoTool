@@ -46,5 +46,6 @@
         <file>component/CusMenuItem.qml</file>
         <file>component/CusMenuSeparator.qml</file>
         <file>tool-scrcpy/ToolScrcpy.qml</file>
+        <file>tool-scrcpy/LayoutDeviceOptions.qml</file>
     </qresource>
 </RCC>
