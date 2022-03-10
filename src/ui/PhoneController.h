@@ -25,6 +25,7 @@ struct YUVData{
     int yLineSize;
     int uLineSize;
     int vLineSize;
+    int width;
     int height;
 };
 
