@@ -7,7 +7,9 @@
         QUIHelper.cpp
         GlobalStatic.cpp
         ScrcpyController.cpp
-        FrameProvider.cpp
+        PhoneController.cpp
+        VideoItem.cpp
+        I420Render.cpp
         )
 
 set(UILibrary_HEADERS
@@ -19,7 +21,9 @@ set(UILibrary_HEADERS
         QUIHelper.h
         GlobalStatic.h
         ScrcpyController.h
-        FrameProvider.h
+        PhoneController.h
+        VideoItem.h
+        I420Render.h
         )
 
 set(UILibrary_RCC

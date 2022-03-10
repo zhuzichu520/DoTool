@@ -18,7 +18,6 @@ ApplicationWindow {
     color:"transparent"
 
     property int requestCode
-
     property var prevWindow
 
     signal windowResult(int requestCode,int resultCode,var data)
@@ -107,6 +106,7 @@ ApplicationWindow {
         MouseArea{
             hoverEnabled: true
             anchors.fill: parent
+
         }
     }
 
@@ -174,14 +174,15 @@ ApplicationWindow {
             return
         }
         options.router = data
-        win = comp.createObject(isAttach?window:null,options)
+        win = comp.createObject(window,options)
+        if(!isAttach){
+            win.transientParent = null
+        }
         win.show()
     }
-
 
     function setResult(resultCode,data){
         prevWindow.windowResult(requestCode,resultCode,data)
     }
-
 
 }

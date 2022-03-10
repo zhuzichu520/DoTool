@@ -12,6 +12,7 @@ QtObject {
     property string window_screencapture: "qrc:/tool-screencapture/ToolScreenCapture.qml"
     property string window_markdown: "qrc:/tool-markdown/ToolMarkdown.qml"
     property string window_webpage: "qrc:/webview/WebPage.qml"
+    property string window_phone: "qrc:/tool-scrcpy/PhoneWindow.qml"
 
     property var router_table: [
         {
@@ -48,6 +49,10 @@ QtObject {
         },
         {
             path:window_scrcpy,
+            onlyOne:true
+        },
+        {
+            path:window_phone,
             onlyOne:true
         }
     ]

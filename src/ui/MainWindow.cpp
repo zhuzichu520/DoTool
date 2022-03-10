@@ -4,7 +4,9 @@
 #include "ColorFinderController.h"
 #include "JsonParserController.h"
 #include "ScrcpyController.h"
+#include "PhoneController.h"
 #include "ItemImage.h"
+#include "VideoItem.h"
 #include "GlobalStatic.h"
 #include <QZXing.h>
 #include <QtQml>
@@ -21,10 +23,13 @@ MainWindow::MainWindow() {
     m_engine.rootContext()->setContextProperty("UIHelper",p_uiHelper);
 
     qmlRegisterType<ItemImage>("com.dotool.ui", 1, 0, "ItemImage");
+    qmlRegisterType<VideoItem>("com.dotool.ui", 1, 0, "VideoItem");
 
     qmlRegisterType<ColorFinderController>("com.dotool.controller", 1, 0, "ColorFinderController");
     qmlRegisterType<JsonParserController>("com.dotool.controller", 1, 0, "JsonParserController");
     qmlRegisterType<ScrcpyController>("com.dotool.controller", 1, 0, "ScrcpyController");
+    qmlRegisterType<PhoneController>("com.dotool.controller", 1, 0, "PhoneController");
+
 }
 
 MainWindow::~MainWindow() {

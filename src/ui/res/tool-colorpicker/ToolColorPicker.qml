@@ -21,7 +21,7 @@ CusWindow {
     title:"颜色选择器"
 
     onWindowResult:
-        (resultCode,data)=> {
+        (requestCode,resultCode,data)=> {
             if(resultCode === 2){
                 colorPicker.finderColor = data
             }
