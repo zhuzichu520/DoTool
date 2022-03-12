@@ -14,6 +14,7 @@ ListModel{
         append({name:"tinypng",url:Router.toUrl(Router.window_webpage,false,{title:"tinypng",url:"https://tinypng.com/"})})
         append({name:"https",url:Router.toUrl(Router.window_webpage,false,{title:"https",url:"https://www.upyun.com/https"})})
         append({name:"iconfont",url:Router.toUrl(Router.window_webpage,false,{title:"iconfont",url:"https://www.iconfont.cn/"})})
+        append({name:"OpenGL学习",url:Router.toUrl(Router.window_opengl)})
     }
 
 }

@@ -28,9 +28,7 @@ private:
     //shader程序
     QOpenGLShaderProgram m_program;
     QOpenGLTexture *mTexY = nullptr,*mTexU=nullptr,*mTexV=nullptr;
-
     bool mTextureAlloced = false;
-
     QVector<QVector2D> vertices;
     QVector<QVector2D> textures;
 };

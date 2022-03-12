@@ -10,6 +10,7 @@
         PhoneController.cpp
         VideoItem.cpp
         I420Render.cpp
+        ItemOpenGL.cpp
         )
 
 set(UILibrary_HEADERS
@@ -24,6 +25,7 @@ set(UILibrary_HEADERS
         PhoneController.h
         VideoItem.h
         I420Render.h
+        ItemOpenGL.h
         )
 
 set(UILibrary_RCC

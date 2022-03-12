@@ -28,7 +28,7 @@ CusWindow {
 
     opacity: 0
 
-    property int standWidth: 320
+    property int standWidth: 300
 
     Component.onCompleted: {
         controller.startServer(serial)
@@ -40,8 +40,9 @@ CusWindow {
 
         onShowPhoneChanged:
             (w,h)=>{
+                videoItem.updateVideoSize(w,h)
                 phoneWidth = standWidth
-                phoneHeight = h/w * 320
+                phoneHeight = h/w * standWidth
                 opacity = 1
             }
     }
@@ -71,6 +72,7 @@ CusWindow {
                 width: window.phoneWidth
                 height: window.phoneHeight
                 VideoItem {
+                    id:videoItem
                     anchors.fill: parent
                     decoder: controller
                 }

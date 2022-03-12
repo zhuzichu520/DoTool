@@ -7,6 +7,7 @@
 #include "PhoneController.h"
 #include "ItemImage.h"
 #include "VideoItem.h"
+#include "ItemOpenGL.h"
 #include "GlobalStatic.h"
 #include <QZXing.h>
 #include <QtQml>
@@ -24,6 +25,7 @@ MainWindow::MainWindow() {
 
     qmlRegisterType<ItemImage>("com.dotool.ui", 1, 0, "ItemImage");
     qmlRegisterType<VideoItem>("com.dotool.ui", 1, 0, "VideoItem");
+    qmlRegisterType<ItemOpenGL>("com.dotool.ui", 1, 0, "ItemOpenGL");
 
     qmlRegisterType<ColorFinderController>("com.dotool.controller", 1, 0, "ColorFinderController");
     qmlRegisterType<JsonParserController>("com.dotool.controller", 1, 0, "JsonParserController");

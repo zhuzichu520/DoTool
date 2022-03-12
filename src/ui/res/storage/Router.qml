@@ -13,6 +13,7 @@ QtObject {
     property string window_markdown: "qrc:/tool-markdown/ToolMarkdown.qml"
     property string window_webpage: "qrc:/webview/WebPage.qml"
     property string window_phone: "qrc:/tool-scrcpy/PhoneWindow.qml"
+    property string window_opengl: "qrc:/tool-opengl/ToolOpengl.qml"
 
     property var router_table: [
         {
@@ -53,6 +54,10 @@ QtObject {
         },
         {
             path:window_phone,
+            onlyOne:true
+        },
+        {
+            path:window_opengl,
             onlyOne:true
         }
     ]

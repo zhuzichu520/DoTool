@@ -1,5 +1,50 @@
 #include "I420Render.h"
 
+// 顶点着色器
+static const QString s_vertShader = R"(
+    attribute vec3 vertexIn;    // xyz顶点坐标
+    attribute vec2 textureIn;   // xy纹理坐标
+    varying vec2 textureOut;    // 传递给片段着色器的纹理坐标
+    void main(void)
+    {
+        gl_Position = vec4(vertexIn, 1.0);  // 1.0表示vertexIn是一个顶点位置
+        textureOut = textureIn; // 纹理坐标直接传递给片段着色器
+    }
+)";
+
+// 片段着色器
+static QString s_fragShader = R"(
+    varying vec2 textureOut;        // 由顶点着色器传递过来的纹理坐标
+    uniform sampler2D textureY;     // uniform 纹理单元，利用纹理单元可以使用多个纹理
+    uniform sampler2D textureU;     // sampler2D是2D采样器
+    uniform sampler2D textureV;     // 声明yuv三个纹理单元
+    void main(void)
+    {
+        vec3 yuv;
+        vec3 rgb;
+
+        // SDL2 BT709_SHADER_CONSTANTS
+        // https://github.com/spurious/SDL-mirror/blob/4ddd4c445aa059bb127e101b74a8c5b59257fbe2/src/render/opengl/SDL_shaders_gl.c#L102
+        const vec3 Rcoeff = vec3(1.1644,  0.000,  1.7927);
+        const vec3 Gcoeff = vec3(1.1644, -0.2132, -0.5329);
+        const vec3 Bcoeff = vec3(1.1644,  2.1124,  0.000);
+
+        // 根据指定的纹理textureY和坐标textureOut来采样
+        yuv.x = texture2D(textureY, textureOut).r;
+        yuv.y = texture2D(textureU, textureOut).r - 0.5;
+        yuv.z = texture2D(textureV, textureOut).r - 0.5;
+
+        // 采样完转为rgb
+        // 减少一些亮度
+        yuv.x = yuv.x - 0.0625;
+        rgb.r = dot(yuv, Rcoeff);
+        rgb.g = dot(yuv, Gcoeff);
+        rgb.b = dot(yuv, Bcoeff);
+        // 输出颜色值
+        gl_FragColor = vec4(rgb, 1.0);
+    }
+)";
+
 I420Render::I420Render()
 {
     mTexY = new QOpenGLTexture(QOpenGLTexture::Target2D);
@@ -27,36 +72,10 @@ I420Render::~I420Render()
 void I420Render::init()
 {
     initializeOpenGLFunctions();
-    const char *vsrc =
-            "attribute vec4 vertexIn; \
-             attribute vec2 textureIn; \
-             varying vec2 textureOut;  \
-             void main(void)           \
-             {                         \
-                 gl_Position = vertexIn; \
-                 textureOut = textureIn; \
-             }";
 
-    const char *fsrc =
-            "varying mediump vec2 textureOut;\n"
-            "uniform sampler2D textureY;\n"
-            "uniform sampler2D textureU;\n"
-            "uniform sampler2D textureV;\n"
-            "void main(void)\n"
-            "{\n"
-            "vec3 yuv; \n"
-            "vec3 rgb; \n"
-            "yuv.x = texture2D(textureY, textureOut).r; \n"
-            "yuv.y = texture2D(textureU, textureOut).r - 0.5; \n"
-            "yuv.z = texture2D(textureV, textureOut).r - 0.5; \n"
-            "rgb = mat3( 1,       1,         1, \n"
-                        "0,       -0.3455,  1.779, \n"
-                        "1.4075, -0.7169,  0) * yuv; \n"
-            "gl_FragColor = vec4(rgb, 1); \n"
-            "}\n";
 
-    m_program.addCacheableShaderFromSourceCode(QOpenGLShader::Vertex,vsrc);
-    m_program.addCacheableShaderFromSourceCode(QOpenGLShader::Fragment,fsrc);
+    m_program.addCacheableShaderFromSourceCode(QOpenGLShader::Vertex,s_vertShader);
+    m_program.addCacheableShaderFromSourceCode(QOpenGLShader::Fragment,s_fragShader);
     m_program.bindAttributeLocation("vertexIn",0);
     m_program.bindAttributeLocation("textureIn",1);
     m_program.link();

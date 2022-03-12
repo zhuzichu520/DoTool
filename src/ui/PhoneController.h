@@ -25,7 +25,6 @@ struct YUVData{
     int yLineSize;
     int uLineSize;
     int vLineSize;
-    int width;
     int height;
 };
 
@@ -36,15 +35,21 @@ class PhoneController : public QObject
 public:
     explicit PhoneController(QObject *parent = nullptr);
     ~PhoneController();
-    YUVData getFrame(){
-        if(frameBuffer.isEmpty()){
-            return YUVData{};
+
+    YUVData getFrame(bool& got){
+        if (frameBuffer.isEmpty())
+        {
+            got = false;
+            return {};
         }
+        got = true;
         return frameBuffer.takeFirst();
     }
+
     QPixmap source() const{
         return m_pixmap;
     };
+
     Q_SIGNAL void sourceChanged();
     Q_SIGNAL void showPhoneChanged(int width,int height);
     Q_INVOKABLE void startServer(const QString &);

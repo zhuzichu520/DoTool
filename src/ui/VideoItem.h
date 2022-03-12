@@ -26,7 +26,6 @@ public:
     I420Render m_render;
 private:
     QQuickWindow *m_window = nullptr;
-    YUVData ba;
 };
 
 
@@ -39,7 +38,7 @@ public:
     ~VideoItem();
     void timerEvent(QTimerEvent *event) override;
 
-    YUVData getFrame();
+    YUVData getFrame(bool& got);
     bool infoDirty() const
     {
         return m_infoChanged;
@@ -57,6 +56,11 @@ public:
         return m_videoHeight;
     }
 
+    int videoFormat() const
+    {
+        return m_videoFormat;
+    }
+
     PhoneController* decoder(){
         return m_decoder;
     }
@@ -64,6 +68,9 @@ public:
         m_decoder = decoder;
         Q_EMIT decoderChanged();
     }
+
+    Q_INVOKABLE void updateVideoSize(int width,int height);
+
     Q_SIGNAL void decoderChanged();
 
 public:
@@ -71,7 +78,8 @@ public:
     PhoneController *m_decoder = nullptr;
     int m_videoWidth;
     int m_videoHeight;
-    bool m_infoChanged = true;
+     int m_videoFormat;
+    bool m_infoChanged = false;
 };
 
 #endif // VIDEOITEM_H

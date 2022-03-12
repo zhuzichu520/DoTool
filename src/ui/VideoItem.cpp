@@ -31,14 +31,19 @@ void VideoFboItem::synchronize(QQuickFramebufferObject *item){
             m_render.updateTextureInfo(pItem->videoWidth(), pItem->videoHeght());
             pItem->makeInfoDirty(false);
         }
-        ba = pItem->getFrame();
-        m_render.updateTextureData(ba);
+        bool got = false;
+        YUVData data = pItem->getFrame(got);
+        if (got)
+        {
+            m_render.updateTextureData(data);
+        }
     }
 }
 
 //************VideoItem************//
 VideoItem::VideoItem(QQuickItem *parent) : QQuickFramebufferObject (parent)
 {
+    qDebug()<<"VideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItem";
     startTimer(1);
 }
 
@@ -51,12 +56,18 @@ void VideoItem::timerEvent(QTimerEvent *event)
     update();
 }
 
-YUVData VideoItem::getFrame()
+YUVData VideoItem::getFrame(bool& got)
 {
-    return m_decoder->getFrame();
+    return m_decoder->getFrame(got);
 }
 
 QQuickFramebufferObject::Renderer* VideoItem::createRenderer() const
 {
     return new VideoFboItem;
+}
+
+void VideoItem::updateVideoSize(int width,int height){
+    m_videoWidth = width;
+    m_videoHeight = height;
+    makeInfoDirty(true);
 }

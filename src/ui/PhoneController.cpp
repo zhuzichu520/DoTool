@@ -3,7 +3,8 @@
 PhoneController::PhoneController(QObject *parent)
     : QObject{parent}
 {
-    frameBuffer.setCapacity(30);
+
+    frameBuffer.setCapacity(1024);
     m_server = new Server(this);
     m_vb = new VideoBuffer();
     m_vb->init();
@@ -25,9 +26,9 @@ PhoneController::PhoneController(QObject *parent)
             Q_UNUSED(deviceName);
             if (success) {
                 // init decoder
+                Q_EMIT showPhoneChanged(size.width(),size.height());
                 m_stream->setVideoSocket(m_server->getVideoSocket());
                 m_stream->startDecode();
-                Q_EMIT showPhoneChanged(size.width(),size.height());
             }
         });
         connect(m_server, &Server::onServerStop, this, [this]() {
@@ -46,11 +47,9 @@ PhoneController::PhoneController(QObject *parent)
                     [this]() {
             m_vb->lock();
             const AVFrame *yuvFrame = m_vb->consumeRenderedFrame();
-            qDebug()<<yuvFrame->width;
-            qDebug()<<yuvFrame->height;
-            //            QVideoFrame f = BufferUtil::avFrameToVideoFrame(frame);
-            //                m_pixmap = QPixmap::fromImage(f.image());
-            //            Q_EMIT sourceChanged();
+            //            QVideoFrame f = BufferUtil::avFrameToVideoFrame(yuvFrame);
+            //            m_pixmap = QPixmap::fromImage(f.image());
+            Q_EMIT sourceChanged();
             m_yuvData.Y.resize(yuvFrame->linesize[0]*yuvFrame->height);
             m_yuvData.Y =QByteArray((char*)yuvFrame->data[0],m_yuvData.Y.size());
             m_yuvData.U.resize(yuvFrame->linesize[1]*yuvFrame->height/2);
@@ -86,6 +85,7 @@ void PhoneController::startServer(const QString &serial){
     Server::ServerParams params;
     params.serial = serial;
     params.maxSize = 1920;
+    params.bitRate = 10000000;
     m_server->start(params);
 }
 
