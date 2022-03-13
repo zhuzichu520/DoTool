@@ -43,7 +43,8 @@ void VideoFboItem::synchronize(QQuickFramebufferObject *item){
 //************VideoItem************//
 VideoItem::VideoItem(QQuickItem *parent) : QQuickFramebufferObject (parent)
 {
-    qDebug()<<"VideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItemVideoItem";
+    setAcceptHoverEvents(true);
+    setAcceptedMouseButtons(Qt::AllButtons);
     startTimer(1);
 }
 
@@ -70,4 +71,17 @@ void VideoItem::updateVideoSize(int width,int height){
     m_videoWidth = width;
     m_videoHeight = height;
     makeInfoDirty(true);
+}
+
+void VideoItem::mousePressEvent(QMouseEvent *event){
+    m_decoder->getInputController()->onMouseEvent(event,QSize(videoWidth(),videoHeght()),QSize(width(),height()));
+}
+
+void VideoItem::mouseReleaseEvent(QMouseEvent *event){
+    m_decoder->getInputController()->onMouseEvent(event,QSize(videoWidth(),videoHeght()),QSize(width(),height()));
+}
+
+void VideoItem::mouseMoveEvent(QMouseEvent *event)
+{
+    m_decoder->getInputController()->onMouseEvent(event,QSize(videoWidth(),videoHeght()),QSize(width(),height()));
 }

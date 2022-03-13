@@ -73,12 +73,18 @@ public:
 
     Q_SIGNAL void decoderChanged();
 
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+
 public:
     Renderer *createRenderer() const override;
     PhoneController *m_decoder = nullptr;
     int m_videoWidth;
     int m_videoHeight;
-     int m_videoFormat;
+    int m_videoFormat;
     bool m_infoChanged = false;
 };
 

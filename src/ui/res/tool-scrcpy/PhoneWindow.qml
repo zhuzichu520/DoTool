@@ -23,12 +23,12 @@ CusWindow {
     minimumHeight: h
     title: serial
 
-    property int phoneWidth:1
-    property int phoneHeight:1
+    property int phoneWidth
+    property int phoneHeight
 
     opacity: 0
 
-    property int standWidth: 300
+    property int standWidth: 420
 
     Component.onCompleted: {
         controller.startServer(serial)
@@ -43,6 +43,7 @@ CusWindow {
                 videoItem.updateVideoSize(w,h)
                 phoneWidth = standWidth
                 phoneHeight = h/w * standWidth
+                setGeometry((Screen.width - window.width) / 2,(Screen.height - window.height) / 2,window.w,window.h)
                 opacity = 1
             }
     }

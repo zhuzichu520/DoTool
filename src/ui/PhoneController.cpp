@@ -3,7 +3,7 @@
 PhoneController::PhoneController(QObject *parent)
     : QObject{parent}
 {
-
+    m_controller = new Controller("", this);
     frameBuffer.setCapacity(1024);
     m_server = new Server(this);
     m_vb = new VideoBuffer();
@@ -29,6 +29,10 @@ PhoneController::PhoneController(QObject *parent)
                 Q_EMIT showPhoneChanged(size.width(),size.height());
                 m_stream->setVideoSocket(m_server->getVideoSocket());
                 m_stream->startDecode();
+                // init controller
+                if (m_controller) {
+                    m_controller->setControlSocket(m_server->getControlSocket());
+                }
             }
         });
         connect(m_server, &Server::onServerStop, this, [this]() {

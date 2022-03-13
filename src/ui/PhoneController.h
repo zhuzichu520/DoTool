@@ -9,6 +9,7 @@
 #include <QVideoFrame>
 #include <QDebug>
 #include "server.h"
+#include "controller.h"
 #include "bufferutil.h"
 
 const static int bufferSize = 1024*768;
@@ -50,6 +51,11 @@ public:
         return m_pixmap;
     };
 
+
+    QPointer<Controller> getInputController(){
+        return m_controller;
+    }
+
     Q_SIGNAL void sourceChanged();
     Q_SIGNAL void showPhoneChanged(int width,int height);
     Q_INVOKABLE void startServer(const QString &);
@@ -57,6 +63,7 @@ public:
 
 private:
     QPointer<Decoder> m_decoder;
+    QPointer<Controller> m_controller;
     VideoBuffer *m_vb = Q_NULLPTR;
     QPointer<Stream> m_stream;
     QPixmap m_pixmap;
