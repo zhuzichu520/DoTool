@@ -12,23 +12,19 @@ CusWindow {
 
     id:window
 
-    property int w: phoneWidth + 2*borderOffset
-    property int h: phoneHeight + toolBar.height + 2*borderOffset
 
     property string serial
 
-    width: w
-    height: h
-    minimumWidth: w
-    minimumHeight: h
     title: serial
-
-    property int phoneWidth
-    property int phoneHeight
 
     opacity: 0
 
-    property int standWidth: 420
+    width: 1
+    height: 1
+
+    property int standWidth: 360
+
+    property int menuWidth: 48
 
     Component.onCompleted: {
         controller.startServer(serial)
@@ -37,24 +33,49 @@ CusWindow {
 
     PhoneController{
         id:controller
-
         onShowPhoneChanged:
             (w,h)=>{
-                videoItem.updateVideoSize(w,h)
-                phoneWidth = standWidth
-                phoneHeight = h/w * standWidth
-                setGeometry((Screen.width - window.width) / 2,(Screen.height - window.height) / 2,window.w,window.h)
+                videoItem.width = standWidth
+                videoItem.height = h/w * standWidth
+                window.width = videoItem.width + 2*borderOffset + menuWidth
+                window.height = videoItem.height + toolBar.height + 2*borderOffset
+                window.minimumWidth =  window.width
+                window.minimumHeight = window.height
+                window.maximumWidth =  window.width
+                window.maximumHeight = window.height
+                setGeometry((Screen.width - window.width) / 2,(Screen.height - window.height) / 2,window.width,window.height)
                 opacity = 1
+                videoItem.updateVideoSize(w,h)
             }
+        onServerStop: {
+            window.close()
+        }
     }
 
     page: CusPage{
 
         id:page
 
+        Rectangle{
+            width: menuWidth
+            height: parent.height
+            color:"black"
+            anchors{
+                right: parent.right
+                top: parent.top
+            }
+        }
+
         CusToolBar {
             id:toolBar
             title: window.title
+            maxEnable: false
+            anchors{
+                left: parent.left
+                right: parent.right
+                rightMargin: menuWidth
+                top:parent.top
+            }
         }
 
         Item{
@@ -65,18 +86,20 @@ CusWindow {
                 left: parent.left
                 right: parent.right
             }
+        }
 
-
-            Rectangle{
-                color: "black"
-                anchors.centerIn: parent
-                width: window.phoneWidth
-                height: window.phoneHeight
-                VideoItem {
-                    id:videoItem
-                    anchors.fill: parent
-                    decoder: controller
-                }
+        Rectangle{
+            id:layoutItem
+            color: "black"
+            anchors{
+                top: layoutPhone.top
+                left: layoutPhone.left
+            }
+            width: childrenRect.width
+            height: childrenRect.height
+            VideoItem {
+                id:videoItem
+                decoder: controller
             }
         }
     }

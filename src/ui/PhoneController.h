@@ -58,6 +58,7 @@ public:
 
     Q_SIGNAL void sourceChanged();
     Q_SIGNAL void showPhoneChanged(int width,int height);
+    Q_SIGNAL void serverStop();
     Q_INVOKABLE void startServer(const QString &);
     Q_INVOKABLE void stopServer();
 

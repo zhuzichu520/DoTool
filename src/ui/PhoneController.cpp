@@ -36,8 +36,8 @@ PhoneController::PhoneController(QObject *parent)
             }
         });
         connect(m_server, &Server::onServerStop, this, [this]() {
-            deleteLater();
             qDebug() << "server process stop";
+            Q_EMIT serverStop();
         });
     }
 
@@ -49,7 +49,7 @@ PhoneController::PhoneController(QObject *parent)
                     &Decoder::onNewFrame,
                     this,
                     [this]() {
-            m_vb->lock();
+//            m_vb->lock();
             const AVFrame *yuvFrame = m_vb->consumeRenderedFrame();
             //            QVideoFrame f = BufferUtil::avFrameToVideoFrame(yuvFrame);
             //            m_pixmap = QPixmap::fromImage(f.image());
@@ -65,7 +65,7 @@ PhoneController::PhoneController(QObject *parent)
             m_yuvData.vLineSize = yuvFrame->linesize[2];
             m_yuvData.height = yuvFrame->height;
             frameBuffer.append(m_yuvData);
-            m_vb->unLock();
+//            m_vb->unLock();
         },
         Qt::QueuedConnection);
     }
@@ -88,8 +88,8 @@ PhoneController::~PhoneController(){
 void PhoneController::startServer(const QString &serial){
     Server::ServerParams params;
     params.serial = serial;
-    params.maxSize = 1920;
-    params.bitRate = 10000000;
+    params.maxSize = 1280;
+    params.bitRate = 8000000;
     m_server->start(params);
 }
 

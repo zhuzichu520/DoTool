@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #endif
 #endif
-//    QGuiApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
 //    QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
     QtWebEngine::initialize();
     QGuiApplication::setApplicationName("DoTool");
