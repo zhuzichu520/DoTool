@@ -2,15 +2,34 @@
 add_subdirectory(ui)
 add_subdirectory(qtscrcpy)
 
-set(OPENSSL_DLL
+set(OPENSSL_BIN
         ${THIRD_DIR_PATH}/openssl/libcrypto-1_1-x64.dll
         ${THIRD_DIR_PATH}/openssl/libssl-1_1-x64.dll
         )
+install(FILES ${OPENSSL_BIN} DESTINATION bin)
 
-install(FILES ${OPENSSL_DLL} DESTINATION bin)
-
-set(ZXING_DLL
+set(ZXING_BIN
         ${THIRD_DIR_PATH}/zxing/msvc/lib/QZXing3.dll
         )
+install(FILES ${ZXING_BIN} DESTINATION bin)
 
-install(FILES ${ZXING_DLL} DESTINATION bin)
+set(FFMPEG_BIN
+        ${THIRD_DIR_PATH}/ffmpeg/bin/x64/avcodec-58.dll
+        ${THIRD_DIR_PATH}/ffmpeg/bin/x64/avformat-58.dll
+        ${THIRD_DIR_PATH}/ffmpeg/bin/x64/avutil-56.dll
+        ${THIRD_DIR_PATH}/ffmpeg/bin/x64/swresample-3.dll
+        ${THIRD_DIR_PATH}/ffmpeg/bin/x64/swscale-5.dll
+        )
+install(FILES ${FFMPEG_BIN} DESTINATION bin)
+
+set(ADB_BIN
+        ${THIRD_DIR_PATH}/adb/win/adb.exe
+        ${THIRD_DIR_PATH}/adb/win/AdbWinApi.dll
+        ${THIRD_DIR_PATH}/adb/win/AdbWinUsbApi.dll
+        )
+install(FILES ${ADB_BIN} DESTINATION bin)
+
+set(SCRCPY_BIN
+        ${THIRD_DIR_PATH}/scrcpy-server
+        )
+install(FILES ${SCRCPY_BIN} DESTINATION bin)

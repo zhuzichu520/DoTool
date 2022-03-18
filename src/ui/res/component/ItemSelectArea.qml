@@ -13,8 +13,8 @@ Item {
     property int endX
     property int endY
     property string maskColor: "#88000000"
-    property string borderColor: "red"
-    property string dragColor : "blue"
+    property string borderColor: Theme.colorPrimary
+    property string dragColor : Theme.colorPrimary
     property bool enableSelect: true
     property bool showMenu: false
     signal clickRighListener
@@ -97,10 +97,10 @@ Item {
         color: "#00000000"
         width: 0
         height: 0
-        x:-4
-        y:-4
+        x:-2
+        y:-2
         border{
-            width: 4
+            width: 2
             color: borderColor
         }
     }
@@ -190,12 +190,14 @@ Item {
 
 
     Rectangle{
-        width: 12
-        height: 4
+        width: 6
+        height: 6
         color: dragColor
         anchors{
             left: rect_select.left
+            leftMargin: -2
             top:rect_select.top
+            topMargin: -2
         }
         MouseArea{
             property point startPoint: "0,0"
@@ -239,61 +241,12 @@ Item {
     }
 
     Rectangle{
-        width: 4
-        height: 12
-        color: dragColor
-        anchors{
-            left: rect_select.left
-            top:rect_select.top
-        }
-        MouseArea{
-            property point startPoint: "0,0"
-            property point endPoint: "0,0"
-            anchors.fill: parent
-            cursorShape: Qt.SizeFDiagCursor
-            onPressed:
-                (mouse) => {
-                    startPoint = Qt.point(rect_select.x, rect_select.y)
-                    endPoint = Qt.point(rect_select.x+rect_select.width, rect_select.y+rect_select.height)
-                }
-            onPositionChanged:
-                (mouse) => {
-                    var pos = parent.mapToItem(parent.parent,mouseX,mouseY)
-                    if(pos.x<endPoint.x && pos.y<endPoint.y){
-                        rect_select.x = pos.x
-                        rect_select.y = pos.y
-                        rect_select.width = endPoint.x - rect_select.x
-                        rect_select.height = endPoint.y - rect_select.y
-                    }
-                    if(pos.x>endPoint.x && pos.y>endPoint.y){
-                        rect_select.x = endPoint.x
-                        rect_select.y = endPoint.y
-                        rect_select.width = pos.x - rect_select.x
-                        rect_select.height = pos.y - rect_select.y
-                    }
-                    if(pos.x<endPoint.x && pos.y>endPoint.y){
-                        rect_select.x = pos.x
-                        rect_select.y = endPoint.y
-                        rect_select.width = endPoint.x - rect_select.x
-                        rect_select.height = pos.y - rect_select.y
-                    }
-                    if(pos.x>endPoint.x && pos.y<endPoint.y){
-                        rect_select.x = endPoint.x
-                        rect_select.y = pos.y
-                        rect_select.width = pos.x - rect_select.x
-                        rect_select.height = endPoint.y - rect_select.y
-                    }
-                }
-        }
-    }
-
-
-    Rectangle{
-        width: 12
-        height: 4
+        width: 6
+        height: 6
         color: dragColor
         anchors{
             top:rect_select.top
+            topMargin: -2
             horizontalCenter: rect_select.horizontalCenter
         }
         MouseArea{
@@ -319,12 +272,14 @@ Item {
     }
 
     Rectangle{
-        width: 12
-        height: 4
+        width: 6
+        height: 6
         color: dragColor
         anchors{
             right: rect_select.right
+            rightMargin: -2
             top:rect_select.top
+            topMargin: -2
         }
         MouseArea{
             property point startPoint: "0,0"
@@ -368,61 +323,14 @@ Item {
     }
 
     Rectangle{
-        width: 4
-        height: 12
-        color: dragColor
-        anchors{
-            right: rect_select.right
-            top:rect_select.top
-        }
-        MouseArea{
-            property point startPoint: "0,0"
-            property point endPoint: "0,0"
-            anchors.fill: parent
-            cursorShape: Qt.SizeBDiagCursor
-            onPressed:
-                (mouse) => {
-                    startPoint = Qt.point(rect_select.x, rect_select.y)
-                    endPoint = Qt.point(rect_select.x+rect_select.width, rect_select.y+rect_select.height)
-                }
-            onPositionChanged:
-                (mouse) => {
-                    var pos = parent.mapToItem(parent.parent,mouseX,mouseY)
-                    if(pos.x>startPoint.x && pos.y<endPoint.y){
-                        rect_select.x = startPoint.x
-                        rect_select.y = pos.y
-                        rect_select.width = pos.x - startPoint.x
-                        rect_select.height = endPoint.y - pos.y
-                    }
-                    if(pos.x<startPoint.x && pos.y>endPoint.y){
-                        rect_select.x = pos.x
-                        rect_select.y = endPoint.y
-                        rect_select.width =  startPoint.x -  pos.x
-                        rect_select.height = pos.y -  endPoint.y
-                    }
-                    if(pos.x<startPoint.x && pos.y<endPoint.y){
-                        rect_select.x = pos.x
-                        rect_select.y = pos.y
-                        rect_select.width = startPoint.x - pos.x
-                        rect_select.height = endPoint.y - pos.y
-                    }
-                    if(pos.x>startPoint.x && pos.y>endPoint.y){
-                        rect_select.x = startPoint.x
-                        rect_select.y = endPoint.y
-                        rect_select.width =  pos.x -  startPoint.x
-                        rect_select.height = pos.y -  endPoint.y
-                    }
-                }
-        }
-    }
-
-    Rectangle{
-        width: 12
-        height: 4
+        width: 6
+        height: 6
         color: dragColor
         anchors{
             left: rect_select.left
+            leftMargin: -2
             bottom:rect_select.bottom
+            bottomMargin: -2
         }
         MouseArea{
             property point startPoint: "0,0"
@@ -466,60 +374,12 @@ Item {
     }
 
     Rectangle{
-        width: 4
-        height: 12
-        color: dragColor
-        anchors{
-            left: rect_select.left
-            bottom:rect_select.bottom
-        }
-        MouseArea{
-            property point startPoint: "0,0"
-            property point endPoint: "0,0"
-            anchors.fill: parent
-            cursorShape: Qt.SizeBDiagCursor
-            onPressed:
-                (mouse) => {
-                    startPoint = Qt.point(rect_select.x, rect_select.y)
-                    endPoint = Qt.point(rect_select.x+rect_select.width, rect_select.y+rect_select.height)
-                }
-            onPositionChanged:
-                (mouse) => {
-                    var pos = parent.mapToItem(parent.parent,mouseX,mouseY)
-                    if(pos.x<endPoint.x && pos.y>startPoint.y){
-                        rect_select.x = pos.x
-                        rect_select.y = startPoint.y
-                        rect_select.width = endPoint.x - pos.x
-                        rect_select.height = pos.y -  startPoint.y
-                    }
-                    if(pos.x>endPoint.x && pos.y<startPoint.y){
-                        rect_select.x = endPoint.x
-                        rect_select.y = pos.y
-                        rect_select.width = pos.x - endPoint.x
-                        rect_select.height = startPoint.y - pos.y
-                    }
-                    if(pos.x>endPoint.x && pos.y>startPoint.y){
-                        rect_select.x = endPoint.x
-                        rect_select.y = startPoint.y
-                        rect_select.width = pos.x - endPoint.x
-                        rect_select.height = pos.y -  startPoint.y
-                    }
-                    if(pos.x<endPoint.x && pos.y<startPoint.y){
-                        rect_select.x = pos.x
-                        rect_select.y = pos.y
-                        rect_select.width = endPoint.x - pos.x
-                        rect_select.height = startPoint.y -  pos.y
-                    }
-                }
-        }
-    }
-
-    Rectangle{
-        width: 12
-        height: 4
+        width: 6
+        height: 6
         color: dragColor
         anchors{
             bottom:rect_select.bottom
+            bottomMargin: -2
             horizontalCenter: rect_select.horizontalCenter
         }
         MouseArea{
@@ -545,12 +405,14 @@ Item {
     }
 
     Rectangle{
-        width: 12
-        height: 4
+        width: 6
+        height: 6
         color: dragColor
         anchors{
             right: rect_select.right
+            rightMargin: -2
             bottom:rect_select.bottom
+            bottomMargin: -2
         }
         MouseArea{
             property point startPoint: "0,0"
@@ -593,61 +455,15 @@ Item {
         }
     }
 
-    Rectangle{
-        width: 4
-        height: 12
-        color: dragColor
-        anchors{
-            right: rect_select.right
-            bottom:rect_select.bottom
-        }
-        MouseArea{
-            property point startPoint: "0,0"
-            property point endPoint: "0,0"
-            anchors.fill: parent
-            cursorShape: Qt.SizeFDiagCursor
-            onPressed:
-                (mouse) => {
-                    startPoint = Qt.point(rect_select.x, rect_select.y)
-                    endPoint = Qt.point(rect_select.x+rect_select.width, rect_select.y+rect_select.height)
-                }
-            onPositionChanged:
-                (mouse) => {
-                    var pos = parent.mapToItem(parent.parent,mouseX,mouseY)
-                    if(pos.x>startPoint.x && pos.y>startPoint.y){
-                        rect_select.x = startPoint.x
-                        rect_select.y = startPoint.y
-                        rect_select.width = pos.x - rect_select.x
-                        rect_select.height = pos.y - rect_select.y
-                    }
-                    if(pos.x<startPoint.x && pos.y<startPoint.y){
-                        rect_select.x = pos.x
-                        rect_select.y = pos.y
-                        rect_select.width = startPoint.x - pos.x
-                        rect_select.height = startPoint.y - pos.y
-                    }
-                    if(pos.x<startPoint.x && pos.y>startPoint.y){
-                        rect_select.x = pos.x
-                        rect_select.y = startPoint.y
-                        rect_select.width = startPoint.x - pos.x
-                        rect_select.height = pos.y - rect_select.y
-                    }
-                    if(pos.x>startPoint.x && pos.y<startPoint.y){
-                        rect_select.x = startPoint.x
-                        rect_select.y = pos.y
-                        rect_select.width = pos.x - startPoint.x
-                        rect_select.height = startPoint.y - pos.y
-                    }
-                }
-        }
-    }
+
 
     Rectangle{
-        width: 4
-        height: 12
+        width: 6
+        height: 6
         color: dragColor
         anchors{
             right: rect_select.right
+            rightMargin: -2
             verticalCenter: rect_select.verticalCenter
         }
         MouseArea{
@@ -673,11 +489,12 @@ Item {
     }
 
     Rectangle{
-        width: 4
-        height: 12
+        width: 6
+        height: 6
         color: dragColor
         anchors{
             left: rect_select.left
+            leftMargin: -2
             verticalCenter: rect_select.verticalCenter
         }
         MouseArea{

@@ -9,7 +9,7 @@ class JsonParserController : public QObject
     Q_OBJECT
 public:
     explicit JsonParserController(QObject *parent = nullptr);
-
+    ~JsonParserController();
     Q_INVOKABLE QString jsonFormat(const QString &json);
 signals:
 

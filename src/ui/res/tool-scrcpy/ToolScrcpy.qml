@@ -92,6 +92,7 @@ CusWindow {
             }
 
             ListView{
+                id:listView
                 anchors{
                     left: parent.left
                     right: dividerHCenter.left
@@ -158,6 +159,8 @@ CusWindow {
                 CusButton{
                     text:"启动服务"
                     onClicked: {
+                        if(listView.count === 0)
+                            return
                         navigate(Router.toUrl(Router.window_phone,false,{serial:controller.deviceList[deviceIndex]}))
                     }
                 }

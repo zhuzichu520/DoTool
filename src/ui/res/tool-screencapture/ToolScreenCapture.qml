@@ -12,6 +12,8 @@ CusWindow {
     flags: Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
     width: 1
     height: 0
+    opacity: 0
+
 
     Component.onCompleted: {
         selectArea.retrunParam()
@@ -27,6 +29,11 @@ CusWindow {
         id:image_screen
         anchors.fill: parent
         source:  "image://screen/"+UIHelper.getScreenIndex()
+        onStatusChanged: {
+            if(image_screen.status===Image.Ready){
+                window.opacity = 1
+            }
+        }
     }
 
     ItemSelectArea{

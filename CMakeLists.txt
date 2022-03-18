@@ -15,6 +15,8 @@ set(THIRD_DIR_PATH ${PROJECT_SOURCE_DIR}/third)
 
 set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR} CACHE PATH "Install path prefix" FORCE)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick QuickControls2 WebEngine Multimedia REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick QuickControls2 WebEngine Multimedia REQUIRED)
 

@@ -7,6 +7,10 @@ JsonParserController::JsonParserController(QObject *parent)
 
 }
 
+JsonParserController::~JsonParserController(){
+        qDebug()<<"sad";
+}
+
 QString JsonParserController::jsonFormat(const QString &json){
     QJsonParseError *error=new QJsonParseError;
     QJsonDocument jdc = QJsonDocument::fromJson(json.toUtf8(),error);
