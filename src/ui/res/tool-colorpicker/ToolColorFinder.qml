@@ -35,7 +35,6 @@ CusWindow {
         id:imageScreen
         anchors.fill: parent
         source:  controller.screenPixmap
-        visible: false
     }
 
     MouseArea{
