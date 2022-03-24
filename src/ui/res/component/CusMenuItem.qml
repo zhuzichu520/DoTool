@@ -32,7 +32,6 @@ T.MenuItem {
         rightPadding: control.mirrored ? indicatorPadding : arrowPadding
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        renderType: Text.NativeRendering
         text: control.text
         font: control.font
         color: control.textColor

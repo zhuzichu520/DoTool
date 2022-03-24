@@ -19,9 +19,9 @@ T.Menu {
                              contentHeight + topPadding + bottomPadding)
 
     margins: 0
+
     font{
-        pixelSize: 14
-        family: "Microsoft YaHei"
+        pixelSize: 12
     }
 
     delegate: CusMenuItem { }

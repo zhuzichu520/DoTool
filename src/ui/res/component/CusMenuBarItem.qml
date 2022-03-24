@@ -33,7 +33,6 @@ T.MenuBarItem {
         color: control.textColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        renderType: Text.NativeRendering
         elide: Text.ElideRight
     }
 

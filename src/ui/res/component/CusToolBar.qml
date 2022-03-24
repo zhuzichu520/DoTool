@@ -15,10 +15,18 @@ Rectangle {
     property bool minEnable: true
     property bool closeEnable: true
     property bool darkEnable: true
-    property bool isTop : (window.windowFlags & Qt.WindowStaysOnTopHint) === Qt.WindowStaysOnTopHint
+    property bool isTop : false
 
     clip: true
     height: 30
+
+    onIsTopChanged: {
+        if(isTop){
+            window.flags = window.flags | Qt.WindowStaysOnTopHint
+        }else{
+            window.flags = window.flags &~ Qt.WindowStaysOnTopHint
+        }
+    }
 
     anchors{
         left: parent.left
@@ -39,15 +47,9 @@ Rectangle {
         color: Theme.colorBackground1
         anchors.fill: parent
 
-//        TapHandler {
-//            onTapped: if (tapCount === 2 && maxEnable) toggleMaximized()
-//            gesturePolicy: TapHandler.DragThreshold
-//        }
-
         MouseArea{
             anchors.fill: parent
             acceptedButtons: Qt.NoButton
-
         }
 
         RowLayout {
@@ -87,16 +89,7 @@ Rectangle {
             CusToolButton {
                 id:btnTop
                 icon: "\ue610"
-                onClickEvent: {
-                    window.color = "white"
-                    if(isTop){
-                        window.windowFlags = window.windowFlags &~ Qt.WindowStaysOnTopHint
-                    }else{
-                        window.windowFlags = window.windowFlags | Qt.WindowStaysOnTopHint
-                    }
-                    window.color = "transparent"
-                }
-                visible: false
+                onClickEvent: { isTop = !isTop }
                 color: isTop ? Theme.colorPrimary : "#BBB"
                 iconSize: 14
                 Component.onCompleted: Window.window.setHitTestVisible(btnTop, true)
