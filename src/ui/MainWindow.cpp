@@ -12,6 +12,9 @@
 #include <QZXing.h>
 #include <QtQml>
 #include <QQuickStyle>
+#include <framelessquickhelper.h>
+
+FRAMELESSHELPER_USE_NAMESPACE
 
 MainWindow::MainWindow() {
 
@@ -26,6 +29,9 @@ MainWindow::MainWindow() {
     qmlRegisterType<ItemImage>("com.dotool.ui", 1, 0, "ItemImage");
     qmlRegisterType<VideoItem>("com.dotool.ui", 1, 0, "VideoItem");
     qmlRegisterType<ItemOpenGL>("com.dotool.ui", 1, 0, "ItemOpenGL");
+
+    qmlRegisterType<FramelessQuickHelper>("com.dotool.ui", 1, 0, "FramelessHelper");
+
 
     qmlRegisterType<ColorFinderController>("com.dotool.controller", 1, 0, "ColorFinderController");
     qmlRegisterType<JsonParserController>("com.dotool.controller", 1, 0, "JsonParserController");

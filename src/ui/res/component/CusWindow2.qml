@@ -1,9 +1,8 @@
-﻿import QtQuick 2.15
+import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import QtGraphicalEffects 1.15
-import com.dotool.ui 1.0
 import "../storage"
 import "../global/global.js" as Global
 
@@ -12,13 +11,16 @@ ApplicationWindow {
 
     property var router
     property alias page: container.children
+    property int borderOffset: 5
+    property int containerMargins: window.visibility === Window.Windowed ? borderOffset : 0
+    property int windowFlags : Qt.Window | Qt.FramelessWindowHint
+    flags: windowFlags
+    color:"transparent"
+
     property int requestCode
     property var prevWindow
-    property alias resizable : framelessHelper.resizable
-    visible: true
-    signal windowResult(int requestCode,int resultCode,var data)
 
-   color: "#f0f0f0"
+    signal windowResult(int requestCode,int resultCode,var data)
 
     onClosing: function(closeevent){
         try{
@@ -30,7 +32,6 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        framelessHelper.removeWindowFrame()
         if(router !== undefined){
             Router.addWindow(router.path,window)
         }
@@ -42,17 +43,28 @@ ApplicationWindow {
         }
     }
 
-    FramelessHelper {
-        id: framelessHelper
+    WindowResize{
+        border: borderOffset
+        enabled: window.visibility === Window.Windowed
+    }
+
+    DropShadow {
+        anchors.fill: container
+        radius: 8.0
+        samples: 17
+        color: Window.active ? Theme.colorPrimary : "#80000000"
+        source: container
     }
 
     Item {
         id:container
         anchors.fill: parent
+        anchors.margins: containerMargins
         MouseArea{
             anchors.fill: parent
         }
     }
+
 
     Rectangle{
         id:layoutToast
@@ -94,6 +106,7 @@ ApplicationWindow {
         MouseArea{
             hoverEnabled: true
             anchors.fill: parent
+
         }
     }
 
@@ -170,14 +183,6 @@ ApplicationWindow {
 
     function setResult(resultCode,data){
         prevWindow.windowResult(requestCode,resultCode,data)
-    }
-
-    function setHitTestVisible(view,isHit){
-        framelessHelper.setHitTestVisible(view, isHit)
-    }
-
-    function getToolBarHeight(){
-        return framelessHelper.titleBarHeight
     }
 
 }

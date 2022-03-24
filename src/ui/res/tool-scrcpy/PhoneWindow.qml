@@ -37,8 +37,8 @@ CusWindow {
             (w,h)=>{
                 videoItem.width = standWidth
                 videoItem.height = h/w * standWidth
-                window.width = videoItem.width + 2*borderOffset + menuWidth
-                window.height = videoItem.height + toolBar.height + 2*borderOffset
+                window.width = videoItem.width + menuWidth
+                window.height = videoItem.height + toolBar.height
                 window.minimumWidth =  window.width
                 window.minimumHeight = window.height
                 window.maximumWidth =  window.width

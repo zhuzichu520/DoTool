@@ -11,7 +11,6 @@ CusWindow {
     minimumWidth: 596
     minimumHeight: 600
     title: qsTr("DoTool")
-    visible: true
 
     onWindowResult:
         (requestCode,resultCode,data)=> {

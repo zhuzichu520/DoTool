@@ -11,9 +11,6 @@ CusWindow {
     id:window
     width: 650
     height: 500
-    visible: false
-    minimumWidth: 650
-    minimumHeight: 500
     title: "JSON格式化"
 
     JsonParserController{
@@ -24,7 +21,6 @@ CusWindow {
 
         CusToolBar {
             id:toolBar
-            maxEnable: false
             title: window.title
         }
 

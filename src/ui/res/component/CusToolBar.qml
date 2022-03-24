@@ -39,20 +39,15 @@ Rectangle {
         color: Theme.colorBackground1
         anchors.fill: parent
 
-        TapHandler {
-            onTapped: if (tapCount === 2 && maxEnable) toggleMaximized()
-            gesturePolicy: TapHandler.DragThreshold
-        }
+//        TapHandler {
+//            onTapped: if (tapCount === 2 && maxEnable) toggleMaximized()
+//            gesturePolicy: TapHandler.DragThreshold
+//        }
 
         MouseArea{
             anchors.fill: parent
             acceptedButtons: Qt.NoButton
 
-        }
-
-        DragHandler {
-            grabPermissions: TapHandler.CanTakeOverFromAnything
-            onActiveChanged: if (active) { window.startSystemMove(); }
         }
 
         RowLayout {
@@ -79,15 +74,18 @@ Rectangle {
             height: parent.height
 
             CusToolButton {
+                id:btnDark
                 icon: AppStorage.isDark ? "\ue6c9" : "\ue6e6"
                 color: AppStorage.isDark ? "#FA9D16" : "#FA9D16"
                 onClickEvent: {
                     AppStorage.isDark = !AppStorage.isDark
                 }
                 visible: darkEnable
+                Component.onCompleted: Window.window.setHitTestVisible(btnDark, true)
             }
 
             CusToolButton {
+                id:btnTop
                 icon: "\ue610"
                 onClickEvent: {
                     window.color = "white"
@@ -98,24 +96,32 @@ Rectangle {
                     }
                     window.color = "transparent"
                 }
+                visible: false
                 color: isTop ? Theme.colorPrimary : "#BBB"
                 iconSize: 14
+                Component.onCompleted: Window.window.setHitTestVisible(btnTop, true)
             }
 
             CusToolButton {
+                id:btnMin
                 icon: "\ue9bd"
                 onClickEvent: window.showMinimized()
                 visible: minEnable
+                Component.onCompleted: Window.window.setHitTestVisible(btnMin, true)
             }
             CusToolButton {
+                id:btnMax
                 icon: window.visibility === Window.Maximized ? "\ue621" : "\ue629"
                 onClickEvent: window.toggleMaximized();
                 visible: maxEnable
+                Component.onCompleted: Window.window.setHitTestVisible(btnMax, true)
             }
             CusToolButton {
+                id:btnClose
                 icon: "\ue9bb"
                 onClickEvent: window.close();
                 visible: closeEnable
+                Component.onCompleted: Window.window.setHitTestVisible(btnClose, true)
             }
         }
     }

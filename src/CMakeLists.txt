@@ -33,3 +33,8 @@ set(SCRCPY_BIN
         ${THIRD_DIR_PATH}/scrcpy-server
         )
 install(FILES ${SCRCPY_BIN} DESTINATION bin)
+
+set(FRAMELESS_BIN
+        ${THIRD_DIR_PATH}/frameless/bin/FramelessHelper.dll
+        )
+install(FILES ${FRAMELESS_BIN} DESTINATION bin)
