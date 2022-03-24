@@ -50,6 +50,5 @@
         <file>tool-scrcpy/PhoneWindow.qml</file>
         <file>component/CusButton.qml</file>
         <file>tool-opengl/ToolOpengl.qml</file>
-        <file>component/CusWindow2.qml</file>
     </qresource>
 </RCC>

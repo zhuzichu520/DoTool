@@ -18,7 +18,7 @@ ApplicationWindow {
     visible: true
     signal windowResult(int requestCode,int resultCode,var data)
 
-   color: "#f0f0f0"
+    color : "transparent"
 
     onClosing: function(closeevent){
         try{
@@ -34,6 +34,8 @@ ApplicationWindow {
         if(router !== undefined){
             Router.addWindow(router.path,window)
         }
+        width = width + 1
+        width = width -1
     }
 
     Component.onDestruction: {
@@ -161,11 +163,12 @@ ApplicationWindow {
             return
         }
         options.router = data
-        win = comp.createObject(window,options)
+
         if(!isAttach){
-            win.transientParent = null
+            win = comp.createObject(null,options)
+        }else{
+            win = comp.createObject(window,options)
         }
-        win.show()
     }
 
     function setResult(resultCode,data){

@@ -9,16 +9,15 @@ import com.dotool.ui 1.0
 
 CusWindow {
 
-
     id:window
     width: 450
     height: 260
+    title:"颜色选择器"
     maximumWidth: 450
     maximumHeight: 260
+
     minimumWidth: 450
     minimumHeight: 260
-    visible: true
-    title:"颜色选择器"
 
     onWindowResult:
         (requestCode,resultCode,data)=> {

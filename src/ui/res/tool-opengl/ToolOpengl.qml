@@ -13,7 +13,6 @@ CusWindow {
     height: 600
     minimumWidth: 600
     minimumHeight: 600
-    visible: false
     title: "OpenGL学习"
 
     page: CusPage{
