@@ -18,7 +18,7 @@ Rectangle {
     property bool isTop : false
 
     clip: true
-    height: 30
+    height: window.getToolBarHeight()
 
     onIsTopChanged: {
         if(isTop){

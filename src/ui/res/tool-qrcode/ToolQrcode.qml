@@ -12,8 +12,6 @@ CusWindow {
     id:window
     width: 800
     height: 500
-    minimumWidth: 800
-    minimumHeight: 500
     title: "二维码工具"
 
     page: CusPage{

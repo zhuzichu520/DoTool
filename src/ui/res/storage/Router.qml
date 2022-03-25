@@ -7,8 +7,11 @@ QtObject {
     property string window_colorfinder: "qrc:/tool-colorpicker/ToolColorFinder.qml"
     property string window_jsonparser: "qrc:/tool-jsonparser/ToolJsonParser.qml"
     property string window_urldecode: "qrc:/tool-urldecode/ToolUrlDecode.qml"
+    property string window_base64: "qrc:/tool-base64/ToolBase64.qml"
+    property string window_digest: "qrc:/tool-digest/ToolDigest.qml"
     property string window_qrcode: "qrc:/tool-qrcode/ToolQrcode.qml"
     property string window_scrcpy: "qrc:/tool-scrcpy/ToolScrcpy.qml"
+    property string window_camera: "qrc:/tool-camera/ToolCamera.qml"
     property string window_screencapture: "qrc:/tool-screencapture/ToolScreenCapture.qml"
     property string window_markdown: "qrc:/tool-markdown/ToolMarkdown.qml"
     property string window_webpage: "qrc:/webview/WebPage.qml"
@@ -29,7 +32,19 @@ QtObject {
             onlyOne:true
         },
         {
+            path:window_base64,
+            onlyOne:true
+        },
+        {
+            path:window_digest,
+            onlyOne:true
+        },
+        {
             path:window_qrcode,
+            onlyOne:true
+        },
+        {
+            path:window_camera,
             onlyOne:true
         },
         {

@@ -11,8 +11,6 @@ CusWindow {
     id:window
     width: 600
     height: 600
-    minimumWidth: 600
-    minimumHeight: 600
     title: "OpenGL学习"
 
     page: CusPage{

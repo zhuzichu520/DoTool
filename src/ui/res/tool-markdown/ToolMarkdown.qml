@@ -11,8 +11,6 @@ CusWindow {
     id:window
     width: 850
     height: 600
-    minimumWidth: 850
-    minimumHeight: 600
     title: "Readme编辑器"
 
     property int layoutWidth: (width-50)/2
@@ -54,7 +52,6 @@ Windows系统（64）
             id:toolBar
             title: window.title
         }
-
 
 
         CusMenuBar {

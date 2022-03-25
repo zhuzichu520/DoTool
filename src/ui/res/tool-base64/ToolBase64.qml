@@ -9,7 +9,7 @@ CusWindow {
     id:window
     width: 600
     height: 436
-    title: "URL decode"
+    title: "Base64"
 
     Component.onCompleted: {
         resizable = false
@@ -71,18 +71,18 @@ CusWindow {
                 id:dataModel
 
                 ListElement{
-                    title:"URL解码"
+                    title:"字符串转base64"
                     color:"#3498db"
                     func:function(){
-                        textResult.text = decodeURIComponent(textContent.text)
+                        textResult.text = UIHelper.toBase64(textContent.text)
                     }
                 }
 
                 ListElement{
-                    title:"URL编码"
+                    title:"base64转字符串"
                     color:"#f5653b"
                     func:function(){
-                        textResult.text = encodeURIComponent(textContent.text)
+                        textResult.text = UIHelper.fromBase64(textContent.text)
                     }
                 }
 

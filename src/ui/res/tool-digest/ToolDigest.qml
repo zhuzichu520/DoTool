@@ -9,7 +9,7 @@ CusWindow {
     id:window
     width: 600
     height: 436
-    title: "URL decode"
+    title: "md5&sha"
 
     Component.onCompleted: {
         resizable = false
@@ -71,18 +71,50 @@ CusWindow {
                 id:dataModel
 
                 ListElement{
-                    title:"URL解码"
-                    color:"#3498db"
+                    title:"MD5"
+                    color:"#FF3498DB"
                     func:function(){
-                        textResult.text = decodeURIComponent(textContent.text)
+                        textResult.text = UIHelper.md5(textContent.text)
                     }
                 }
 
                 ListElement{
-                    title:"URL编码"
-                    color:"#f5653b"
+                    title:"SHA1"
+                    color:"#FFE64C3B"
                     func:function(){
-                        textResult.text = encodeURIComponent(textContent.text)
+                        textResult.text = UIHelper.sha1(textContent.text)
+                    }
+                }
+
+                ListElement{
+                    title:"SHA224"
+                    color:"#FF999933"
+                    func:function(){
+                        textResult.text = UIHelper.sha224(textContent.text)
+                    }
+                }
+
+                ListElement{
+                    title:"SHA256"
+                    color:"#FF449D44"
+                    func:function(){
+                        textResult.text = UIHelper.sha256(textContent.text)
+                    }
+                }
+
+                ListElement{
+                    title:"SHA384"
+                    color:"#FFFF7F00"
+                    func:function(){
+                        textResult.text = UIHelper.sha384(textContent.text)
+                    }
+                }
+
+                ListElement{
+                    title:"SHA512"
+                    color:"#FF383838"
+                    func:function(){
+                        textResult.text = UIHelper.sha512(textContent.text)
                     }
                 }
 

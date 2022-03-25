@@ -63,3 +63,35 @@ QRect QUIHelper::getScreenRect(bool available)
 void QUIHelper::textClipboard(const QString &text){
     qApp->clipboard()->setText(text);
 }
+
+QString QUIHelper::toBase64(const QString &text){
+    return text.toUtf8().toBase64();
+}
+
+QString QUIHelper::fromBase64(const QString &text){
+    return QByteArray::fromBase64(text.toUtf8());
+}
+
+QString QUIHelper::md5(const QString &text){
+    return QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Md5).toHex();
+}
+
+QString QUIHelper::sha1(const QString &text){
+    return QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Sha1).toHex();
+}
+
+QString QUIHelper::sha224(const QString &text){
+    return QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Sha224).toHex();
+}
+
+QString QUIHelper::sha256(const QString &text){
+    return QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Sha256).toHex();
+}
+
+QString QUIHelper::sha384(const QString &text){
+    return QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Sha384).toHex();
+}
+
+QString QUIHelper::sha512(const QString &text){
+    return QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Sha512).toHex();
+}

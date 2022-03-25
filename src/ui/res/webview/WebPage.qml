@@ -15,8 +15,6 @@ CusWindow {
     id:window
     width: 800
     height: 600
-    minimumWidth: 800
-    minimumHeight: 600
     title: "网页浏览器"
 
     page: CusPage{

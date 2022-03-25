@@ -14,10 +14,9 @@ ApplicationWindow {
     property alias page: container.children
     property int requestCode
     property var prevWindow
-    property alias resizable : framelessHelper.resizable
+    property var resizable
     visible: true
     signal windowResult(int requestCode,int resultCode,var data)
-
     color : "transparent"
 
     onClosing: function(closeevent){
@@ -29,13 +28,28 @@ ApplicationWindow {
         }
     }
 
+    onResizableChanged: {
+        if(resizable){
+            minimumWidth = 0
+            minimumHeight = 0
+            maximumWidth = 16777215
+            maximumHeight = 16777215
+        }else{
+            minimumWidth = width
+            minimumHeight = height
+            maximumWidth = width
+            maximumHeight = height
+            flags = flags | Qt.WindowStaysOnTopHint
+            flags = flags &~ Qt.WindowStaysOnTopHint
+        }
+    }
+
     Component.onCompleted: {
+        framelessHelper.titleBarHeight = 30
         framelessHelper.removeWindowFrame()
         if(router !== undefined){
             Router.addWindow(router.path,window)
         }
-        width = width + 1
-        width = width -1
     }
 
     Component.onDestruction: {
@@ -68,7 +82,6 @@ ApplicationWindow {
             bottom: container.bottom
         }
         antialiasing: true
-
         Text{
             id:textToast
             anchors.centerIn: parent

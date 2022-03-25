@@ -13,11 +13,10 @@ CusWindow {
     width: 450
     height: 260
     title:"颜色选择器"
-    maximumWidth: 450
-    maximumHeight: 260
 
-    minimumWidth: 450
-    minimumHeight: 260
+    Component.onCompleted: {
+        resizable  = false
+    }
 
     onWindowResult:
         (requestCode,resultCode,data)=> {

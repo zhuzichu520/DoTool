@@ -13,8 +13,6 @@ CusWindow {
     id:window
     width: 400
     height: 800
-    minimumWidth: 400
-    minimumHeight: 800
     title: "Android投屏"
 
 

@@ -8,8 +8,6 @@ CusWindow {
     id:window
     width: 596
     height: 600
-    minimumWidth: 596
-    minimumHeight: 600
     title: qsTr("DoTool")
 
     onWindowResult:

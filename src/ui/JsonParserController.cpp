@@ -8,7 +8,7 @@ JsonParserController::JsonParserController(QObject *parent)
 }
 
 JsonParserController::~JsonParserController(){
-        qDebug()<<"sad";
+
 }
 
 QString JsonParserController::jsonFormat(const QString &json){

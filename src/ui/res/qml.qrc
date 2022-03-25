@@ -50,5 +50,8 @@
         <file>tool-scrcpy/PhoneWindow.qml</file>
         <file>component/CusButton.qml</file>
         <file>tool-opengl/ToolOpengl.qml</file>
+        <file>tool-base64/ToolBase64.qml</file>
+        <file>tool-digest/ToolDigest.qml</file>
+        <file>tool-camera/ToolCamera.qml</file>
     </qresource>
 </RCC>
