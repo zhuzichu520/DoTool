@@ -9,11 +9,12 @@ ItemImage::ItemImage(QQuickItem *parent) : QQuickPaintedItem(parent)
 void ItemImage::paint(QPainter *painter)
 {
     painter->save();
-    painter->setRenderHints(QPainter::Antialiasing, true);
     if(m_round){
+        painter->setRenderHints(QPainter::Antialiasing, true);
         QPainterPath path;
         path.addEllipse(0, 0, width(), height());
         painter->setClipPath(path);
+        painter->setRenderHints(QPainter::Antialiasing, false);
     }
     painter->drawPixmap(QRect(0, 0, static_cast<int>(width()), static_cast<int>(height())), m_pixmap);
     painter->restore();

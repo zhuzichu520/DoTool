@@ -22,6 +22,10 @@ CusWindow {
     onActiveChanged: {
         if(active){
             window.visibility = Window.FullScreen
+            maximumWidth = width
+            minimumWidth = width
+            maximumHeight = height
+            minimumHeight = height
         }
     }
 

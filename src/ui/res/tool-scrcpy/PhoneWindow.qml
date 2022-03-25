@@ -21,6 +21,11 @@ CusWindow {
 
     width: 1
     height: 1
+    maximumHeight: 1
+    minimumHeight: 1
+    maximumWidth: 1
+    minimumWidth: 1
+
 
     property int standWidth: 360
 
@@ -37,12 +42,12 @@ CusWindow {
             (w,h)=>{
                 videoItem.width = standWidth
                 videoItem.height = h/w * standWidth
+                window.minimumWidth =  videoItem.width + menuWidth
+                window.minimumHeight = videoItem.height + toolBar.height
+                window.maximumWidth =  videoItem.width + menuWidth
+                window.maximumHeight = videoItem.height + toolBar.height
                 window.width = videoItem.width + menuWidth
                 window.height = videoItem.height + toolBar.height
-                window.minimumWidth =  window.width
-                window.minimumHeight = window.height
-                window.maximumWidth =  window.width
-                window.maximumHeight = window.height
                 setGeometry((Screen.width - window.width) / 2,(Screen.height - window.height) / 2,window.width,window.height)
                 opacity = 1
                 videoItem.updateVideoSize(w,h)
