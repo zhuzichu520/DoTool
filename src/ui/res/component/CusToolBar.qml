@@ -90,7 +90,7 @@ Rectangle {
                 id:btnTop
                 icon: "\ue604"
                 onClickEvent: { isTop = !isTop }
-                iconSize : 16
+                iconSize : 14
                 color: isTop ? Theme.colorPrimary : "#BBB"
                 Component.onCompleted: Window.window.setHitTestVisible(btnTop, true)
             }
@@ -100,7 +100,7 @@ Rectangle {
                 icon: "\ue63d"
                 onClickEvent: window.showMinimized()
                 visible: minEnable
-                iconSize : 16
+                iconSize : 14
                 Component.onCompleted: Window.window.setHitTestVisible(btnMin, true)
             }
             CusToolButton {
@@ -108,7 +108,7 @@ Rectangle {
                 icon: window.visibility === Window.Maximized ? "\ue606" : "\ue607"
                 onClickEvent: window.toggleMaximized();
                 visible: maxEnable
-                iconSize : 18
+                iconSize : 16
                 Component.onCompleted: Window.window.setHitTestVisible(btnMax, true)
             }
             CusToolButton {
@@ -116,7 +116,7 @@ Rectangle {
                 icon: "\ue600"
                 onClickEvent: window.close();
                 visible: closeEnable
-                iconSize : 16
+                iconSize : 14
                 Component.onCompleted: Window.window.setHitTestVisible(btnClose, true)
             }
         }

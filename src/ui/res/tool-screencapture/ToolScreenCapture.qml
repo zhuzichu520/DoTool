@@ -11,9 +11,10 @@ import com.dotool.controller 1.0
 CusWindow {
 
     id:window
-    flags: Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
     width: 1
-    height: 0
+    height: 1
+
+    flags: Qt.FramelessWindowHint
 
     ScreenCaptureController{
         id:controller
@@ -26,15 +27,22 @@ CusWindow {
 
     onActiveChanged: {
         if(active){
-            window.visibility = Window.FullScreen
+            setGeometry(0,-1,Screen.width,Screen.height+1)
             resizable = false
+            flags= Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
         }
     }
 
     ItemImage {
         id:image_screen
-        anchors.fill: parent
-        source:  controller.screenPixmap
+        anchors{
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            topMargin: 1
+        }
+        source: controller.screenPixmap
     }
 
     ItemSelectArea{
@@ -46,7 +54,7 @@ CusWindow {
                              selectArea.getAreaWidth(),
                              selectArea.getAreaHeight()
                              )
-            window.close()
+            window.destroy()
         }
     }
 

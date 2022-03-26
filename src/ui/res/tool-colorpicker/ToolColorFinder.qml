@@ -13,9 +13,9 @@ CusWindow {
     property var onColorEvent
 
     id:window
-    flags: Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
-    width: 0
+    width: 1
     height: 1
+    flags: Qt.FramelessWindowHint
 
     ColorFinderController{
         id:controller
@@ -27,13 +27,21 @@ CusWindow {
 
     onActiveChanged: {
         if(window.active){
-            window.visibility = Window.FullScreen
+            setGeometry(0,-1,Screen.width,Screen.height+1)
+            resizable = false
+            flags= Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
         }
     }
 
     ItemImage {
         id:imageScreen
-        anchors.fill: parent
+        anchors{
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            topMargin: 1
+        }
         source:  controller.screenPixmap
     }
 
@@ -49,7 +57,7 @@ CusWindow {
             if(requestCode === 1){
                 setResult(2,textColor.text)
             }
-            window.close()
+            window.destroy()
         }
     }
 
