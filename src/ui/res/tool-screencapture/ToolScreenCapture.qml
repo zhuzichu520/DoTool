@@ -5,6 +5,8 @@ import "../storage"
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.platform 1.1
+import com.dotool.ui 1.0
+import com.dotool.controller 1.0
 
 CusWindow {
 
@@ -12,38 +14,39 @@ CusWindow {
     flags: Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Window
     width: 1
     height: 0
-    opacity: 0
 
+    ScreenCaptureController{
+        id:controller
+    }
 
     Component.onCompleted: {
+        controller.refreshScreen()
         selectArea.retrunParam()
     }
 
     onActiveChanged: {
         if(active){
             window.visibility = Window.FullScreen
-            maximumWidth = width
-            minimumWidth = width
-            maximumHeight = height
-            minimumHeight = height
+            resizable = false
         }
     }
 
-    Image {
+    ItemImage {
         id:image_screen
         anchors.fill: parent
-        source:  "image://screen/"+UIHelper.getScreenIndex()
-        onStatusChanged: {
-            if(image_screen.status===Image.Ready){
-                window.opacity = 1
-            }
-        }
+        source:  controller.screenPixmap
     }
 
     ItemSelectArea{
         id:selectArea
         onClickRighListener: {
-
+            controller.captureRect(
+                             selectArea.getAreaX(),
+                             selectArea.getAreaY(),
+                             selectArea.getAreaWidth(),
+                             selectArea.getAreaHeight()
+                             )
+            window.close()
         }
     }
 

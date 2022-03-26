@@ -14,11 +14,16 @@ CusWindow {
     height: 510
     title: "摄像头"
 
+    Component.onCompleted: {
+        resizable = false
+    }
+
     page: CusPage{
 
         CusToolBar {
             id:toolBar
             title: window.title
+            maxEnable: false
         }
 
         Camera{

@@ -3,6 +3,7 @@
         ScreenImageProvider.cpp
         ColorFinderController.cpp
         JsonParserController.cpp
+        ScreenCaptureController.cpp
         ItemImage.cpp
         QUIHelper.cpp
         GlobalStatic.cpp
@@ -18,6 +19,7 @@ set(UILibrary_HEADERS
         ScreenImageProvider.h
         ColorFinderController.h
         JsonParserController.h
+        ScreenCaptureController.h
         ItemImage.h
         QUIHelper.h
         GlobalStatic.h

@@ -46,7 +46,7 @@ CusWindow {
             findLayout:CusToolButton {
                 anchors.centerIn: parent
                 color: "#BBB"
-                icon:"\ue61f"
+                icon:"\ue605"
                 onClickEvent: {
                     navigate(Router.window_colorfinder,1)
                 }

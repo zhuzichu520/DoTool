@@ -524,39 +524,33 @@ Item {
         width: 120
         height: 40
         visible: showMenu
-        Image {
-            id:image_right
-            width: 24
-            height: 24
-            //            source: "qrc:/drawable/ic_menu_right.png"
+
+
+        CusToolButton {
+            id:btnClose
+            color: "#BBB"
+            icon:"\ue600"
             anchors{
                 verticalCenter: parent.verticalCenter
-                right: parent.right
-                rightMargin: 20
+                right: btnRight.left
+                rightMargin: 14
             }
-            MouseArea{
-                anchors.fill: parent
-                onClicked: {
-                    clickRighListener()
-                }
+            onClickEvent: {
+                Window.window.close()
             }
         }
 
-        Image {
-            id:image_wrong
-            width: 24
-            height: 24
-            //            source: "qrc:/drawable/ic_menu_wrong.png"
+        CusToolButton {
+            id:btnRight
+            color: Theme.colorPrimary
+            icon:"\ue650"
             anchors{
                 verticalCenter: parent.verticalCenter
-                right: image_right.left
-                rightMargin: 20
+                right: parent.right
+                rightMargin: 14
             }
-            MouseArea{
-                anchors.fill: parent
-                onClicked: {
-                    Window.window.close()
-                }
+            onClickEvent: {
+                clickRighListener()
             }
         }
     }

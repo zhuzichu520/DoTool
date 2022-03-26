@@ -88,32 +88,35 @@ Rectangle {
 
             CusToolButton {
                 id:btnTop
-                icon: "\ue610"
+                icon: "\ue604"
                 onClickEvent: { isTop = !isTop }
+                iconSize : 16
                 color: isTop ? Theme.colorPrimary : "#BBB"
-                iconSize: 14
                 Component.onCompleted: Window.window.setHitTestVisible(btnTop, true)
             }
 
             CusToolButton {
                 id:btnMin
-                icon: "\ue9bd"
+                icon: "\ue63d"
                 onClickEvent: window.showMinimized()
                 visible: minEnable
+                iconSize : 16
                 Component.onCompleted: Window.window.setHitTestVisible(btnMin, true)
             }
             CusToolButton {
                 id:btnMax
-                icon: window.visibility === Window.Maximized ? "\ue621" : "\ue629"
+                icon: window.visibility === Window.Maximized ? "\ue606" : "\ue607"
                 onClickEvent: window.toggleMaximized();
                 visible: maxEnable
+                iconSize : 18
                 Component.onCompleted: Window.window.setHitTestVisible(btnMax, true)
             }
             CusToolButton {
                 id:btnClose
-                icon: "\ue9bb"
+                icon: "\ue600"
                 onClickEvent: window.close();
                 visible: closeEnable
+                iconSize : 16
                 Component.onCompleted: Window.window.setHitTestVisible(btnClose, true)
             }
         }
