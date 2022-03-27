@@ -57,6 +57,6 @@ target_link_libraries(UILibrary
 target_include_directories(
         UILibrary SYSTEM PUBLIC
         ${CMAKE_SOURCE_DIR}/src/ui
-        ${THIRD_DIR_PATH}/zxing/win64/include
+        ${THIRD_DIR_PATH}/zxing/msvc/include
         ${THIRD_DIR_PATH}/frameless/include
 )
