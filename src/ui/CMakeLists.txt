@@ -51,12 +51,12 @@ target_link_libraries(UILibrary
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Multimedia
-        ${THIRD_DIR_PATH}/zxing/msvc/lib/QZXing3.lib
-        ${THIRD_DIR_PATH}/frameless/bin/FramelessHelper.lib
+        ${THIRD_DIR_PATH}/zxing/lib/win64/QZXing3.lib
+        ${THIRD_DIR_PATH}/frameless/lib/win64/FramelessHelper.lib
         )
 target_include_directories(
         UILibrary SYSTEM PUBLIC
         ${CMAKE_SOURCE_DIR}/src/ui
-        ${THIRD_DIR_PATH}/zxing/msvc/include
+        ${THIRD_DIR_PATH}/zxing/include
         ${THIRD_DIR_PATH}/frameless/include
 )

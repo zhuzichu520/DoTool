@@ -24,7 +24,7 @@ ApplicationWindow {
             window.destroy()
             closeevent.accepted = false
         }catch(err){
-
+            closeevent.accepted = false
         }
     }
 

@@ -2,7 +2,9 @@
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import QtWebView 1.1
+import Qt.labs.platform 1.1
 import "../component"
+import "../storage"
 
 CusWindow {
     id:window
@@ -10,15 +12,39 @@ CusWindow {
     height: 600
     title: qsTr("DoTool")
 
-    onWindowResult:
-        (requestCode,resultCode,data)=> {
+    onClosing: function(closeevent){
+        visible = false
+        closeevent.accepted = false
+    }
 
+    SystemTrayIcon {
+        id:systemTray
+        visible: true
+        icon.source: "qrc:/image/ic_logo.ico"
+        onActivated:
+            (reason)=>{
+                if(reason === 3){
+                    window.show()
+                    window.raise()
+                    window.requestActivate()
+                }
+            }
+        menu: Menu {
+            MenuItem {
+                text: qsTr("退出")
+                onTriggered: Qt.quit()
+            }
         }
+    }
 
     page: CusPage{
 
         CusToolBar {
             id:toolBar
+            onCloseEvent: function(){
+                window.close()
+                systemTray.showMessage("友情提示","程序已隐藏在托盘中。。。")
+            }
         }
 
         ListModel{

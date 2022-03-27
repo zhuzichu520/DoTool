@@ -53,5 +53,6 @@
         <file>tool-base64/ToolBase64.qml</file>
         <file>tool-digest/ToolDigest.qml</file>
         <file>tool-camera/ToolCamera.qml</file>
+        <file>image/ic_logo.png</file>
     </qresource>
 </RCC>

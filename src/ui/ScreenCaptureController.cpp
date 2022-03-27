@@ -15,7 +15,7 @@ QPixmap ScreenCaptureController::screenPixmap() const{
 }
 
 void ScreenCaptureController::refreshScreen(){
-    m_pixmap = qApp->screens().at(UIHelper->getScreenIndex())->grabWindow(0);
+    m_pixmap = qApp->screens().at(UIHelper->getScreenIndex())->grabWindow(1);
     m_screenPixmap = m_pixmap;
     Q_EMIT screenPixmapChanged();
 }

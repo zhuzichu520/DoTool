@@ -26,7 +26,7 @@ Item {
 
         Text{
             font.pixelSize: 12
-            text:"版本：v0.0.1"
+            text:"版本：v1.0.0.0"
             Layout.topMargin: 20
             color:Theme.colorFontPrimary
         }

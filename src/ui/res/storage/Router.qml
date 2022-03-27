@@ -3,6 +3,7 @@ import QtQuick 2.15
 
 QtObject {
 
+    property string window_main: "qrc:/layout/main.qml"
     property string window_colorpicker: "qrc:/tool-colorpicker/ToolColorPicker.qml"
     property string window_colorfinder: "qrc:/tool-colorpicker/ToolColorFinder.qml"
     property string window_jsonparser: "qrc:/tool-jsonparser/ToolJsonParser.qml"
@@ -19,6 +20,10 @@ QtObject {
     property string window_opengl: "qrc:/tool-opengl/ToolOpengl.qml"
 
     property var router_table: [
+        {
+            path:window_main,
+            onlyOne:true
+        },
         {
             path:window_colorpicker,
             onlyOne:true

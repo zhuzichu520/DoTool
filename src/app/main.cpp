@@ -17,14 +17,11 @@ int main(int argc, char *argv[])
 //    QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
     QtWebEngine::initialize();
     QGuiApplication::setApplicationName("DoTool");
-    QGuiApplication::setOrganizationName("DoTool");
+    QGuiApplication::setApplicationVersion("1.0.0.0");
+    QGuiApplication::setOrganizationName("zzc");
     QGuiApplication::setOrganizationDomain("https://github.com/zhuzichu520/DoTool");
-    QGuiApplication::setApplicationVersion("1.0");
-    QGuiApplication app(argc, argv);
-    QFont font;
-    font.setFamily("Microsoft YaHei");
-    app.setFont(font);
 
+    QGuiApplication app(argc, argv);
     MainWindow window;
     window.show();
     QGuiApplication::exec();

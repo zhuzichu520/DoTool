@@ -18,7 +18,11 @@
 FRAMELESSHELPER_USE_NAMESPACE
 
 MainWindow::MainWindow() {
-
+    QGuiApplication::setQuitOnLastWindowClosed(false);
+    QFont font;
+    font.setFamily("Microsoft YaHei");
+    QGuiApplication::setFont(font);
+    QGuiApplication::setWindowIcon(QIcon(":/image/ic_logo.png"));
     QQuickStyle::setStyle("Default");
     QZXing::registerQMLTypes();
     QZXing::registerQMLImageProvider(m_engine);

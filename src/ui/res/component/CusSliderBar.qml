@@ -24,11 +24,28 @@ Rectangle {
         height: 70
         anchors.top: parent.top
 
+        Image{
+            id:iconLogo
+            width: 36
+            height: 36
+            source: "qrc:/image/ic_logo.png"
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+                top: parent.top
+                topMargin: 14
+            }
+        }
+
         Text {
+            id:iconTitle
             text: qsTr("DoTool")
-            anchors.centerIn: parent
             color: Theme.colorPrimary
-            font.bold: true
+            font.pixelSize: 12
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+                top: iconLogo.bottom
+                topMargin: 3
+            }
         }
 
     }

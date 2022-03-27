@@ -17,6 +17,8 @@ Rectangle {
     property bool darkEnable: true
     property bool isTop : false
 
+    property var onCloseEvent
+
     clip: true
     height: window.getToolBarHeight()
 
@@ -114,7 +116,12 @@ Rectangle {
             CusToolButton {
                 id:btnClose
                 icon: "\ue600"
-                onClickEvent: window.close();
+                onClickEvent: {
+                    if(onCloseEvent)
+                        onCloseEvent()
+                    else
+                        window.close();
+                }
                 visible: closeEnable
                 iconSize : 14
                 Component.onCompleted: Window.window.setHitTestVisible(btnClose, true)

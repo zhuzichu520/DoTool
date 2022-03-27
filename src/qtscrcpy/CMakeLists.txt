@@ -78,11 +78,11 @@ target_link_libraries(QtScrcpy
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Multimedia
-        ${THIRD_DIR_PATH}/ffmpeg/lib/x64/avcodec.lib
-        ${THIRD_DIR_PATH}/ffmpeg/lib/x64/avformat.lib
-        ${THIRD_DIR_PATH}/ffmpeg/lib/x64/avutil.lib
-        ${THIRD_DIR_PATH}/ffmpeg/lib/x64/swresample.lib
-        ${THIRD_DIR_PATH}/ffmpeg/lib/x64/swscale.lib
+        ${THIRD_DIR_PATH}/ffmpeg/lib/win64/avcodec.lib
+        ${THIRD_DIR_PATH}/ffmpeg/lib/win64/avformat.lib
+        ${THIRD_DIR_PATH}/ffmpeg/lib/win64/avutil.lib
+        ${THIRD_DIR_PATH}/ffmpeg/lib/win64/swresample.lib
+        ${THIRD_DIR_PATH}/ffmpeg/lib/win64/swscale.lib
         )
 
 target_include_directories(
