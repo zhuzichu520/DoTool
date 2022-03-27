@@ -25,7 +25,6 @@
         util/config.h
         util/bufferutil.h
         util/mousetap/mousetap.h
-        util/mousetap/winmousetap.h
         )
 
 set(QtScrcpy_SRS
@@ -50,9 +49,25 @@ set(QtScrcpy_SRS
         device/stream/stream.cpp
         util/config.cpp
         util/bufferutil.cpp
-        util/mousetap/mousetap.cpp
-        util/mousetap/winmousetap.cpp
         )
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    list(APPEND QtScrcpy_HEADERS
+            util/mousetap/winmousetap.h
+            )
+    list(APPEND QtScrcpy_SRS
+            util/mousetap/winmousetap.cpp
+            )
+endif()
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    list(APPEND QtScrcpy_HEADERS
+            util/mousetap/xmousetap.h
+            )
+    list(APPEND QtScrcpy_SRS
+            util/mousetap/xmousetap.cpp
+            )
+endif()
+
 
 add_library(QtScrcpy STATIC ${QtScrcpy_SRS})
 
