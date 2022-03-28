@@ -6,13 +6,6 @@ set(OPENSSL_BIN
         ${THIRD_DIR_PATH}/openssl/bin/win64/libcrypto-1_1-x64.dll
         ${THIRD_DIR_PATH}/openssl/bin/win64/libssl-1_1-x64.dll
         )
-install(FILES ${OPENSSL_BIN} DESTINATION bin)
-
-set(ZXING_BIN
-        ${THIRD_DIR_PATH}/zxing/bin/win64/QZXing3.dll
-        )
-install(FILES ${ZXING_BIN} DESTINATION bin)
-
 set(FFMPEG_BIN
         ${THIRD_DIR_PATH}/ffmpeg/bin/win64/avcodec-58.dll
         ${THIRD_DIR_PATH}/ffmpeg/bin/win64/avformat-58.dll
@@ -20,21 +13,37 @@ set(FFMPEG_BIN
         ${THIRD_DIR_PATH}/ffmpeg/bin/win64/swresample-3.dll
         ${THIRD_DIR_PATH}/ffmpeg/bin/win64/swscale-5.dll
         )
-install(FILES ${FFMPEG_BIN} DESTINATION bin)
-
+set(ZXING_BIN
+        ${THIRD_DIR_PATH}/zxing/bin/win64/QZXing3.dll
+        )
 set(ADB_BIN
         ${THIRD_DIR_PATH}/adb/win/adb.exe
         ${THIRD_DIR_PATH}/adb/win/AdbWinApi.dll
         ${THIRD_DIR_PATH}/adb/win/AdbWinUsbApi.dll
         )
-install(FILES ${ADB_BIN} DESTINATION bin)
-
 set(SCRCPY_BIN
         ${THIRD_DIR_PATH}/scrcpy-server
         )
-install(FILES ${SCRCPY_BIN} DESTINATION bin)
-
-set(FRAMELESS_BIN
-        ${THIRD_DIR_PATH}/frameless/bin/win64/FramelessHelper.dll
+set(GLOG_BIN
+        ${THIRD_DIR_PATH}/glog/bin/win64/glog.dll
         )
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(FRAMELESS_BIN
+            ${THIRD_DIR_PATH}/frameless/bin/win64/debug/FramelessHelper.dll
+            )
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(FRAMELESS_BIN
+            ${THIRD_DIR_PATH}/frameless/bin/win64/release/FramelessHelper.dll
+            )
+endif()
+
+install(FILES ${OPENSSL_BIN} DESTINATION bin)
+install(FILES ${ZXING_BIN} DESTINATION bin)
+install(FILES ${FFMPEG_BIN} DESTINATION bin)
+install(FILES ${ADB_BIN} DESTINATION bin)
+install(FILES ${SCRCPY_BIN} DESTINATION bin)
 install(FILES ${FRAMELESS_BIN} DESTINATION bin)
+install(FILES ${GLOG_BIN} DESTINATION bin)

@@ -13,7 +13,6 @@ CusWindow {
     id:window
     width: 1
     height: 1
-
     flags: Qt.FramelessWindowHint
 
     ScreenCaptureController{

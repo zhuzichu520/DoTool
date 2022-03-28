@@ -2,10 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QQmlApplicationEngine>
+#include <QGuiApplication>
 
 class Q_DECL_EXPORT MainWindow {
 public:
-    explicit MainWindow();
+    explicit MainWindow(char *argv[]);
 
     ~MainWindow();
 

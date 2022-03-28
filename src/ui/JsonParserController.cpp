@@ -1,10 +1,10 @@
 ﻿#include "JsonParserController.h"
-
+#include "GlobalStatic.h"
 
 JsonParserController::JsonParserController(QObject *parent)
     : QObject{parent}
 {
-
+    LOGI("执行了");
 }
 
 JsonParserController::~JsonParserController(){

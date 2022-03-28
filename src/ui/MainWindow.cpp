@@ -10,6 +10,7 @@
 #include "VideoItem.h"
 #include "ItemOpenGL.h"
 #include "GlobalStatic.h"
+#include "QLogHelper.h"
 #include <QZXing.h>
 #include <QtQml>
 #include <QQuickStyle>
@@ -17,7 +18,8 @@
 
 FRAMELESSHELPER_USE_NAMESPACE
 
-MainWindow::MainWindow() {
+MainWindow::MainWindow(char *argv[]) {
+
     QGuiApplication::setQuitOnLastWindowClosed(false);
     QFont font;
     font.setFamily("Microsoft YaHei");
@@ -29,7 +31,12 @@ MainWindow::MainWindow() {
     m_engine.addImageProvider(QLatin1String("screen"), new ScreenImageProvider);
 
     QUIHelper *p_uiHelper = uiHelper();
+//    p_uiHelper->setCode();
     m_engine.rootContext()->setContextProperty("UIHelper",p_uiHelper);
+
+    QLogHelper *p_logHelper = logHelper();
+    p_logHelper->initGoogleLog(argv);
+    m_engine.rootContext()->setContextProperty("LogHelper",p_logHelper);
 
     qmlRegisterType<ItemImage>("com.dotool.ui", 1, 0, "ItemImage");
     qmlRegisterType<VideoItem>("com.dotool.ui", 1, 0, "VideoItem");

@@ -6,6 +6,7 @@
         ScreenCaptureController.cpp
         ItemImage.cpp
         QUIHelper.cpp
+        QLogHelper.cpp
         GlobalStatic.cpp
         ScrcpyController.cpp
         PhoneController.cpp
@@ -22,6 +23,7 @@ set(UILibrary_HEADERS
         ScreenCaptureController.h
         ItemImage.h
         QUIHelper.h
+        QLogHelper.h
         GlobalStatic.h
         ScrcpyController.h
         PhoneController.h
@@ -53,10 +55,12 @@ target_link_libraries(UILibrary
         Qt${QT_VERSION_MAJOR}::Multimedia
         ${THIRD_DIR_PATH}/zxing/lib/win64/QZXing3.lib
         ${THIRD_DIR_PATH}/frameless/lib/win64/FramelessHelper.lib
+        ${THIRD_DIR_PATH}/glog/lib/win64/glog.lib
         )
 target_include_directories(
         UILibrary SYSTEM PUBLIC
         ${CMAKE_SOURCE_DIR}/src/ui
         ${THIRD_DIR_PATH}/zxing/include
         ${THIRD_DIR_PATH}/frameless/include
+        ${THIRD_DIR_PATH}/glog/include
 )

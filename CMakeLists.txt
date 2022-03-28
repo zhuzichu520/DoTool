@@ -17,6 +17,12 @@ set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR} CACHE PATH "Install path prefix" 
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-DQ_IS_DEBUG)
+endif()
+
+add_definitions(-DGLOG_NO_ABBREVIATED_SEVERITIES)
+
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick QuickControls2 WebEngine Multimedia REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick QuickControls2 WebEngine Multimedia REQUIRED)
 

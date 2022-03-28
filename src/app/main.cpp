@@ -1,8 +1,8 @@
 ﻿#include <QGuiApplication>
-#include <QtQuick/qquickwindow.h>
 #include "MainWindow.h"
 #include <QFont>
 #include <QtWebEngine>
+#include <QHotkey>
 
 
 int main(int argc, char *argv[])
@@ -22,7 +22,11 @@ int main(int argc, char *argv[])
     QGuiApplication::setOrganizationDomain("https://github.com/zhuzichu520/DoTool");
 
     QGuiApplication app(argc, argv);
-    MainWindow window;
+    QHotkey hotkey(QKeySequence("Ctrl+Alt+Q"), true, &app);
+    QObject::connect(&hotkey, &QHotkey::activated, qApp, [&](){
+        qApp->quit();
+    });
+    MainWindow window(argv);
     window.show();
     QGuiApplication::exec();
     return 0;

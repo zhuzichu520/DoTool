@@ -1,4 +1,4 @@
-#ifndef QUIHELPER_H
+﻿#ifndef QUIHELPER_H
 #define QUIHELPER_H
 
 #include <QObject>
@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QClipboard>
 #include <QCryptographicHash>
+#include <QTextCodec>
 
 class QUIHelper : public QObject
 {
@@ -15,6 +16,7 @@ class QUIHelper : public QObject
 public:
     explicit QUIHelper(QObject *parent = nullptr);
      ~QUIHelper();
+    void setCode();
     Q_INVOKABLE int getScreenIndex();
     Q_INVOKABLE QRect getScreenRect(bool available);
     Q_INVOKABLE void textClipboard(const QString &text);
