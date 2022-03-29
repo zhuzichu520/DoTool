@@ -30,7 +30,7 @@ set(GLOG_BIN
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(FRAMELESS_BIN
-            ${THIRD_DIR_PATH}/frameless/bin/win64/debug/FramelessHelper.dll
+            ${THIRD_DIR_PATH}/frameless/bin/win64/debug/FramelessHelperd.dll
             )
 endif()
 

@@ -17,7 +17,6 @@ ApplicationWindow {
     property var resizable
     visible: true
     signal windowResult(int requestCode,int resultCode,var data)
-    color : "transparent"
 
     onClosing: function(closeevent){
         try{
