@@ -6,6 +6,7 @@
 #include "ScrcpyController.h"
 #include "PhoneController.h"
 #include "ScreenCaptureController.h"
+#include "PackController.h"
 #include "ItemImage.h"
 #include "VideoItem.h"
 #include "ItemOpenGL.h"
@@ -50,6 +51,7 @@ MainWindow::MainWindow(char *argv[]) {
     qmlRegisterType<ScrcpyController>("com.dotool.controller", 1, 0, "ScrcpyController");
     qmlRegisterType<PhoneController>("com.dotool.controller", 1, 0, "PhoneController");
     qmlRegisterType<ScreenCaptureController>("com.dotool.controller", 1, 0, "ScreenCaptureController");
+    qmlRegisterType<PackController>("com.dotool.controller", 1, 0, "PackController");
 
 }
 

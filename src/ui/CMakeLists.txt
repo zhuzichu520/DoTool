@@ -13,6 +13,7 @@
         VideoItem.cpp
         I420Render.cpp
         ItemOpenGL.cpp
+        PackController.cpp
         )
 
 set(UILibrary_HEADERS
@@ -30,6 +31,7 @@ set(UILibrary_HEADERS
         VideoItem.h
         I420Render.h
         ItemOpenGL.h
+        PackController.h
         )
 
 set(UILibrary_RCC
