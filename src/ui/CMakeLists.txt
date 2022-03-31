@@ -57,6 +57,7 @@ target_link_libraries(UILibrary
         Qt${QT_VERSION_MAJOR}::Multimedia
         ${THIRD_DIR_PATH}/zxing/lib/win64/QZXing3.lib
         ${THIRD_DIR_PATH}/glog/lib/win64/glog.lib
+        ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_core455.lib
         )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -77,4 +78,5 @@ target_include_directories(
         ${THIRD_DIR_PATH}/zxing/include
         ${THIRD_DIR_PATH}/frameless/include
         ${THIRD_DIR_PATH}/glog/include
+        ${THIRD_DIR_PATH}/opencv/include
 )

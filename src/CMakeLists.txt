@@ -40,6 +40,10 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
             )
 endif()
 
+set(OPENCV_BIN
+        ${THIRD_DIR_PATH}/opencv/bin/win64/opencv_core455.dll
+        )
+
 install(FILES ${OPENSSL_BIN} DESTINATION bin)
 install(FILES ${ZXING_BIN} DESTINATION bin)
 install(FILES ${FFMPEG_BIN} DESTINATION bin)
@@ -47,3 +51,4 @@ install(FILES ${ADB_BIN} DESTINATION bin)
 install(FILES ${SCRCPY_BIN} DESTINATION bin)
 install(FILES ${FRAMELESS_BIN} DESTINATION bin)
 install(FILES ${GLOG_BIN} DESTINATION bin)
+install(FILES ${OPENCV_BIN} DESTINATION bin)
