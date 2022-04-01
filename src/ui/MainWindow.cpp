@@ -6,6 +6,7 @@
 #include "ScrcpyController.h"
 #include "PhoneController.h"
 #include "ScreenCaptureController.h"
+#include "OpencvController.h"
 #include "PackController.h"
 #include "ItemImage.h"
 #include "VideoItem.h"
@@ -32,7 +33,7 @@ MainWindow::MainWindow(char *argv[]) {
     m_engine.addImageProvider(QLatin1String("screen"), new ScreenImageProvider);
 
     QUIHelper *p_uiHelper = uiHelper();
-//    p_uiHelper->setCode();
+    p_uiHelper->setCode();
     m_engine.rootContext()->setContextProperty("UIHelper",p_uiHelper);
 
     QLogHelper *p_logHelper = logHelper();
@@ -52,6 +53,8 @@ MainWindow::MainWindow(char *argv[]) {
     qmlRegisterType<PhoneController>("com.dotool.controller", 1, 0, "PhoneController");
     qmlRegisterType<ScreenCaptureController>("com.dotool.controller", 1, 0, "ScreenCaptureController");
     qmlRegisterType<PackController>("com.dotool.controller", 1, 0, "PackController");
+    qmlRegisterType<OpencvController>("com.dotool.controller", 1, 0, "OpencvController");
+
 
 }
 

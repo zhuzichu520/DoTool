@@ -10,7 +10,7 @@ PackController::PackController(QObject *parent)
     connect(&m_process,&QProcess::readyReadStandardOutput,this,[&](){
         LOGI("--------------------------");
         QString temp =  m_process.readAll();
-        LOGI(temp);
+        LOGI(temp.toStdString());
     });
 
     connect(&m_process,&QProcess::readyReadStandardError,this,[&](){

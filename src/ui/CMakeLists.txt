@@ -14,6 +14,7 @@
         I420Render.cpp
         ItemOpenGL.cpp
         PackController.cpp
+        OpencvController.cpp
         )
 
 set(UILibrary_HEADERS
@@ -32,6 +33,7 @@ set(UILibrary_HEADERS
         I420Render.h
         ItemOpenGL.h
         PackController.h
+        OpencvController.h
         )
 
 set(UILibrary_RCC
@@ -58,6 +60,8 @@ target_link_libraries(UILibrary
         ${THIRD_DIR_PATH}/zxing/lib/win64/QZXing3.lib
         ${THIRD_DIR_PATH}/glog/lib/win64/glog.lib
         ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_core455.lib
+        ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_imgproc455.lib
+        ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_imgcodecs455.lib
         )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

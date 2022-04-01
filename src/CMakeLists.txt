@@ -42,6 +42,8 @@ endif()
 
 set(OPENCV_BIN
         ${THIRD_DIR_PATH}/opencv/bin/win64/opencv_core455.dll
+        ${THIRD_DIR_PATH}/opencv/bin/win64/opencv_imgcodecs455.dll
+        ${THIRD_DIR_PATH}/opencv/bin/win64/opencv_imgproc455.dll
         )
 
 install(FILES ${OPENSSL_BIN} DESTINATION bin)
