@@ -14,8 +14,10 @@ void OpencvController::readMat(const QString& path){
         QByteArray byteArr = file.readAll();
         std::vector<char> data(byteArr.data(), byteArr.data() +byteArr.size());
         cv::Mat mat = cv::imdecode(cv::Mat(data),1);
+        cv::resize(mat, mat, cv::Size(mat.cols,mat.rows));
         cv::Mat dst;
         cv::cvtColor(mat,dst,cv::COLOR_BGR2GRAY);
+        cv::threshold(dst,dst,130,255,cv::THRESH_BINARY);
         setSource(UIHelper->cvMatToQPixmap(dst));
         setSize(QSize(maxWidth,m_pixmap.height()*1.0/m_pixmap.width() * maxWidth));
         file.close();

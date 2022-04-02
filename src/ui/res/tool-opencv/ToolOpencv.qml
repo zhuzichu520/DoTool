@@ -72,6 +72,14 @@ CusWindow {
                     })
                 }
             }
+            CusButton{
+                text:"识别身份证号码"
+                anchors.horizontalCenter: parent.horizontalCenter
+                Layout.topMargin: 16
+                onClicked: {
+
+                }
+            }
         }
 
         ItemImage{
