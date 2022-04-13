@@ -1,5 +1,4 @@
-﻿add_subdirectory(app)
-add_subdirectory(ui)
+﻿add_subdirectory(ui)
 add_subdirectory(qtscrcpy)
 
 set(OPENSSL_BIN
