@@ -53,19 +53,21 @@ target_link_libraries(UILibrary
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Multimedia
-        ${THIRD_DIR_PATH}/zxing/lib/win64/QZXing3.lib
-        ${THIRD_DIR_PATH}/glog/lib/win64/glog.lib
         )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_link_libraries(UILibrary
             ${THIRD_DIR_PATH}/frameless/lib/win64/debug/FramelessHelperd.lib
+            ${THIRD_DIR_PATH}/zxing/lib/win64/debug/QZXing3.lib
+            ${THIRD_DIR_PATH}/glog/lib/win64/debug/glogd.lib
             )
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     target_link_libraries(UILibrary
             ${THIRD_DIR_PATH}/frameless/lib/win64/release/FramelessHelper.lib
+            ${THIRD_DIR_PATH}/zxing/lib/win64/release/QZXing3.lib
+            ${THIRD_DIR_PATH}/glog/lib/win64/release/glog.lib
             )
 endif()
 

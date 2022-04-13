@@ -1,4 +1,4 @@
-import QtQuick 2.15
+﻿import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
@@ -63,12 +63,26 @@ Item {
             color:Theme.colorFontPrimary
         }
 
+
         Text{
             font.pixelSize: 12
-            text:"作者严重缺钱，找一份Android或Qt兼职，有岗位的联系上面邮箱"
+            text:"找一份Android或Qt兼职，有岗位的联系上面邮箱"
             color:Theme.colorFontPrimary
         }
 
+        Text{
+            font.pixelSize: 12
+            text:"个人博客"
+            color:Theme.colorPrimary
+            font.underline: true
+            MouseArea{
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    Qt.openUrlExternally("https://zhuzichu520.github.io/")
+                }
+            }
+        }
 
         Text{
             property bool isColorPrimary : false

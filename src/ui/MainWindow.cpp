@@ -31,7 +31,7 @@ MainWindow::MainWindow(char *argv[]) {
     m_engine.addImageProvider(QLatin1String("screen"), new ScreenImageProvider);
 
     QUIHelper *p_uiHelper = uiHelper();
-//    p_uiHelper->setCode();
+    p_uiHelper->setCode();
     m_engine.rootContext()->setContextProperty("UIHelper",p_uiHelper);
 
     QLogHelper *p_logHelper = logHelper();

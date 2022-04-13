@@ -1,4 +1,4 @@
-#include "QLogHelper.h"
+﻿#include "QLogHelper.h"
 
 QLogHelper::QLogHelper(QObject *parent)
     : QObject{parent}
@@ -14,7 +14,7 @@ QLogHelper::~QLogHelper()
 void QLogHelper::initGoogleLog(char* argv[])
 {
     google::InitGoogleLogging(argv[0]);
-    google::EnableLogCleaner(10);
+    google::EnableLogCleaner(3);
     google::SetStderrLogging(google::GLOG_INFO);
     auto appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     appDataDir.append("/log");
@@ -24,13 +24,10 @@ void QLogHelper::initGoogleLog(char* argv[])
     QByteArray byteLogDir = appDataDir.toUtf8();
     FLAGS_log_dir = byteLogDir.data();
 #ifdef Q_IS_DEBUG
-    qDebug() << "debug mode";
     FLAGS_logtostderr = true;
 #else
-    qDebug() << "release  mode";
     FLAGS_logtostderr = false;
 #endif
-    FLAGS_alsologtostderr = false;
     FLAGS_logbufsecs = 0;
     FLAGS_max_log_size = 10;
     FLAGS_stop_logging_if_full_disk = true;

@@ -13,9 +13,6 @@ set(FFMPEG_BIN
         ${THIRD_DIR_PATH}/ffmpeg/bin/win64/swresample-3.dll
         ${THIRD_DIR_PATH}/ffmpeg/bin/win64/swscale-5.dll
         )
-set(ZXING_BIN
-        ${THIRD_DIR_PATH}/zxing/bin/win64/QZXing3.dll
-        )
 set(ADB_BIN
         ${THIRD_DIR_PATH}/adb/win/adb.exe
         ${THIRD_DIR_PATH}/adb/win/AdbWinApi.dll
@@ -24,19 +21,33 @@ set(ADB_BIN
 set(SCRCPY_BIN
         ${THIRD_DIR_PATH}/scrcpy-server
         )
-set(GLOG_BIN
-        ${THIRD_DIR_PATH}/glog/bin/win64/glog.dll
-        )
+
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(FRAMELESS_BIN
             ${THIRD_DIR_PATH}/frameless/bin/win64/debug/FramelessHelperd.dll
+            )
+
+    set(ZXING_BIN
+            ${THIRD_DIR_PATH}/zxing/bin/win64/debug/QZXing3.dll
+            )
+
+    set(GLOG_BIN
+            ${THIRD_DIR_PATH}/glog/bin/win64/debug/glogd.dll
             )
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(FRAMELESS_BIN
             ${THIRD_DIR_PATH}/frameless/bin/win64/release/FramelessHelper.dll
+            )
+
+    set(ZXING_BIN
+            ${THIRD_DIR_PATH}/zxing/bin/win64/release/QZXing3.dll
+            )
+
+    set(GLOG_BIN
+            ${THIRD_DIR_PATH}/glog/bin/win64/release/glog.dll
             )
 endif()
 
