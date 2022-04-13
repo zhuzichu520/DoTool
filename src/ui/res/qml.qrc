@@ -54,5 +54,7 @@
         <file>tool-digest/ToolDigest.qml</file>
         <file>tool-camera/ToolCamera.qml</file>
         <file>image/ic_logo.png</file>
+        <file>tool-pack/ToolPack.qml</file>
+        <file>tool-opencv/ToolOpencv.qml</file>
     </qresource>
 </RCC>

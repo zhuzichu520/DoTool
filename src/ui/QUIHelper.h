@@ -9,13 +9,16 @@
 #include <QClipboard>
 #include <QCryptographicHash>
 #include <QTextCodec>
+#include <QPixmap>
+#include <QImage>
+#include "opencv2/opencv.hpp"
 
 class QUIHelper : public QObject
 {
     Q_OBJECT
 public:
     explicit QUIHelper(QObject *parent = nullptr);
-     ~QUIHelper();
+    ~QUIHelper();
     void setCode();
     Q_INVOKABLE int getScreenIndex();
     Q_INVOKABLE QRect getScreenRect(bool available);
@@ -28,6 +31,10 @@ public:
     Q_INVOKABLE QString sha256(const QString&);
     Q_INVOKABLE QString sha384(const QString&);
     Q_INVOKABLE QString sha512(const QString&);
+    QImage cvMatToQImage(const cv::Mat &inMat);
+    QPixmap cvMatToQPixmap(const cv::Mat &inMat);
+    cv::Mat QImageToCvMat(const QImage &inImage,bool inCloneImageData = true );
+    cv::Mat QPixmapToCvMat(const QPixmap &inPixmap,bool inCloneImageData = true );
 signals:
 
 };

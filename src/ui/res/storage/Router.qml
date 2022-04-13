@@ -18,6 +18,8 @@ QtObject {
     property string window_webpage: "qrc:/webview/WebPage.qml"
     property string window_phone: "qrc:/tool-scrcpy/PhoneWindow.qml"
     property string window_opengl: "qrc:/tool-opengl/ToolOpengl.qml"
+    property string window_pack: "qrc:/tool-pack/ToolPack.qml"
+    property string window_opencv: "qrc:/tool-opencv/ToolOpencv.qml"
 
     property var router_table: [
         {
@@ -78,6 +80,14 @@ QtObject {
         },
         {
             path:window_opengl,
+            onlyOne:true
+        },
+        {
+            path:window_pack,
+            onlyOne:true
+        },
+        {
+            path:window_opencv,
             onlyOne:true
         }
     ]

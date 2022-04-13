@@ -14,6 +14,8 @@
         VideoItem.cpp
         I420Render.cpp
         ItemOpenGL.cpp
+        PackController.cpp
+        OpencvController.cpp
         )
 
 set(UILibrary_HEADERS
@@ -31,6 +33,8 @@ set(UILibrary_HEADERS
         VideoItem.h
         I420Render.h
         ItemOpenGL.h
+        PackController.h
+        OpencvController.h
         )
 
 set(UILibrary_RCC
@@ -65,6 +69,11 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Multimedia
         Qt${QT_VERSION_MAJOR}::WebEngine
+        ${THIRD_DIR_PATH}/zxing/lib/win64/QZXing3.lib
+        ${THIRD_DIR_PATH}/glog/lib/win64/glog.lib
+        ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_core455.lib
+        ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_imgproc455.lib
+        ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_imgcodecs455.lib
         )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -92,4 +101,5 @@ target_include_directories(
         ${THIRD_DIR_PATH}/frameless/include
         ${THIRD_DIR_PATH}/glog/include
         ${THIRD_DIR_PATH}/hotkey/include
+        ${THIRD_DIR_PATH}/opencv/include
 )

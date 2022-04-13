@@ -33,6 +33,9 @@ CusWindow {
                 resolution: "640x480"
                 frameRate: 30
             }
+            onErrorCodeChanged: {
+                console.debug("------onErrorCodeChanged------")
+            }
         }
         VideoOutput {
             id: viewfinder
@@ -50,7 +53,5 @@ CusWindow {
                 }
             }
         }
-
     }
-
 }
