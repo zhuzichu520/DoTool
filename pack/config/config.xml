@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>DoTool 在线安装</Name>
+    <Version>1.0.0</Version>
+    <Title>DoTool</Title>
+    <Publisher>zzc</Publisher>
+    <!-- Directory name is used in component.xml -->
+    <StartMenuDir>zzc</StartMenuDir>
+    <TargetDir>@HomeDir@/zzc/DoTool</TargetDir>
+    <WizardStyle>Classic</WizardStyle>
+    <StyleSheet>style.qss</StyleSheet>
+    <RemoteRepositories>
+        <Repository>
+            <Url>http://127.0.0.1:8080/repository</Url>
+        </Repository>
+    </RemoteRepositories>
+</Installer>

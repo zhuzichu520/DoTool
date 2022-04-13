@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>DoTool</DisplayName>
+    <Description>DoTool</Description>
+    <Version>1.0.0.0</Version>
+    <ReleaseDate>2022-04-13</ReleaseDate>
+    <Default>true</Default>
+    <Script>installscript.qs</Script>
+    <Licenses>
+        <License name="Public License Agreement" file="license.txt" />
+    </Licenses>
+    <UserInterfaces>
+        <UserInterface>setting.ui</UserInterface>
+    </UserInterfaces>
+</Package>
