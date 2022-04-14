@@ -4,5 +4,6 @@
 /lib
 /bin
 /include
+/venv
 .idea
 .vs
