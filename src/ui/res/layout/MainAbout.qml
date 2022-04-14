@@ -8,7 +8,6 @@ import "../storage"
 Item {
     anchors.fill: parent
 
-
     ColumnLayout{
         anchors{
             top: parent.top
@@ -19,14 +18,14 @@ Item {
 
         Text{
             font.pixelSize: 24
-            text:"DoTool"
+            text:UIHelper.appName()
             font.bold: true
             color:Theme.colorFontPrimary
         }
 
         Text{
             font.pixelSize: 12
-            text:"版本：v1.0.0.0"
+            text:"版本：v"+UIHelper.appVersion()
             Layout.topMargin: 20
             color:Theme.colorFontPrimary
         }

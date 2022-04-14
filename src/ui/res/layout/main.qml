@@ -10,7 +10,7 @@ CusWindow {
     id:window
     width: 596
     height: 600
-    title: qsTr("DoTool")
+    title: qsTr(UIHelper.appName())
 
     onClosing: function(closeevent){
         visible = false

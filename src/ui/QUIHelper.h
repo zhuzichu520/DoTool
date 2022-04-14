@@ -11,6 +11,8 @@
 #include <QTextCodec>
 #include <QPixmap>
 #include <QImage>
+#include <QProcess>
+#include "glog/logging.h"
 #include "opencv2/opencv.hpp"
 
 class QUIHelper : public QObject
@@ -20,6 +22,19 @@ public:
     explicit QUIHelper(QObject *parent = nullptr);
     ~QUIHelper();
     void setCode();
+    Q_INVOKABLE QString appVersion(){
+        return QGuiApplication::applicationVersion();
+    };
+    Q_INVOKABLE QString appName(){
+        return QGuiApplication::applicationName();
+    };
+    Q_INVOKABLE QString orgName(){
+        return QGuiApplication::organizationName();
+    };
+    Q_INVOKABLE QString orgDomain(){
+        return QGuiApplication::organizationDomain();
+    };
+    Q_INVOKABLE void checkUpdate();
     Q_INVOKABLE int getScreenIndex();
     Q_INVOKABLE QRect getScreenRect(bool available);
     Q_INVOKABLE void textClipboard(const QString &text);
@@ -35,7 +50,8 @@ public:
     QPixmap cvMatToQPixmap(const cv::Mat &inMat);
     cv::Mat QImageToCvMat(const QImage &inImage,bool inCloneImageData = true );
     cv::Mat QPixmapToCvMat(const QPixmap &inPixmap,bool inCloneImageData = true );
-signals:
+
+    Q_SIGNAL void checkUpdateResult(int status);
 
 };
 

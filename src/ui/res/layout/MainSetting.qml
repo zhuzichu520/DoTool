@@ -9,6 +9,17 @@ import "../component"
 Item {
     anchors.fill: parent
 
+    Connections{
+        target: UIHelper
+        function onCheckUpdateResult(status){
+            hideLoading()
+            if(status === 0){
+                showToast("已经是最新版了")
+                return
+            }
+            showToast("有更新")
+        }
+    }
 
     ColumnLayout{
         anchors{
@@ -44,6 +55,7 @@ Item {
             text: "检测更新"
             onClicked: {
                 showLoading()
+                UIHelper.checkUpdate()
             }
         }
 

@@ -38,7 +38,7 @@ Rectangle {
 
         Text {
             id:iconTitle
-            text: qsTr("DoTool")
+            text: qsTr(UIHelper.appName())
             color: Theme.colorPrimary
             font.pixelSize: 12
             anchors{

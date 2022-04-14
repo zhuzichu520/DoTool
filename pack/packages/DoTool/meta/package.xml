@@ -3,7 +3,7 @@
     <DisplayName>DoTool</DisplayName>
     <Description>DoTool</Description>
     <Version>1.0.0.0</Version>
-    <ReleaseDate>2022-04-13</ReleaseDate>
+    <ReleaseDate>2022-04-15</ReleaseDate>
     <Default>true</Default>
     <Script>installscript.qs</Script>
     <Licenses>
