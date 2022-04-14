@@ -4,6 +4,7 @@ import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import "../view"
 import "../storage"
+import "../component"
 
 Item {
     anchors.fill: parent
@@ -38,5 +39,13 @@ Item {
                 }
             }
         }
+
+        CusButton{
+            text: "检测更新"
+            onClicked: {
+                showLoading()
+            }
+        }
+
     }
 }
