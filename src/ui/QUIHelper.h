@@ -12,6 +12,7 @@
 #include <QPixmap>
 #include <QImage>
 #include <QProcess>
+#include <QFile>
 #include "glog/logging.h"
 #include "opencv2/opencv.hpp"
 
@@ -50,6 +51,8 @@ public:
     QPixmap cvMatToQPixmap(const cv::Mat &inMat);
     cv::Mat QImageToCvMat(const QImage &inImage,bool inCloneImageData = true );
     cv::Mat QPixmapToCvMat(const QPixmap &inPixmap,bool inCloneImageData = true );
+
+    Q_INVOKABLE QString readFile(const QString &fileName);
 
     Q_SIGNAL void checkUpdateResult(int status);
 

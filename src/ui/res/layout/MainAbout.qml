@@ -4,9 +4,28 @@ import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import "../view"
 import "../storage"
+import "../component"
 
 Item {
     anchors.fill: parent
+
+    Connections{
+        target: UIHelper
+        function onCheckUpdateResult(status){
+            hideLoading()
+            if(status === -1){
+                showToast("获取版本信息失败")
+                return
+            }
+            if(status === 0){
+                showToast("已经是最新版了")
+                return
+            }
+            showToast("有更新")
+        }
+    }
+
+
 
     ColumnLayout{
         anchors{
@@ -23,12 +42,28 @@ Item {
             color:Theme.colorFontPrimary
         }
 
-        Text{
-            font.pixelSize: 12
-            text:"版本：v"+UIHelper.appVersion()
+        RowLayout{
+
             Layout.topMargin: 20
-            color:Theme.colorFontPrimary
+
+            Text{
+                font.pixelSize: 12
+                text:"版本：v"+UIHelper.appVersion()
+                color:Theme.colorFontPrimary
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            CusButton{
+                text: "检测更新"
+                Layout.leftMargin: 8
+                onClicked: {
+                    showLoading()
+                    UIHelper.checkUpdate()
+                }
+            }
+
         }
+
         Text{
             font.pixelSize: 12
             text:"本软件开源"

@@ -22,9 +22,12 @@ public:
     Q_INVOKABLE void setSize(const QSize &size);
     QSize size() const;
     Q_SIGNAL void sizeChanged();
+
+    Q_INVOKABLE void recognizeIdCard();
 private:
     QPixmap m_pixmap;
     QSize m_size;
+    cv::Mat m_mat;
     int maxWidth = 580;
 };
 

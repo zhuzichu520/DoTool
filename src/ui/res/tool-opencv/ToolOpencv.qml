@@ -64,8 +64,8 @@ CusWindow {
             spacing: 8
             CusButton{
                 text:"选择图片"
-                anchors.horizontalCenter: parent.horizontalCenter
                 Layout.topMargin: 16
+                Layout.alignment: Qt.AlignHCenter
                 onClicked: {
                     fileDialog.showDialog(function(path){
                         controller.readMat(path)
@@ -74,10 +74,10 @@ CusWindow {
             }
             CusButton{
                 text:"识别身份证号码"
-                anchors.horizontalCenter: parent.horizontalCenter
                 Layout.topMargin: 16
+                Layout.alignment: Qt.AlignHCenter
                 onClicked: {
-
+                    controller.recognizeIdCard()
                 }
             }
         }

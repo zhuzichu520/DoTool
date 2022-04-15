@@ -10,8 +10,8 @@ import QtMultimedia 5.15
 CusWindow {
 
     id:window
-    width: 800
-    height: 510
+    width: 830
+    height: 540
     title: "摄像头"
 
     Component.onCompleted: {
@@ -26,17 +26,64 @@ CusWindow {
             maxEnable: false
         }
 
-        Camera{
-            id: camera
-            captureMode: Camera.CaptureStillImage
-            videoRecorder {
-                resolution: "640x480"
-                frameRate: 30
+        Rectangle{
+            id:background
+            anchors{
+                top: toolBar.bottom
+                left: parent.left
+                bottom: parent.bottom
             }
-            onErrorCodeChanged: {
-                console.debug("------onErrorCodeChanged------")
+            width: viewfinder.width + 30
+            height: viewfinder.height
+            color: Theme.colorBackground
+        }
+
+        Rectangle{
+            id:divider
+            height: background.height - 20
+            width: 5
+            radius: 5
+            z:2
+            color: Theme.colorPrimary
+            anchors{
+                top: background.top
+                topMargin: 10
+            }
+            x:10
+        }
+
+        MouseArea {
+            id: mouseArea
+            enabled: true
+            anchors.fill:  divider
+            z:3
+            drag {
+                target: divider
+                axis: Drag.XAxis
+                minimumX: 10
+                maximumX: background.width - 20
+            }
+            cursorShape: Qt.SplitHCursor
+            onPositionChanged:  {
+                if (drag.active)
+                    updatePosition()
+            }
+            onReleased: {
+                updatePosition()
+            }
+            function updatePosition() {
+                 effect.dividerValue = (divider.x-10)/(background.width-30)
             }
         }
+
+        ShaderEffectSource {
+            id: theSource
+            smooth: true
+            hideSource: true
+            sourceItem: viewfinder
+            anchors.fill: viewfinder
+        }
+
         VideoOutput {
             id: viewfinder
             width: 640
@@ -45,13 +92,37 @@ CusWindow {
             autoOrientation: true
             anchors{
                 top:toolBar.bottom
+                topMargin: 15
+                left: parent.left
+                leftMargin: 15
+            }
+            Camera{
+                id: camera
+                captureMode: Camera.CaptureStillImage
+                videoRecorder {
+                    resolution: "640x480"
+                    frameRate: 30
+                }
+                onErrorCodeChanged: {
+                    console.debug("------onErrorCodeChanged------")
+                }
             }
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    showToast("toolBar:"+window.getToolBarHeight())
+
                 }
             }
         }
+
+        EffectBillboard{
+            id:effect
+            anchors.fill: viewfinder
+            targetWidth: viewfinder.width
+            targetHeight: viewfinder.height
+            dividerValue: 0.0
+            source: theSource
+        }
+
     }
 }

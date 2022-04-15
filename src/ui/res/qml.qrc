@@ -56,5 +56,29 @@
         <file>image/ic_logo.png</file>
         <file>tool-pack/ToolPack.qml</file>
         <file>tool-opencv/ToolOpencv.qml</file>
+        <file>tool-camera/EffectBillboard.qml</file>
+        <file>tool-camera/Effect.qml</file>
+        <file>shaders/billboard.fsh</file>
+        <file>shaders/blackandwhite.fsh</file>
+        <file>shaders/emboss.fsh</file>
+        <file>shaders/gaussianblur_h.fsh</file>
+        <file>shaders/gaussianblur_v.fsh</file>
+        <file>shaders/glow.fsh</file>
+        <file>shaders/isolate.fsh</file>
+        <file>shaders/magnify.fsh</file>
+        <file>shaders/pagecurl.fsh</file>
+        <file>shaders/pixelate.fsh</file>
+        <file>shaders/posterize.fsh</file>
+        <file>shaders/ripple.fsh</file>
+        <file>shaders/selectionpanel.fsh</file>
+        <file>shaders/sepia.fsh</file>
+        <file>shaders/sharpen.fsh</file>
+        <file>shaders/shockwave.fsh</file>
+        <file>shaders/sobeledgedetection1.fsh</file>
+        <file>shaders/tiltshift.fsh</file>
+        <file>shaders/toon.fsh</file>
+        <file>shaders/vignette.fsh</file>
+        <file>shaders/warhol.fsh</file>
+        <file>shaders/wobble.fsh</file>
     </qresource>
 </RCC>

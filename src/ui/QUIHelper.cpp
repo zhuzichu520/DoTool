@@ -200,6 +200,17 @@ cv::Mat QUIHelper::QPixmapToCvMat( const QPixmap &inPixmap, bool inCloneImageDat
     return QImageToCvMat( inPixmap.toImage(), inCloneImageData );
 }
 
+QString QUIHelper::readFile(const QString &fileName)
+{
+    QString content;
+    QFile file(fileName);
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream(&file);
+        content = stream.readAll();
+    }
+    return content;
+}
+
 
 void QUIHelper::checkUpdate(){
     QString program("./maintenancetool.exe");
@@ -211,6 +222,7 @@ void QUIHelper::checkUpdate(){
     // 等待检测完成
     if (!process.waitForFinished()) {
         LOG(INFO)<<"Error checking for updates.";
+        Q_EMIT checkUpdateResult(-1);
         return;
     }
     QString data = process.readAllStandardOutput();
