@@ -73,6 +73,7 @@ Item {
                             rightMargin: 12
                             verticalCenter: parent.verticalCenter
                         }
+                        font.pixelSize: 12
                         horizontalAlignment: Text.AlignHCenter
                         wrapMode: Text.WrapAnywhere
                     }

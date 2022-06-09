@@ -15,6 +15,7 @@ ListModel{
         append({name:"屏幕截图",url:Router.toUrl(Router.window_screencapture,true)})
         append({name:"Android投屏",url:Router.toUrl(Router.window_scrcpy)})
         append({name:"OpenCv学习",url:Router.toUrl(Router.window_opencv)})
+        append({name:"人脸识别",url:Router.toUrl(Router.window_face)})
         //        append({name:"Qt打包工具",url:Router.toUrl(Router.window_pack)})
         //        append({name:"tinypng",url:Router.toUrl(Router.window_webpage,false,{title:"tinypng",url:"https://tinypng.com/"})})
         //        append({name:"https",url:Router.toUrl(Router.window_webpage,false,{title:"https",url:"https://www.upyun.com/https"})})

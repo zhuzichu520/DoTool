@@ -80,5 +80,6 @@
         <file>shaders/vignette.fsh</file>
         <file>shaders/warhol.fsh</file>
         <file>shaders/wobble.fsh</file>
+        <file>tool-face/ToolFace.qml</file>
     </qresource>
 </RCC>

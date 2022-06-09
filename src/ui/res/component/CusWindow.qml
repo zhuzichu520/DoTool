@@ -85,6 +85,7 @@ ApplicationWindow {
             id:textToast
             anchors.centerIn: parent
             color : "white"
+            font.pixelSize: 12
         }
 
         Behavior on height{
