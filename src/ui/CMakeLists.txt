@@ -17,7 +17,6 @@
         PackController.cpp
         OpencvController.cpp
         FaceController.cpp
-        CameraItem.cpp
         )
 
 set(UILibrary_HEADERS
@@ -38,7 +37,6 @@ set(UILibrary_HEADERS
         PackController.h
         OpencvController.h
         FaceController.h
-        CameraItem.h
         )
 
 set(UILibrary_RCC

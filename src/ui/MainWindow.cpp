@@ -9,7 +9,6 @@
 #include "ScreenCaptureController.h"
 #include "OpencvController.h"
 #include "PackController.h"
-#include "CameraItem.h"
 #include "ItemImage.h"
 #include "VideoItem.h"
 #include "ItemOpenGL.h"
@@ -45,7 +44,6 @@ MainWindow::MainWindow(char *argv[]) {
     qmlRegisterType<ItemImage>("com.dotool.ui", 1, 0, "ItemImage");
     qmlRegisterType<VideoItem>("com.dotool.ui", 1, 0, "VideoItem");
     qmlRegisterType<ItemOpenGL>("com.dotool.ui", 1, 0, "ItemOpenGL");
-    qmlRegisterType<CameraItem>("com.dotool.ui", 1, 0, "CameraItem");
 
     qmlRegisterType<FramelessQuickHelper>("com.dotool.ui", 1, 0, "FramelessHelper");
 
