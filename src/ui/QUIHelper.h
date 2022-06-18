@@ -13,7 +13,6 @@
 #include <QImage>
 #include <QProcess>
 #include <QFile>
-#include <QtConcurrent>
 #include "glog/logging.h"
 #include "opencv2/opencv.hpp"
 

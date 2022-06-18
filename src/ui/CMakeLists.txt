@@ -73,7 +73,6 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::QuickControls2
         Qt${QT_VERSION_MAJOR}::Multimedia
         Qt${QT_VERSION_MAJOR}::WebEngine
-        Qt${QT_VERSION_MAJOR}::Concurrent
         ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_core455.lib
         ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_imgproc455.lib
         ${THIRD_DIR_PATH}/opencv/lib/win64/opencv_imgcodecs455.lib

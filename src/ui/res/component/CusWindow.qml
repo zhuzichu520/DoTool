@@ -114,7 +114,7 @@ ApplicationWindow {
 
     Timer{
         id:timerToast
-        interval: 2000
+        interval: 1500
         onTriggered: {
             layoutToast.text = ""
             layoutToast.height = 0
