@@ -20,6 +20,7 @@ QtObject {
     property string window_opengl: "qrc:/tool-opengl/ToolOpengl.qml"
     property string window_pack: "qrc:/tool-pack/ToolPack.qml"
     property string window_opencv: "qrc:/tool-opencv/ToolOpencv.qml"
+    property string window_face: "qrc:/tool-face/ToolFace.qml"
 
     property var router_table: [
         {
@@ -88,6 +89,10 @@ QtObject {
         },
         {
             path:window_opencv,
+            onlyOne:true
+        },
+        {
+            path:window_face,
             onlyOne:true
         }
     ]

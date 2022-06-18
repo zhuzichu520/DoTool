@@ -25,6 +25,7 @@ Rectangle {
         font.bold: true
         anchors.centerIn: parent
         color: Theme.colorFontPrimary
+        font.pixelSize: 12
     }
 
     MouseArea{
