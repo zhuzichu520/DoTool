@@ -104,7 +104,7 @@ CusWindow {
                     frameRate: 30
                 }
                 onErrorCodeChanged: {
-                    console.debug("------onErrorCodeChanged------")
+                    showToast("无可用摄像头")
                 }
             }
             MouseArea{

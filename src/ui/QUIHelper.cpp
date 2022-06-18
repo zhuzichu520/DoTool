@@ -213,45 +213,48 @@ QString QUIHelper::readFile(const QString &fileName)
 
 
 void QUIHelper::checkUpdate(){
-    QString program("./maintenancetool.exe");
-    QStringList checkArgs;
-    checkArgs << "--checkupdates";
-    // 检测更新
-    QProcess process;
-    process.start(program, checkArgs);
-    // 等待检测完成
-    if (!process.waitForFinished()) {
-        LOG(INFO)<<"Error checking for updates.";
-        Q_EMIT checkUpdateResult(-1);
-        return;
-    }
-    QString data = process.readAllStandardOutput();
-    if (data.isEmpty()) {
-        LOG(INFO)<<"No updates available.";
-        Q_EMIT checkUpdateResult(0);
-        return;
-    }
+    QtConcurrent::run([this](){
+        QString program("./maintenancetool.exe");
+        QStringList checkArgs;
+        checkArgs << "--checkupdates";
+        // 检测更新
+        QProcess process;
+        process.start(program, checkArgs);
+        // 等待检测完成
+        if (!process.waitForFinished()) {
+            LOG(INFO)<<"Error checking for updates.";
+            Q_EMIT checkUpdateResult(-1);
+            return;
+        }
 
-    if(data.contains("no updates available")){
-        LOG(INFO)<<"No updates available.";
-        Q_EMIT checkUpdateResult(0);
-        return;
-    }
+        QString data = process.readAllStandardOutput();
+        if (data.isEmpty()) {
+            LOG(INFO)<<"No updates available.";
+            Q_EMIT checkUpdateResult(0);
+            return;
+        }
 
-    if(data.contains("Warning:")){
-        LOG(INFO)<<"No updates available.";
-        Q_EMIT checkUpdateResult(-1);
-        return;
-    }
+        if(data.contains("no updates available")){
+            LOG(INFO)<<"No updates available.";
+            Q_EMIT checkUpdateResult(0);
+            return;
+        }
 
-    QStringList updaterArgs;
-    updaterArgs << "--updater";
-    bool success = QProcess::startDetached(program, updaterArgs);
-    if (!success) {
-        qDebug() << "Program startup failed.";
-        return;
-    }
+        if(data.contains("Warning:")){
+            LOG(INFO)<<"No updates available.";
+            Q_EMIT checkUpdateResult(-1);
+            return;
+        }
 
-    LOG(INFO)<<data.toStdString();
-    Q_EMIT checkUpdateResult(1);
+        QStringList updaterArgs;
+        updaterArgs << "--updater";
+        bool success = QProcess::startDetached(program, updaterArgs);
+        if (!success) {
+            qDebug() << "Program startup failed.";
+            return;
+        }
+
+        LOG(INFO)<<data.toStdString();
+        Q_EMIT checkUpdateResult(1);
+    });
 }
